@@ -1,4 +1,4 @@
-var sys = require('sys'), fs = require('fs'), api = require('./api'),mime = require('./mime');
+var sys = require('sys'), fs = require('fs'), http = require('http'), api = require('./api'),mime = require('./mime');
 
 var hookIO = {};
 hookIO.VERSION = "0.0";
@@ -11,7 +11,8 @@ hookIO.queue = new Array();
 hookIO.routes = {};
 // simple route object for dynamic hook.io listening URLS
 function Route(hook){
-	this.hook = hook;
+	this.action = hook.action;
+	this.listener = hook.listener;
 	return this;
 }
 hookIO.acceptRequest = function( req , resp , httpParams ){
@@ -76,8 +77,19 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 		return function(){sys.puts('hookIO.createTwitterUpdate');};	
 	};
 	hookIO.createHttpClient = function(options){
-		sys.puts('hookIO.createHttpClient');
-		return function(){sys.puts('i should be an event that does an http request for ' + JSON.stringify(options));};	
+	  sys.puts('i should be an event that does an http request for ' + JSON.stringify(options));			
+		var google = http.createClient(80, options.host);
+		var request = google.request("GET", options.path, {"host": options.host});
+		request.addListener('response', function (response) {
+		  sys.puts("HTTP REQUEST STATUS CODE: " + response.statusCode);
+		  sys.puts("HEADERS: " + JSON.stringify(response.headers));
+		  response.setBodyEncoding("utf8");
+		  response.addListener("data", function (chunk) {
+			// ignore response for now												 
+			//sys.puts("BODY: " + chunk);
+		  });
+		});
+		request.close();
 	};
 	hookIO.createEmailClient = function(options){
 		return function(){sys.puts('hookIO.createEmailClient');};		
@@ -98,7 +110,6 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 	};
 // end hookIO listeners
 hookIO.popQueue = function(){
-
 	if(hookIO.queue.length == 0){
 		sys.puts('hookIO.queue is empty!!');
 		return false;	
@@ -106,10 +117,7 @@ hookIO.popQueue = function(){
 	sys.puts('hookIO.popQueue');
 	// take action off queue
 	var hook = hookIO.queue.pop();
-	api.api.runHook(hook);;
 	sys.puts('action triggered : ' + JSON.stringify(hook));
-	//H.action.events();
+	api.api.runHook(hook);;
 };
-
-
 exports.hookIO = hookIO;

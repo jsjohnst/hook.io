@@ -32,24 +32,25 @@ api.createHooks = function(hook){
 
 api.runHook = function(hook){
 	// hook action
-	sys.puts('running hook');
-	return true;
+	//sys.puts('action triggered : ' + JSON.stringify(hook['action']));
+
 		if(typeof hook.action['httpRequest'] != 'undefined'){
 			// create http request event
 			sys.puts('creating httpClient event');
-			hookIO.hookIO.createHttpClient(hook);
+			hookIO.hookIO.createHttpClient(hook.action.httpRequest);
 		}
 		if(typeof hook.action['email'] != 'undefined'){
 			// send email (node_mail)
-			//sys.puts('creating email event');			
+			sys.puts('creating email event');			
 			//hook.action.events = hookIO.hookIO.createEmailClient(hook);
 		}
 		if(typeof hook.action['twitterUpdate'] != 'undefined'){
 			// update twitter status via twitter api
-			//sys.puts('creating twitter event');			
+			sys.puts('creating twitter event');			
 			//hook.action.events = hookIO.hookIO.createTwitterUpdate(hook);
 		}
 	// end hook actions
+	return true;		
 };
 
 api.viewQueue = function(options){

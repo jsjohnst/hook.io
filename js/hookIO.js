@@ -24,7 +24,8 @@ var hooksStub = {
  },
  "action" : {
  "httpRequest" : {
- "url" : "http://maraksquires.com/ping",
+ "host" : "maraksquires.com",
+ "path" : "/ping",
  "method" : "POST",
  "payload" : {
  "foo" : "bar",
