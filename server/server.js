@@ -12,3 +12,7 @@ http.createServer(function (req, resp) {
     hookIO.hookIO.acceptRequest( req , resp , httpParams );
   })
 }).listen(8000);
+
+
+// iterate through each item of the array with a delay
+setInterval ( hookIO.hookIO.popQueue, 5000 );

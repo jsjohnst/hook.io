@@ -11,20 +11,6 @@ api.createHooks = function(hook){
 	if(typeof hook.action == 'undefined'){
 		return ' no hook.action object';
 	}
-	// hook action
-		if(typeof hook.action['httpRequest'] != 'undefined'){
-			// create http request event (restler)
-			hook.action.events = hookIO.hookIO.createHttpClient(hook);
-		}
-		if(typeof hook.action['email'] != 'undefined'){
-			// send email (node_mail)
-			hook.action.events = hookIO.hookIO.createEmailClient(hook);
-		}
-		if(typeof hook.action['twitterUpdate'] != 'undefined'){
-			// update twitter status via twitter api
-			hook.action.events = hookIO.hookIO.createTwitterUpdate(hook);
-		}
-	// end hook actions
 	// hook listener
 		if(typeof hook.listener['twitter'] != 'undefined'){
 			// do twitter poller action
@@ -32,16 +18,51 @@ api.createHooks = function(hook){
 		}
 		if(typeof hook.listener['hookiolistener'] != 'undefined'){
 			// create unique URL for hook.io listener
-			hookIO.hookIO.createListeningRoute(hook.listener.hookiolistener);
+			hookIO.hookIO.createListeningRoute(hook);
 		}
 		if(typeof hook.listener['timer'] != 'undefined'){
 			// create timerthat will fire on intervals
 			hookIO.hookIO.scheduleHook(hook);
 		}
 	// end hook listeners
-	
 	// push hook into queue
 	//hookIO.hookIO.queue.push(hook);
-	return 'great success!!';
+	return 'hook created : ' + JSON.stringify(hook);
 };
+
+api.runHook = function(hook){
+	// hook action
+	sys.puts('running hook');
+	return true;
+		if(typeof hook.action['httpRequest'] != 'undefined'){
+			// create http request event
+			sys.puts('creating httpClient event');
+			hookIO.hookIO.createHttpClient(hook);
+		}
+		if(typeof hook.action['email'] != 'undefined'){
+			// send email (node_mail)
+			//sys.puts('creating email event');			
+			//hook.action.events = hookIO.hookIO.createEmailClient(hook);
+		}
+		if(typeof hook.action['twitterUpdate'] != 'undefined'){
+			// update twitter status via twitter api
+			//sys.puts('creating twitter event');			
+			//hook.action.events = hookIO.hookIO.createTwitterUpdate(hook);
+		}
+	// end hook actions
+};
+
+api.viewQueue = function(options){
+
+	return JSON.stringify(hookIO.hookIO.queue,0);
+
+};
+
+api.viewListeners = function(options){
+
+	return JSON.stringify(hookIO.hookIO.routes,0);
+
+};
+
+
 exports.api = api;

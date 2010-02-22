@@ -10,17 +10,20 @@ hookIO.WEBSITE = "http://hook.io";
 hookIO.queue = new Array();
 hookIO.routes = {};
 // simple route object for dynamic hook.io listening URLS
-function Route(options){
-	this.uri = options.uri;
+function Route(hook){
+	this.hook = hook;
 	return this;
 }
 hookIO.acceptRequest = function( req , resp , httpParams ){
 	// check if route exists 
 	sys.puts('checking for dynamic path...' + httpParams.pathname);
-	sys.puts(JSON.stringify(hookIO.queue));	
 	if(typeof hookIO.routes[httpParams.pathname] != 'undefined'){
 		// a route exists for this url which means a hook.io hook was just triggered, push its action to the queue
-		hookIO.queue.push(hookIO.routes[httpParams.pathname].action.events);
+		hookIO.queue.push(hookIO.routes[httpParams.pathname]);
+		resp.sendHeader(200,{'Content-Type':'text/html'});														
+		resp.write('hook.io listener found, executing actions for this hook : ' + JSON.stringify(hookIO.routes[httpParams.pathname]));
+		resp.close();
+		
 	}
 	var path;
 	if(httpParams.pathname == '/'){
@@ -35,6 +38,16 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 					resp.close();
 				}
 			});
+	}
+	else if(httpParams.pathname == '/queue'){
+		resp.sendHeader(200,{'Content-Type':'text/html'});														
+		resp.write(api.api.viewQueue(httpParams));
+		resp.close();
+	}
+	else if(httpParams.pathname == '/listeners'){
+		resp.sendHeader(200,{'Content-Type':'text/html'});														
+		resp.write(api.api.viewListeners(httpParams));
+		resp.close();
 	}
 	else if(httpParams.pathname == '/api'){
 		resp.sendHeader(200,{'Content-Type':'text/html'});														
@@ -64,18 +77,18 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 	};
 	hookIO.createHttpClient = function(options){
 		sys.puts('hookIO.createHttpClient');
-		return function(){sys.puts('i should be an event that does an http request for ', options);};	
+		return function(){sys.puts('i should be an event that does an http request for ' + JSON.stringify(options));};	
 	};
 	hookIO.createEmailClient = function(options){
 		return function(){sys.puts('hookIO.createEmailClient');};		
 	};
 // end hookIO actions
 // hookIO listeners
-	hookIO.createListeningRoute = function(options){
+	hookIO.createListeningRoute = function(hook){
 		// create new route
 		sys.puts('hookIO.createListeningRoute');
-		sys.puts(JSON.stringify(options));
-		hookIO.routes[options.uri] = new Route(options);
+//		sys.puts(JSON.stringify(hook));
+		hookIO.routes[hook.listener.hookiolistener.uri] = new Route(hook);
 	};
 	hookIO.scheduleHook = function(options){
 		return true;	
@@ -85,14 +98,18 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 	};
 // end hookIO listeners
 hookIO.popQueue = function(){
+
 	if(hookIO.queue.length == 0){
+		sys.puts('hookIO.queue is empty!!');
 		return false;	
 	}
+	sys.puts('hookIO.popQueue');
 	// take action off queue
-	var H = hookIO.queue.pop();
-	H.action.events();
+	var hook = hookIO.queue.pop();
+	api.api.runHook(hook);;
+	sys.puts('action triggered : ' + JSON.stringify(hook));
+	//H.action.events();
 };
-// iterate through each item of the array with a delay
-setTimeout ( hookIO.popQueue, 5000 );
+
 
 exports.hookIO = hookIO;
