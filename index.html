@@ -87,35 +87,21 @@ width:385px;
 			});
 		});
 		*/
-		
-		$('#hooksView a').click(function(e){
-		
-			//$('#whenThisPanel').dialog( 'close' );
-			var pTitle = $(this).html();
-			if(pTitle=='back'){pTitle='pick event';}
-			//$('#whenThisPanel').dialog('option', 'title', pTitle);
-			$('.hookPage').hide();			
-			$('.hookAction').hide();						
-			var pID = '#' + $(this).attr('href').replace(/#\//,'');
-			$(pID).show();
-			//$('#whenThisPreview').html($(this).html());
-		});
-
-
 		$('.hookListenRadio').click(function(e){
 			// hide all panels
 			$('.hookPage').hide();
+			$('.hookPage').data('status', 'inactive');
 			$('#' + $(this).val()).show();
+			$('#' + $(this)).data('status', 'active');			
+			
 		});
-
 		$('.hookActionRadio').click(function(e){
 			// hide all panels
 			$('.hookAction').hide();
+			$('.hookAction').data('status', 'inactive');			
 			$('#' + $(this).val()).show();
+			$('#' + $(this)).data('status', 'active');						
 		});
-
-
-		
 		// save buttons
 		$('#whenThisPanel .save').click(function(e){
 			$('#whenThisPanel').dialog( 'close' );
@@ -125,12 +111,10 @@ width:385px;
 			$('#doThisPanel').dialog( 'close' );			
 		});
 
-
 		$('#createHook').click(function(e){
 
 			$('#hookForm input').each(function(e,i){
-			
-			
+				
 					// check form values and create api object call
 					console.log($(i).attr('id'));
 					console.log($(i).val());

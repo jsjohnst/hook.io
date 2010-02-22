@@ -1,51 +1,47 @@
 var sys = require('sys'), hookIO = require('./hookIO');
-
-
 var api = {};
 api.VERSION = "0.0";
 api.AUTHOR = "marak.squires@gmail.com";
 api.WEBSITE = "http://hook.io/api.html";
-
-api.createHooks = function(hooks){
+api.createHooks = function(hook){
 	// for each hook in createHooks request
-	for(hook in hooks){
-		// create shorcut for hook
-		var H = hooks[hook];
-		if(typeof H.listener == 'undefined' || typeof H.action == 'undefined'){
-			return 'fail fail fail, no hook.listener object or hook.action object!!!!!';
-		}
-		// hook action
-			if(typeof H.action['httpRequest'] != 'undefined'){
-				// create http request event (restler)
-				H.action.events = hookIO.hookIO.createHttpClient(H);
-			}
-			if(typeof H.action['email'] != 'undefined'){
-				// send email (node_mail)
-				H.action.events = hookIO.hookIO.createEmailClient(H);
-			}
-			if(typeof H.action['twitterUpdate'] != 'undefined'){
-				// update twitter status via twitter api
-				H.action.events = hookIO.hookIO.createTwitterUpdate(H);
-			}
-		// end hook actions
-		// hook listener
-			if(typeof H.listener['twitter'] != 'undefined'){
-				// do twitter poller action
-				hookIO.hookIO.createTwitterPoller(H);
-			}
-			if(typeof H.listener['hookiolistener'] != 'undefined'){
-				// create unique URL for hook.io listener
-				hookIO.hookIO.createListeningRoute(H);
-			}
-			if(typeof H.listener['timer'] != 'undefined'){
-				// create timerthat will fire on intervals
-				hookIO.hookIO.scheduleHook(H);
-			}
-		// end hook listeners
-		
+	if(typeof hook.listener == 'undefined'){
+		return 'no hook.listener object';
 	}
+	if(typeof hook.action == 'undefined'){
+		return ' no hook.action object';
+	}
+	// hook action
+		if(typeof hook.action['httpRequest'] != 'undefined'){
+			// create http request event (restler)
+			hook.action.events = hookIO.hookIO.createHttpClient(hook);
+		}
+		if(typeof hook.action['email'] != 'undefined'){
+			// send email (node_mail)
+			hook.action.events = hookIO.hookIO.createEmailClient(hook);
+		}
+		if(typeof hook.action['twitterUpdate'] != 'undefined'){
+			// update twitter status via twitter api
+			hook.action.events = hookIO.hookIO.createTwitterUpdate(hook);
+		}
+	// end hook actions
+	// hook listener
+		if(typeof hook.listener['twitter'] != 'undefined'){
+			// do twitter poller action
+			hookIO.hookIO.createTwitterPoller(hook);
+		}
+		if(typeof hook.listener['hookiolistener'] != 'undefined'){
+			// create unique URL for hook.io listener
+			hookIO.hookIO.createListeningRoute(hook.listener.hookiolistener);
+		}
+		if(typeof hook.listener['timer'] != 'undefined'){
+			// create timerthat will fire on intervals
+			hookIO.hookIO.scheduleHook(hook);
+		}
+	// end hook listeners
+	
+	// push hook into queue
+	//hookIO.hookIO.queue.push(hook);
 	return 'great success!!';
 };
-
-
 exports.api = api;

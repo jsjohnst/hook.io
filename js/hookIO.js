@@ -10,13 +10,12 @@ hookIO.createHooks = function(options){
 
 
 var hooksStub = {
- "hook" : {
  "listener" : {
  "twitter" : {
  "username" : "maraksquires"
  },
  "hookiolistener" : {
- "uri" : "http://hook.io/CustomURL123/etc/foo"
+ "uri" : "/CustomURL123/etc/foo"
  },
  "timer" : {
  "interval" : "60",
@@ -42,7 +41,6 @@ var hooksStub = {
  "twitterUpdate" : {
  "username" : "maraksquires",
  "password" : "twitterisstupid"
- }
  }
  }
 };

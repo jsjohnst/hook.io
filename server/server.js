@@ -9,7 +9,6 @@ http.createServer(function (req, resp) {
   req.addListener('end', function(){
     var httpParams = querystring.parse(req.body);							
     httpParams.pathname = url.parse(req.url).pathname;
-    sys.puts(JSON.stringify(httpParams));		
     hookIO.hookIO.acceptRequest( req , resp , httpParams );
   })
 }).listen(8000);

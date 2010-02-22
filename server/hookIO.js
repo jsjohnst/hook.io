@@ -16,9 +16,11 @@ function Route(options){
 }
 hookIO.acceptRequest = function( req , resp , httpParams ){
 	// check if route exists 
+	sys.puts('checking for dynamic path...' + httpParams.pathname);
+	sys.puts(JSON.stringify(hookIO.queue));	
 	if(typeof hookIO.routes[httpParams.pathname] != 'undefined'){
 		// a route exists for this url which means a hook.io hook was just triggered, push its action to the queue
-		hookIO.queue.push(hookIO.routes[httpParams.pathname].events);
+		hookIO.queue.push(hookIO.routes[httpParams.pathname].action.events);
 	}
 	var path;
 	if(httpParams.pathname == '/'){
@@ -41,7 +43,7 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 	}
 	else{
 		path = '..' + httpParams.pathname;
-			fs.readFile(path, 'binary', function (error, content) 
+		fs.readFile(path, 'binary', function (error, content) 
 			{
 				if (error) {
 					resp.sendHeader(200,{'Content-Type':'text/html'});												
@@ -71,6 +73,8 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 // hookIO listeners
 	hookIO.createListeningRoute = function(options){
 		// create new route
+		sys.puts('hookIO.createListeningRoute');
+		sys.puts(JSON.stringify(options));
 		hookIO.routes[options.uri] = new Route(options);
 	};
 	hookIO.scheduleHook = function(options){
