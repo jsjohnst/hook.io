@@ -113,7 +113,7 @@ right:25;
 		$('#twitterUser').keyup(function(e){
 			$('#twitterUserPreview').html('http://twitter.com/' + $(this).val());
 		});
-		$('.hookListenRadio').click(function(e){
+		$('#hookListen').change(function(e){
 			// hide all panels
 			$('.hookPage').hide();
 			$('.hookPage').data('status', 'inactive');
@@ -121,7 +121,7 @@ right:25;
 			$('#' + $(this).val()).data('status', 'active');			
 			
 		});
-		$('.hookActionRadio').click(function(e){
+		$('#hookAction').click(function(e){
 			// hide all panels
 			$('.hookAction').hide();
 			$('.hookAction').data('status', 'inactive');			
@@ -236,11 +236,19 @@ right:25;
     	<form action="#/" id="hookForm">
 					<div id="hookSelector">
 						<div id="leftHolder" class="hookPanels">
-							<h4>pick an event you want to hook to</h4> <br/>
+							
+                            <select id="hookListen" name="hookListen">
+                            	<option value="">pick an event you want to hook to</option>
+                            	<option value="hookiolistener">hook.io listener</option>
+                            	<option value="twitterListen">twitter updates</option>      
+                            	<option value="timer">timer</option>                                      
+                            </select>
+                            
+                            <!--
 							<label title="hookioListener"><input class="hookListenRadio" name="hookListen"  type="radio" value="hookiolistener" checked/></label>hook.io listener						
 							<label title="listen for twitter updates"><input class="hookListenRadio" name="hookListen" type="radio" value="twitterListen"/></label>twitter updates
-							<!-- <label title="github post hook"/><input class="hookListenRadio" name="hookListen" type="radio" value="github"/>github post hook -->
 							<label title="timer"><input class="hookListenRadio" name="hookListen" type="radio" value="timer"/></label>timer
+                            -->
 							<br/>
 							<div id="hookiolistener" class="hookPage" style="display:block;">
                             
@@ -282,13 +290,12 @@ right:25;
             
             <input type="button" value="hook" id="createHook" name="createHook" />
 						<div id="rightHolder" class="hookPanels">
-							<h4>pick an action your new hook should perform</h4> <br/>						
-							<label title="http"><input class="hookActionRadio" name="hookAction" type="radio" value="httpRequest" checked="CHECKED"/></label>http request
-							<label title="twitter"><input class="hookActionRadio" name="hookAction" type="radio" value="twitter"/></label>update twitter status
-							<label title="email"><input class="hookActionRadio" name="hookAction"  type="radio" value="email"/></label>send email						
-							<br/>
-							
-											
+                            <select id="hookAction" name="hookListen">
+                            	<option value="">pick an action your new hook should perform</option>
+                            	<option value="http">http request</option>
+                            	<option value="twitter">update twitter status</option>      
+                            	<option value="email">send email</option>                                      
+                            </select>
 							<div id="httpRequest" class="hookAction" style="display:block;">
                             	<br/>
                                 <label title="method"/>                                
