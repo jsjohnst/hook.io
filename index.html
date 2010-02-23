@@ -113,20 +113,33 @@ right:25;
 		$('#twitterUser').keyup(function(e){
 			$('#twitterUserPreview').html('http://twitter.com/' + $(this).val());
 		});
+		
+		
+		$('body').click(function() {
+		  $('#hookListen').change();
+		  $('#hookAction').change();		  
+		});
+
+		
+		
 		$('#hookListen').change(function(e){
 			// hide all panels
+			var pID = $(this).val();
+			if(pID == ""){pID="hookiolistener";};
 			$('.hookPage').hide();
 			$('.hookPage').data('status', 'inactive');
-			$('#' + $(this).val()).show();
-			$('#' + $(this).val()).data('status', 'active');			
+			$('#' + pID).show();
+			$('#' + pID).data('status', 'active');			
 			
 		});
-		$('#hookAction').click(function(e){
+		$('#hookAction').change(function(e){
 			// hide all panels
+			var pID = $(this).val();
+			if(pID == ""){pID="http";};
 			$('.hookAction').hide();
 			$('.hookAction').data('status', 'inactive');			
-			$('#' + $(this).val()).show();
-			$('#' + $(this).val()).data('status', 'active');						
+			$('#' + pID).show();
+			$('#' + pID).data('status', 'active');						
 		});
 		// save buttons
 		$('#whenThisPanel .save').click(function(e){
@@ -238,20 +251,13 @@ right:25;
 						<div id="leftHolder" class="hookPanels">
 							
                             <select id="hookListen" name="hookListen">
-                            	<option value="">pick an event you want to hook to</option>
+                            	<option value="listenerDetail">pick an event you want to hook to</option>
                             	<option value="hookiolistener">hook.io listener</option>
                             	<option value="twitterListen">twitter updates</option>      
                             	<option value="timer">timer</option>                                      
                             </select>
-                            
-                            <!--
-							<label title="hookioListener"><input class="hookListenRadio" name="hookListen"  type="radio" value="hookiolistener" checked/></label>hook.io listener						
-							<label title="listen for twitter updates"><input class="hookListenRadio" name="hookListen" type="radio" value="twitterListen"/></label>twitter updates
-							<label title="timer"><input class="hookListenRadio" name="hookListen" type="radio" value="timer"/></label>timer
-                            -->
 							<br/>
 							<div id="hookiolistener" class="hookPage" style="display:block;">
-                            
                             	<br/>
                             	<br/>                                
 								<p>create a unique url to listen for POST or GET hooks</p><br/>
