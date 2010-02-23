@@ -8,3 +8,8 @@ var hookIO = require('./index').hookIO,
   actioner = require('./actioner');
 
 
+HookIO.addListener('HttpRequest', function(request, response) {
+  // TODO: Route incoming http requests
+});
+
+
