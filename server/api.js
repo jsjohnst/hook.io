@@ -42,12 +42,12 @@ api.runHook = function(hook){
 		if(typeof hook.action['email'] != 'undefined'){
 			// send email (node_mail)
 			sys.puts('creating email event');			
-			//hook.action.events = hookIO.hookIO.createEmailClient(hook);
+			hookIO.hookIO.createEmailClient(hook);
 		}
 		if(typeof hook.action['twitterUpdate'] != 'undefined'){
 			// update twitter status via twitter api
 			sys.puts('creating twitter event');			
-			//hook.action.events = hookIO.hookIO.createTwitterUpdate(hook);
+			hookIO.hookIO.createTwitterUpdate(hook);
 		}
 	// end hook actions
 	return true;		

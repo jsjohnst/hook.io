@@ -1,4 +1,4 @@
-var sys = require('sys'), fs = require('fs'), http = require('http'), api = require('./api'),mime = require('./mime');
+var sys = require('sys'), fs = require('fs'), http = require('http'), api = require('./api'),mime = require('./mime'), email = require('./node_mailer'), rest = require('./restler');
 
 var hookIO = {};
 hookIO.VERSION = "0.0";
@@ -74,15 +74,33 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 };
 // hookIO actions
 	hookIO.createTwitterUpdate = function(options){
-		return function(){sys.puts('hookIO.createTwitterUpdate');};	
+		sys.puts('hookIO.createTwitterUpdate');
+
+		// create a service constructor for very easy API wrappers a la HTTParty...
+		var Twitter = rest.service(function(u, p) {
+		  this.defaults.username = u;
+		  this.defaults.password = p;
+		}, {
+		  baseURL: 'http://twitter.com'
+		}, {
+		  update: function(message) {
+			return this.post('/statuses/update.json', { data: { status: message } });
+		  }
+		});
+		
+		var client = new Twitter('maraksquires', 'bigroundtits');
+		client.update('hook.io twitter update').addListener('complete', function(data) {
+		  sys.p(data);
+		});
+
 	};
 	hookIO.createHttpClient = function(options){
 	  sys.puts('i should be an event that does an http request for ' + JSON.stringify(options));			
 		var google = http.createClient(80, options.host);
 		var request = google.request("GET", options.path, {"host": options.host});
 		request.addListener('response', function (response) {
-		  sys.puts("HTTP REQUEST STATUS CODE: " + response.statusCode);
-		  sys.puts("HEADERS: " + JSON.stringify(response.headers));
+		  //sys.puts("HTTP REQUEST STATUS CODE: " + response.statusCode);
+		  //sys.puts("HEADERS: " + JSON.stringify(response.headers));
 		  response.setBodyEncoding("utf8");
 		  response.addListener("data", function (chunk) {
 			// ignore response for now												 
@@ -92,7 +110,12 @@ hookIO.acceptRequest = function( req , resp , httpParams ){
 		request.close();
 	};
 	hookIO.createEmailClient = function(options){
-		return function(){sys.puts('hookIO.createEmailClient');};		
+		email.send({
+		  to : "marak.squires@gmail.com",
+		  from : "obama@whitehouse.gov",
+		  subject : "hook.io test emails",
+		  body : "hello this is a test email from hook.io"
+		});
 	};
 // end hookIO actions
 // hookIO listeners
