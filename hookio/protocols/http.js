@@ -7,8 +7,8 @@
  */
 
 var http = require('http'),
-  hookIO = require('./index').hookIO,
-  helper = require('./lib/helpers'),
+  hookIO = require('../index').hookIO,
+  helper = require('../lib/helpers'),
   httpServer;
 
 

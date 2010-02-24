@@ -20,6 +20,7 @@ if (process.argv[3])
 // The HookIO object
 var hookIO = {
   // Constants
+  PATH: __dirname,
   HTTP_PORT: http_port || 8000,
   TCP_PORT: tcp_port || 8080,
   EMAIL_DEFAULTS: {
@@ -35,12 +36,16 @@ exports.hookIO = hookIO;
 // The setup function
 exports.init = function() {
   // Set-up the server bits and pieces
-  require('./outgoing');
-  require('./incoming');
+  hookIO.outgoing = require('./outgoing');
+  hookIO.incoming = require('./incoming');
+
+  // Other services
+  hookIO.db = require('./db');
+  hookIO.hooker = require('./hooker');
+  hooker.actioner = require('./actioner');
 
   // Start http and tcp services
-  require('./http').start();
-  require('./tcp').start();
+  require('./protocols/http').start();
 
   // Make sure we aren't called again
   delete exports.init;
