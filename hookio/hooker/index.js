@@ -11,16 +11,27 @@ var hookIO = require('../index').hookIO,
 // TODO: Remove
 process.mixin(global, require('sys'));
 
-var hooks = {};
+var hooks = exports.hooks = {};
 
 // Load hook definitions
-fs.readdir(hookIO.PATH + '/definitions/hooks', function(error, files) {
-  files.forEach(function(hook) {
-    hook = hook.slice(0, -3);
-    hook = require(hookIO.PATH + '/definitions/hooks/' + hook);
+var updateDefinitions = exports.update = function() {
+  var result = {};
+  fs.readdir(hookIO.PATH + '/definitions/hooks', function(error, files) {
+    files.forEach(function(hook) {
+      hook = hook.slice(0, -3);
+      hook = require(hookIO.PATH + '/definitions/hooks/' + hook);
 
-    try {
-      
-    } catch (error) {}
+      try {
+        hook = hook.hook;
+
+        result[hook.name] = hook;
+      } catch (error) {}
+    });
+
+    hooks = exports.hooks = result;
+    hookIO.emit('HookDefinitionsUpdated', hooks);
+
+    puts(inspect(hooks));
   });
-});
+};
+

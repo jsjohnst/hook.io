@@ -45,7 +45,10 @@ exports.init = function() {
   hooker.actioner = require('./actioner');
 
   // Start http and tcp services
-  require('./protocols/http').start();
+  hookIO.protocol.http = require('./protocols/http');
+  hookIO.protocol.http.start();
+  hookIO.protocol.twitter = require('./protocols/twitter');
+  hookIO.protocol.twitter.start();
 
   // Make sure we aren't called again
   delete exports.init;

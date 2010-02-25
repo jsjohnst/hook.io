@@ -22,18 +22,11 @@ exports.hook = {
       }
     }
   },
-  handleRequest: function(request) {
-    if ('GET' !== request.method || 'POST' !== request.method) {
-      return {
-        'method': 'GET',
-        'url': '/',
-        'body': ''
-      };
-    }
-
+  handle: function(request) {
     return {
       'method': request.method,
       'url': request.url,
+      'contentType': request.headers['content-type'],
       'body': request.body
     }
   }
