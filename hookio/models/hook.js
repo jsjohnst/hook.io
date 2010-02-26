@@ -10,8 +10,9 @@
  * An example json hook object
  *{
  *  'type': 'http',
- *  'key': 'myhook',
- *  'config': {},
+ *  'config': {
+ *    'path': 'myhook'
+ *  },
  *  'params': {
  *    'name': 'Recieved values'
  *  }
@@ -28,8 +29,17 @@ var Hook = exports.Hook = function(options, jsonString) {
   if (true === jsonString)
     options = JSON.parse(options);
 
+  if ('string' !== typeof options.type) {
+    this.data = null;
+    return;
+  }
+
   this.data = {};
-  process.mixin(this.data, options);
+  this.data.type = options.type;
+  this.data.config = options.config || {};
+  this.data.params = options.params || {};
+
+  this.id = '' + (new Date().getTime() + Math.random());
 };
 
 Hook.prototype.toObject = function() {

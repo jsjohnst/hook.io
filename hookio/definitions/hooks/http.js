@@ -3,9 +3,6 @@
  * A http hook for GET / POST requests
  */
 
-var url = require('url');
-
-
 var validateExpression = /^\w+$/;
 
 exports.hook = {
@@ -14,7 +11,7 @@ exports.hook = {
   protocol: 'http',
   config: {
     'path': {
-      name: 'Listener Name',
+      label: 'Listener Name',
       type: 'text',
       description: 'Create a unique url to listen for POST or GET hooks',
       validate: function(input) {
@@ -22,10 +19,10 @@ exports.hook = {
       }
     }
   },
+  params: ['method', 'contentType', 'body'],
   handle: function(request) {
     return {
       'method': request.method,
-      'url': request.url,
       'contentType': request.headers['content-type'],
       'body': request.body
     }

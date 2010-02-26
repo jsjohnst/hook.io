@@ -7,5 +7,26 @@
  */
 
 var Action = exports.Action = function(options) {
+  if (true === jsonString)
+    options = JSON.parse(options);
 
+  if ('string' !== typeof options.type) {
+    this.data = null;
+    return;
+  }
+
+  this.data = {};
+  this.data.type = options.type;
+  this.data.config = options.config || {};
+  this.data.params = options.params || {};
+
+  this.id = '' + (new Date().getTime() + Math.random());
+};
+
+Action.prototype.toObject = function() {
+  return this.data;
+};
+
+Action.prototype.toJson = function() {
+  return JSON.stringify(this.toObject());
 };

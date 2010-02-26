@@ -14,7 +14,7 @@ process.mixin(global, require('sys'));
 var hooks = exports.hooks = {};
 
 // Load hook definitions
-var updateDefinitions = exports.update = function() {
+var updateDefinitions = exports.update = function(callback) {
   var result = {};
   fs.readdir(hookIO.PATH + '/definitions/hooks', function(error, files) {
     files.forEach(function(hook) {
@@ -29,9 +29,15 @@ var updateDefinitions = exports.update = function() {
     });
 
     hooks = exports.hooks = result;
+
+    if ('function' === typeof callback)
+      callback(hooks);
+
     hookIO.emit('HookDefinitionsUpdated', hooks);
 
     puts(inspect(hooks));
   });
 };
+
+process.mixin(exports, require('./http'));
 

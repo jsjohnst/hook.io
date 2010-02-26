@@ -13,20 +13,21 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
   try {
     var hook = request.url.match(keyExpression);
 
-    hook = hookIO.db.getHook('http', hook[1]);
+    hookIO.db.getHook('http', hook[1], function(hook) {
+      if ('object' === typeof hook) {
+        var definition = hookIO.hooker.hooks[hook.type];
+
+        if ('http' === definition.protocol) {
+          hook.params = definition.handle(request);
+
+          hookIO.emit('ActionTrigger', hook, definition);
+          hookIO.emit('JsonrpcResponse', response, 'success', null, null);
+          return;
+        }
+      }
+
+      hookIO.emit('Http404Response', response);
+    });
   } catch (error) {}
 
-  if ('object' === typeof hook) {
-    var definition = hookIO.hooker.hooks[hook.type];
-
-    if ('http' === definition.protocol) {
-      var data = definition.handle(request);
-
-      hookIO.emit('ActionTrigger', hook, data);
-      hookIO.emit('JsonrpcResponse', 'success', null, null);
-      return;
-    }
-  }
-
-  hookIO.emit('Http404Response', response);
 });

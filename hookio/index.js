@@ -39,16 +39,20 @@ exports.init = function() {
   hookIO.outgoing = require('./outgoing');
   hookIO.incoming = require('./incoming');
 
-  // Other services
-  hookIO.db = require('./db');
   hookIO.hooker = require('./hooker');
-  hooker.actioner = require('./actioner');
+  hookIO.hooker.update(function() {
+    hookIO.actioner = require('./actioner');
+    hookIO.actioner.update(function() {
+      // Other services
+      hookIO.db = require('./db');
 
-  // Start http and tcp services
-  hookIO.protocol.http = require('./protocols/http');
-  hookIO.protocol.http.start();
-  hookIO.protocol.twitter = require('./protocols/twitter');
-  hookIO.protocol.twitter.start();
+      // Start http and tcp services
+      hookIO.protocol.http = require('./protocols/http');
+      hookIO.protocol.http.start();
+      hookIO.protocol.twitter = require('./protocols/twitter');
+      hookIO.protocol.twitter.start();
+    });
+  });
 
   // Make sure we aren't called again
   delete exports.init;
