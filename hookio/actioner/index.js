@@ -39,7 +39,11 @@ hookIO.addListener('ActionTrigger', function(hook, definition) {
     actions.forEach(function(action) {
       action.set('params', hook.get('params'));
 
-      hookIO.emit(protocol + 'ActionTrigger', action, actions[action.type]);
+      var actionDefinition = actions[action.get('type')]
+
+      actionDefinition.handle(action, hook, definition);
+
+      hookIO.emit(protocol + 'ActionTrigger', action, actionDefinition);
       hookIO.emit('HookCompleted', hook);
     });
   });
