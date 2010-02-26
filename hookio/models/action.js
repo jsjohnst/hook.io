@@ -23,6 +23,19 @@ var Action = exports.Action = function(options) {
   this.id = '' + (new Date().getTime() + Math.random());
 };
 
+Action.prototype.get = function(key) {
+  return this.data[key];
+};
+
+Action.prototype.set = function(key, value) {
+  try {
+    this.data[key] = value;
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 Action.prototype.toObject = function() {
   return this.data;
 };

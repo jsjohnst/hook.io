@@ -12,7 +12,12 @@ exports.action = {
       label: 'HTTP Method',
       type: 'list',
       description: 'HTTP Method to use',
-      values: ['GET', 'POST', 'PUT', 'DELETE']
+      values: {
+        'GET': 'GET Request',
+        'POST': 'POST Request',
+        'PUT': 'PUT Request',
+        'DELETE': 'DELETE Request'
+      }
     },
     'url': {
       label: 'Destination URI',
@@ -24,8 +29,8 @@ exports.action = {
       }
     }
   },
-  handle: function(hook) {
+  handle: function(action) {
     // Modify hook as needed etc
-    return hook;
+    return action;
   }
 };

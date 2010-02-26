@@ -40,12 +40,15 @@ var HttpClient = function(options) {
                    urlDetails.host);
 
   this._path = urlDetails.path;
-  this.type = options.type.toUpperCase() || 'GET';
+  this.method = options.method.toUpperCase() || 'GET';
   this.data = options.data || '';
 
   this.headers = {
     'host': urlDetails.host
   };
+
+  if ('object' === typeof options.headers)
+    process.mixin(this.headers, options.headers);
 
   this._callback = options.success || function() {};
   this._errback = options.error || function() {};
@@ -56,7 +59,7 @@ var HttpClient = function(options) {
 HttpClient.prototype._request = function() {
   var self = this;
 
-  var request = this._client.request(this.type, this._path, this.headers);
+  var request = this._client.request(this.method, this._path, this.headers);
 
   request.addListener('response', function(response) {
     response.body = '';
@@ -69,7 +72,8 @@ HttpClient.prototype._request = function() {
     });
   });
 
-  if ('POST' === this.type || 'PUT' === this.type)
+  if ('POST' === this.method || 'PUT' === this.method ||
+      'DELETE' === this.method)
     request.write(this.data);
 
   return request;

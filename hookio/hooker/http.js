@@ -18,7 +18,7 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
         var definition = hookIO.hooker.hooks[hook.type];
 
         if ('http' === definition.protocol) {
-          hook.params = definition.handle(request);
+          hook.set('params', definition.handle(request));
 
           hookIO.emit('ActionTrigger', hook, definition);
           hookIO.emit('JsonrpcResponse', response, 'success', null, null);

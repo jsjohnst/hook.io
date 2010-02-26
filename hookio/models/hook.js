@@ -42,6 +42,19 @@ var Hook = exports.Hook = function(options, jsonString) {
   this.id = '' + (new Date().getTime() + Math.random());
 };
 
+Hook.prototype.get = function(key) {
+  return this.data[key];
+};
+
+Hook.prototype.set = function(key, value) {
+  try {
+    this.data[key] = value;
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 Hook.prototype.toObject = function() {
   return this.data;
 };

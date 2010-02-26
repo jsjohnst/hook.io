@@ -28,7 +28,14 @@ var hookIO = {
   }
 };
 
-process.mixin(hookIO, events.EventEmitter.prototype);
+
+// Inherit from EventEmitter
+hookIO = (function() {
+  var fn;
+  (fn = new Function()).prototype = new events.EventEmitter();
+  process.mixin(fn.prototype, hookIO);
+  return new fn();
+})();
 
 exports.hookIO = hookIO;
 

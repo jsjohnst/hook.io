@@ -35,7 +35,14 @@ var updateDefinitions = exports.update = function(callback) {
 hookIO.addListener('ActionTrigger', function(hook, definition) {
   var protocol = definition.protocol[0].toUpperCase() + definition.substr(1);
 
-  hookIO.emit(protocol + 'ActionTrigger', hook, definition);
+  hookIO.db.getActionsForHook(hook, function(actions) {
+    actions.forEach(function(action) {
+      action.set('params', hook.get('params'));
+
+      hookIO.emit(protocol + 'ActionTrigger', action, actions[action.type]);
+      hookIO.emit('HookCompleted', hook);
+    });
+  });
 });
 
 
