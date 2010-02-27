@@ -44,7 +44,7 @@ exports.hookIO = hookIO;
 
 
 // The setup function
-exports.init = function() {
+exports.init = function(callback) {
   // Set-up the server bits and pieces
   hookIO.outgoing = require('./outgoing');
   hookIO.incoming = require('./incoming');
@@ -62,6 +62,9 @@ exports.init = function() {
         hookIO.protocol.http.start();
         hookIO.protocol.twitter = require('./protocols/twitter');
         hookIO.protocol.twitter.start();
+
+        // We are inited
+        callback.call(hookIO);
       });
     });
   });
