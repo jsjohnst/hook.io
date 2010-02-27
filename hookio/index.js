@@ -25,6 +25,9 @@ var hookIO = {
   TCP_PORT: tcp_port || 8080,
   EMAIL_DEFAULTS: {
     'from': 'noreply@hook.io'
+  },
+  DB: {
+    path: this.PATH + '/db/data.db'
   }
 };
 
@@ -52,12 +55,14 @@ exports.init = function() {
     hookIO.actioner.update(function() {
       // Other services
       hookIO.db = require('./db');
-
-      // Start http and tcp services
-      hookIO.protocol.http = require('./protocols/http');
-      hookIO.protocol.http.start();
-      hookIO.protocol.twitter = require('./protocols/twitter');
-      hookIO.protocol.twitter.start();
+      hookIO.db.init(function() {
+        // Start http and tcp services
+        hookIO.protocol = {};
+        hookIO.protocol.http = require('./protocols/http');
+        hookIO.protocol.http.start();
+        hookIO.protocol.twitter = require('./protocols/twitter');
+        hookIO.protocol.twitter.start();
+      });
     });
   });
 

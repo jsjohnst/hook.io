@@ -11,7 +11,10 @@ var pathExpression = /^(\/[^\/]+)(.*)$/;
 
 hookIO.addListener('HttpRequest', function(request, response) {
   // TODO: Route incoming http requests
-  var path = requests.url.match(pathExpression);
+  if ('/' !== request.url)
+    var path = request.url.match(pathExpression);
+  else
+    var path = ['/', '/', ''];
 
   switch (path[1]) {
     case '/jsonrpc':

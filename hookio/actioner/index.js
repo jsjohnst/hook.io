@@ -4,7 +4,8 @@
  * Handles all actions. 'Sink' for actions.
  */
 
-var hookIO = require('../index').hookIO;
+var hookIO = require('../index').hookIO,
+  fs = require('fs');
 
 
 var actions = exports.actions = {};
