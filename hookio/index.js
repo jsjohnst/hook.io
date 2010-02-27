@@ -64,7 +64,8 @@ exports.init = function(callback) {
         hookIO.protocol.twitter.start();
 
         // We are inited
-        callback.call(hookIO);
+        if ('function' === typeof callback)
+          callback.call(hookIO);
       });
     });
   });
