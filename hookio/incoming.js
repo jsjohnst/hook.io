@@ -5,11 +5,14 @@
  */
 
 var hookIO = require('./index').hookIO;
+var sys = require('sys');
 
 
 var pathExpression = /^(\/[^\/]+)(.*)$/;
 
 hookIO.addListener('HttpRequest', function(request, response) {
+  sys.puts('HttpRequest');
+
   // TODO: Route incoming http requests
   if ('/' !== request.url)
     var path = request.url.match(pathExpression);
