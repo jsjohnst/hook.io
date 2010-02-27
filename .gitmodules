@@ -1,0 +1,3 @@
+[submodule "hookio/lib/node-persistence"]
+	path = hookio/lib/node-persistence
+	url = git://github.com/creationix/node-persistence.git
