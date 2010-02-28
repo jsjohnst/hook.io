@@ -5,11 +5,18 @@
  */
 
 var hookIO = require('./index').hookIO;
+var sys = require('sys');
 
-
-hookIO.addListener('Http404Response', function(response) {
+hookIO.addListener('Http404Response', function(request, response) {
   response.writeHeaders(404, {});
   response.write('Page not found.');
+  response.close();
+});
+
+hookIO.addListener('SiteRequest', function(request, response) {
+  sys.puts(JSON.stringify(response));  										   
+  response.sendHeader(200,{'Content-Type':'text/html'});	
+  response.write('This be the default page');
   response.close();
 });
 

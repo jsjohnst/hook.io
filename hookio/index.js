@@ -42,13 +42,15 @@ hookIO = (function() {
 
 exports.hookIO = hookIO;
 
-
 // The setup function
 exports.init = function(callback) {
   // Set-up the server bits and pieces
   hookIO.outgoing = require('./outgoing');
   hookIO.incoming = require('./incoming');
 
+  hookIO.api = require('./api');
+  hookIO.jsonrpc = require('./jsonrpc');
+  
   hookIO.hooker = require('./hooker');
   hookIO.hooker.update(function() {
     hookIO.actioner = require('./actioner');
