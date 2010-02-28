@@ -6,7 +6,7 @@
 
 var hookIO = require('../../hookio').hookIO,
   Hook = require('../models/hook').Hook,
-  store = hookIO.db.db.get_store('hooks' {
+  store = hookIO.db.db.get_store('hooks', {
     protocol: String,
     type: String,
     config: Object,
