@@ -11,6 +11,10 @@ exports.init = function(callback) {
   var connection = db.new_connection(hookIO.DB.path);
   connection.addListener('connection', function() {
     exports.db = connection;
+
+    // Load submodules
+    process.mixin(exports, require('./hooks'));
+
     callback(true);
   });
 
@@ -18,7 +22,3 @@ exports.init = function(callback) {
 };
 
 exports.db = db;
-
-
-// Load submodules
-process.mixin(exports, require('./hooks'));
