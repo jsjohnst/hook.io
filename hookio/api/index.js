@@ -11,6 +11,10 @@ exports.createHook = function(hook){
   sys.puts('api.createHook');
 };
 
+exports.viewHooks = function(options){
+  return hooksTable.build({});
+}
+
 exports.viewQueue = function(options){
 	return queueTable.build({});
 };
@@ -68,6 +72,21 @@ exports.viewSchedule = function(options){
 			html += '</table>';
 			return html;
 		};
+		
+		var hooksTable = {};
+		hooksTable.css = {"text-align":"left"};
+		hooksTable.build = function(data){
+			var html = '<table border = "1">';
+			html += '<tr><th>time</th><th>action</th></tr>';
+			for( record in data ){
+			  var row = data[record];
+			  html += '<tr><td>' + JSON.stringify(row.listener.timer) + '</td><td>' + JSON.stringify(row.action) + '</td></tr>';
+			}
+			html += '';
+			html += '</table>';
+			return html;
+		};
+		
 		/*
 		// apply javascript behaviors to scaffold
 		routesTable.behave = function(behaviors){
