@@ -4,7 +4,7 @@
  * HTTP specific action handling
  */
 
-var hookIO = require('../index').hookIO;
+var hookIO = require('../../hookio').hookIO;
 
 
 hookIO.addListener('HttpActionTrigger', function(action, definition) {

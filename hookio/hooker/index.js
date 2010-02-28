@@ -4,7 +4,7 @@
  * Index file for the package responsible for handling hooks
  */
 
-var hookIO = require('../index').hookIO,
+var hookIO = require('../../hookio').hookIO,
   fs = require('fs');
 
 

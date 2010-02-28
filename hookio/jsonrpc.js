@@ -1,5 +1,7 @@
 // hook.io json-rpc
-var hookIO = require('./index').hookIO, api = require('./api');
+var hookIO = require('../hookio').hookIO,
+  api = require('./api');
+
 var sys = require('sys');
 
 hookIO.addListener('JsonrpcRequest', function(request, response) {
