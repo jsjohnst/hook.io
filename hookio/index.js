@@ -42,7 +42,6 @@ hookIO = (function() {
 
 exports.hookIO = hookIO;
 
-
 // The setup function
 exports.init = function(callback) {
   // Set-up the server bits and pieces

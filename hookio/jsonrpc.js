@@ -1,12 +1,11 @@
 // hook.io json-rpc
-var hookIO = require('./index').hookIO;
+var hookIO = require('./index').hookIO, api = require('./api');
 var sys = require('sys');
 
 hookIO.addListener('JsonrpcRequest', function(request, response) {
   sys.puts('JsonrpcRequest');
    try {
-    //hookIO.api[request.httpParams.method].apply(hookIO.api, request.httpParams.params);
-	hookIO.api.createHook(request.httpParams);
+    api[request.httpParams.method](request.httpParams.params);
   } catch (error) {
     sys.puts(JSON.stringify(error) + ' Jsonrpc method not available');
   }
