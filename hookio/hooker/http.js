@@ -4,7 +4,7 @@
  * Handles http protocol hooks
  */
 
-var hookIO = require('../index').hookIO;
+var hookIO = require('../../hookio').hookIO;
 
 
 var keyExpression = /^\/(\w+)/;

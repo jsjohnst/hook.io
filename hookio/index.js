@@ -42,27 +42,29 @@ hookIO = (function() {
 
 exports.hookIO = hookIO;
 
-// The setup function
+hookIO.outgoing = require('./outgoing');
+hookIO.incoming = require('./incoming');
+
+hookIO.api = require('./api');
+hookIO.jsonrpc = require('./jsonrpc');
+
+hookIO.hooker = require('./hooker');
+hookIO.actioner = require('./actioner');
+
+hookIO.db = require('./db');
+
+hookIO.protocol = {};
+hookIO.protocol.http = require('./protocols/http');
+hookIO.protocol.twitter = require('./protocols/twitter');
+
 exports.init = function(callback) {
   // Set-up the server bits and pieces
-  hookIO.outgoing = require('./outgoing');
-  hookIO.incoming = require('./incoming');
-
-  hookIO.api = require('./api');
-  hookIO.jsonrpc = require('./jsonrpc');
-  
-  hookIO.hooker = require('./hooker');
   hookIO.hooker.update(function() {
-    hookIO.actioner = require('./actioner');
     hookIO.actioner.update(function() {
       // Other services
-      hookIO.db = require('./db');
       hookIO.db.init(function() {
         // Start http and tcp services
-        hookIO.protocol = {};
-        hookIO.protocol.http = require('./protocols/http');
         hookIO.protocol.http.start();
-        hookIO.protocol.twitter = require('./protocols/twitter');
         hookIO.protocol.twitter.start();
 
         // We are inited

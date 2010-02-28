@@ -4,7 +4,7 @@
  * Where the magical data persistence happens
  */
 
-var hookIO = require('../index').hookIO,
+var hookIO = require('../../hookio').hookIO,
   db = require('../lib/node-persistence/lib/persistence/memory');
 
 exports.init = function(callback) {

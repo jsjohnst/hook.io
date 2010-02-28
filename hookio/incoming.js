@@ -4,7 +4,7 @@
  * Handles and routes incoming requests
  */
 
-var hookIO = require('./index').hookIO;
+var hookIO = require('../hookio').hookIO;
 var querystring = require('querystring');
 var url = require('url');
 var sys = require('sys');
