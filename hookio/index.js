@@ -21,13 +21,17 @@ if (process.argv[3])
 var hookIO = {
   // Constants
   PATH: __dirname,
-  HTTP_PORT: http_port || 8000,
-  TCP_PORT: tcp_port || 8080,
   EMAIL_DEFAULTS: {
     'from': 'noreply@hook.io'
   },
   DB: {
     path: this.PATH + '/db/data.db'
+  },
+  HTTP: {
+    defaultHeaders: {
+      'Content-Type': 'text/html'
+    },
+    port: http_port || 8000
   }
 };
 

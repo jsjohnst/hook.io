@@ -25,7 +25,7 @@ exports.start = function() {
     });
   });
 
-  httpServer.listen(hookIO.HTTP_PORT);
+  httpServer.listen(hookIO.HTTP.port);
 
   delete exports.start;
 };

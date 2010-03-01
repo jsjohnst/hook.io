@@ -40,15 +40,15 @@ hookIO.addListener('Jsonrpc404Response', function(response, error, jsonrpcData) 
 });
 
 hookIO.addListener('HttpResponse', function(response, headers, body) {
-  var responseHeaders = {
-  };
-
+  var responseHeaders = {};
+  process.mixin(responseHeaders, hookIO.HTTP.defaultHeaders);
   process.mixin(responseHeaders, headers);
 
   // TODO: Parse XML automagically
-  if ('application/json' === headers['Content-Type'] &&
-      'string' !== typeof body)
-    body = JSON.stringify(body);
+  if ('string' !== typeof body) {
+    if ('application/json' === responseHeaders['Content-Type'])
+      body = JSON.stringify(body);
+  }
 
   response.writeHeaders(200, headers);
   response.write(body);
