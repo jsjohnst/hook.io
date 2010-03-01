@@ -35,7 +35,9 @@ exports.createHook = function() {
     if (false === validateConfig(hook, definition))
       throw new Error('Badly formed user config');
 
-    hookIO.db.storeHook(hook, function(id) {
+    var key = hook.get('config')[definition.keyField];
+
+    hookIO.db.storeHook(hook, key, function(id) {
       callback(null, id);
     });
   } catch (error) {

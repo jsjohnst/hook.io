@@ -46,7 +46,8 @@ exports.validateConfig = function(item, definition) {
 
       if (false === valid)
         return false;
-    }
+    } else
+      return false;
   }
 
   return true;
