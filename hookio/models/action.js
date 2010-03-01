@@ -16,6 +16,7 @@ var Action = exports.Action = function(options) {
   }
 
   this.data = {};
+  this.data.id = options.id || null;
   this.data.type = options.type;
   this.data.config = options.config || {};
   this.data.params = options.params || {};

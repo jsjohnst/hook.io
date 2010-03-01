@@ -11,15 +11,42 @@ var hookIO = require('../../hookio').hookIO,
     type: String,
     key: String,
     config: Object,
-    lastUpdated: Date
+    lastUpdated: Number
   });
 
 
 exports.getActions = function(idArray, callback) {
-  // TODO: Get actions by _id
+  var condition = [];
+  idArray.forEach(function(id) {
+    condition.push({
+      _id: id
+    });
+  });
+
+  store.find(condition, function(results) {
+    if (1 !== results.length) {
+      callback(null)
+      return;
+    }
+
+    callback(new Action({
+      id: results[0]._id,
+      type: results[0].type,
+      config: results[0].config
+    }));
+  });
 };
 
 
-exports.storeAction = function(action, callback) {
-  // TODO: Store action
+exports.storeAction = function(action, key, callback) {
+  action = actions.toObject();
+  var data = {
+    protocol: action.protocol,
+    type: action.type,
+    key: key,
+    config: action.config,
+    lastUpdated: new Date().getTime()
+  };
+
+  store.save(data, callback);
 };

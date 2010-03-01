@@ -7,6 +7,7 @@ exports.action = {
   name: 'http',
   title: 'Send HTTP Request',
   protocol: 'http',
+  keyField: 'url',
   config: {
     'method': {
       label: 'HTTP Method',

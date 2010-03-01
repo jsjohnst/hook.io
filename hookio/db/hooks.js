@@ -11,7 +11,7 @@ var hookIO = require('../../hookio').hookIO,
     type: String,
     key: String,
     config: Object,
-    lastUpdated: Date,
+    lastUpdated: Number,
     actions: Array,
     owner: Number
   });
@@ -27,16 +27,44 @@ exports.getHook = function(protocol, key, callback) {
     }
 
     callback(new Hook({
+      id: results[0]._id,
       type: results[0].type,
-      config: results[0].config
+      config: results[0].config,
+      actions: results[0].actions
     }));
   });
 };
 
-exports.storeHook = function(hook, callback) {
-  // TODO: Store hook logic
+exports.storeHook = function(hook, key, callback) {
+  hook = hook.toObject();
+  var data = {
+    protocol: hook.protocol,
+    type: hook.type,
+    key: key,
+    config: hook.config,
+    lastUpdated: new Date().getTime(),
+    actions: [],
+    // TODO: When session stuff is sorted, insert userID
+    owner: null
+  };
+
+  store.save(data, callback);
 };
 
-exports.attachActionToHook = function(hook, action, callback) {
-  // TODO: Logic to attach action to hook
+exports.updateHook = function(hook, actionID, callback) {
+  hook = hook.toObject();
+  hook.actions.push(actionsID);
+  var data = {
+    _id: hook.id,
+    protocol: hook.protocol,
+    type: hook.type,
+    key: key,
+    config: hook.config,
+    lastUpdated: new Date().getTime(),
+    actions: hook.actions,
+    // TODO: When session stuff is sorted, insert userID
+    owner: null
+  };
+
+  store.save(data, callback);
 };

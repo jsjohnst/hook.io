@@ -25,11 +25,12 @@ hookIO.addListener('JsonrpcResponse', function(response, jsonrpcData, result) {
   }, data);
 });
 
-hookIO.addListener('Jsonrpc404Response', function(response, error, jsonrpcData) {
+hookIO.addListener('Jsonrpc400Response', function(response, error, jsonrpcData) {
   var data = {
     id: jsonrpcData.id || new Date().getTime(),
     result: null,
     error: {
+      code: 400,
       message: error.message || 'API method not found'
     }
   };
