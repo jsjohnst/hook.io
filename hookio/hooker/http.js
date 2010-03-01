@@ -12,7 +12,6 @@ var keyExpression = /^\/(\w+)/;
 
 hookIO.addListener('HttpHookRequest', function(request, response) {
   try {
-    throw new Error();
     var hook = request.url.match(keyExpression);
 
     if (null !== hook) {
