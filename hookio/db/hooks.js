@@ -51,9 +51,8 @@ exports.storeHook = function(hook, key, callback) {
   store.save(data, callback);
 };
 
-exports.updateHook = function(hook, actionID, callback) {
+exports.updateHook = function(hook, callback) {
   hook = hook.toObject();
-  hook.actions.push(actionsID);
   var data = {
     _id: hook.id,
     protocol: hook.protocol,
