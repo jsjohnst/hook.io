@@ -4,7 +4,7 @@
  * API logic for working with hooks
  */
 
-var hookIO = request('../../hookio').hookIO;
+var hookIO = require('../../hookio').hookIO;
 
 
 exports.createHook = function(session, hook) {

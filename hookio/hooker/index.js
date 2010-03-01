@@ -8,9 +8,6 @@ var hookIO = require('../../hookio').hookIO,
   fs = require('fs');
 
 
-// TODO: Remove
-process.mixin(global, require('sys'));
-
 var hooks = exports.hooks = {};
 
 // Load hook definitions
@@ -34,8 +31,6 @@ var updateDefinitions = exports.update = function(callback) {
       callback(hooks);
 
     hookIO.emit('HookDefinitionsUpdated', hooks);
-
-    puts(inspect(hooks));
   });
 };
 

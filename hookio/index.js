@@ -46,11 +46,25 @@ hookIO = (function() {
 
 exports.hookIO = hookIO;
 
+// Debugger
+var sys = require('sys');
+hookIO._emit = hookIO.emit;
+hookIO.emit = function() {
+  arguments = Array.prototype.slice.call(arguments, 0);
+  var eventName = arguments[0];
+  var args = sys.inspect(arguments.slice(1));
+
+  sys.puts(eventName + ': ' + args);
+
+  hookIO._emit.apply(hookIO, arguments);
+};
+
 hookIO.outgoing = require('./outgoing');
 hookIO.incoming = require('./incoming');
 
 hookIO.api = require('./api');
 hookIO.jsonrpc = require('./jsonrpc');
+hookIO.site = require('./site');
 
 hookIO.hooker = require('./hooker');
 hookIO.actioner = require('./actioner');
