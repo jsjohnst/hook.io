@@ -16,7 +16,9 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
 
     if (null !== hook) {
       hookIO.db.getHook('http', hook[1], function(hook) {
-        if ('object' === typeof hook) {
+        puts(inspect(arguments));
+
+        if (null !== hook && 'object' === typeof hook) {
           var definition = hookIO.hooker.hooks[hook.type];
 
           if ('http' === definition.protocol) {
