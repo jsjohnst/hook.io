@@ -4,9 +4,14 @@ var hookIO = require('../hookio').hookIO;
 hookIO.addListener('JsonrpcRequest', function(request, response) {
   try {
     var jsonrpcRequest = JSON.parse(request.body),
-      result = hookIO.api[jsonrpcRequest.method].apply(hookIO.api, jsonrpcRequest.params);
+      args = jsonrpcRequest.params,
+      result;
 
-    hookIO.emit('JsonrpcResponse', response, jsonrpcRequest, result);
+    args.params.push(function() {
+      hookIO.emit('JsonrpcResponse', response, jsonrpcRequest, result);
+    });
+
+    hookIO.api[jsonrpcRequest.method].apply(hookIO.api, args);
   } catch (error) {
     hookIO.emit('Jsonrpc404Response', response, error, jsonrpcRequest || null);
   }
