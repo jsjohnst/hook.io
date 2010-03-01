@@ -12,7 +12,6 @@ var hookIO = require('../../hookio').hookIO,
 function hookCheck(hook) {
   // Validation
   if ('object' !== typeof hook ||
-      'string' !== typeof hook.protocol ||
       'string' !== typeof hook.type) {
     throw new Error('Badly formed hook object');
   }
@@ -26,19 +25,26 @@ exports.createHook = function() {
     hookCheck(hook);
 
     hook = new Hook({
-      protocol: hook.protocol,
       type: hook.type,
       config: hook.config
     });
     var definition = hookIO.hooker.hooks[hook.get('type')];
+    hook.set('protocol', definition.protocol);
 
     if (false === validateConfig(hook, definition))
       throw new Error('Badly formed user config');
 
     var key = hook.get('config')[definition.keyField];
 
-    hookIO.db.storeHook(hook, key, function(id) {
-      callback(null, id);
+    hookIO.db.checkHook(definition.protocol, key, function(exists) {
+      if (exists) {
+        callback(new Error('Duplicate'), null);
+        return;
+      }
+
+      hookIO.db.storeHook(hook, key, function(id) {
+        callback(null, id);
+      });
     });
   } catch (error) {
     callback(error, null);
@@ -53,15 +59,14 @@ exports.attachActionToHook = function() {
   try {
     hookCheck(hook);
 
-    if ('number' !== hook.id)
+    if ('number' !== typeof hook.id)
       throw new Error('Badly formed hook ID');
 
-    if ('number' !== actionID)
+    if ('number' !== typeof actionID)
       throw new Error('Badly formed action ID');
 
     hook = new Hook({
       id: hook.id,
-      protocol: hook.protocol,
       type: hook.type,
       config: hook.config,
       actions: hook.actions instanceof Array ? hook.actions : []
@@ -72,11 +77,14 @@ exports.attachActionToHook = function() {
     hook.set('actions', actions);
 
     var definition = hookIO.hooker.hooks[hook.get('type')];
+    hook.set('protocol', definition.protocol);
 
     if (false === validateConfig(hook, definition))
       throw new Error('Badly formed user config');
 
-    hookIO.db.updateHook(hook, function(id) {
+    var key = hook.get('config')[definition.keyField];
+
+    hookIO.db.updateHook(hook, key, function(id) {
       callback(null, id);
     });
   } catch (error) {

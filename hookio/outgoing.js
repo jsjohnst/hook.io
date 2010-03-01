@@ -31,7 +31,7 @@ hookIO.addListener('Jsonrpc400Response', function(response, error, jsonrpcData) 
     result: null,
     error: {
       code: 400,
-      message: error.message || 'API method not found'
+      message: error.stack || 'API method not found'
     }
   };
 
@@ -57,6 +57,6 @@ hookIO.addListener('HttpResponse', function(response, headers, body) {
 });
 
 hookIO.addListener('HttpClientRequest', function(options) {
-  new hookIO.http.Client(options).close();
+  new hookIO.protocol.http.Client(options).close();
 });
 

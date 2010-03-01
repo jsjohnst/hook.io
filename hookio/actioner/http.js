@@ -8,8 +8,6 @@ var hookIO = require('../../hookio').hookIO;
 
 
 hookIO.addListener('HttpActionTrigger', function(action, definition) {
-  definition.handle(action);
-
   var params = action.get('params'),
     config = action.get('config');
 

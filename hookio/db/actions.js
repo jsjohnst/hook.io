@@ -24,22 +24,41 @@ exports.getActions = function(idArray, callback) {
   });
 
   store.find(condition, function(results) {
-    if (1 !== results.length) {
-      callback(null)
+    if (0 >= results.length) {
+      callback([])
       return;
     }
 
-    callback(new Action({
-      id: results[0]._id,
-      type: results[0].type,
-      config: results[0].config
-    }));
+    var ret = [];
+
+    results.forEach(function(result) {
+      ret.push(new Action({
+        id: result._id,
+        type: result.type,
+        config: result.config
+      }));
+    });
+
+    callback(ret);
   });
 };
 
+exports.checkAction = function(protocol, key, callback) {
+  store.find({
+    protocol: protocol,
+    key: key
+  }, function(results) {
+    if (0 >= results.length) {
+      callback(null);
+      return;
+    }
+
+    callback(results[0]._id);
+  });
+};
 
 exports.storeAction = function(action, key, callback) {
-  action = actions.toObject();
+  action = action.toObject();
   var data = {
     protocol: action.protocol,
     type: action.type,

@@ -37,7 +37,7 @@ exports.action = {
     if ('string' !== typeof params.contentType)
       params.contentType = 'application/json';
 
-    if ('http' !== typeof definition.protocol) {
+    if ('http' !== definition.protocol) {
       // We didn't come from a HTTP hook
       // Convert time
       var ret = {

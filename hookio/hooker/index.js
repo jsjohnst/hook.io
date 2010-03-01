@@ -15,6 +15,9 @@ var updateDefinitions = exports.update = function(callback) {
   var result = {};
   fs.readdir(hookIO.PATH + '/definitions/hooks', function(error, files) {
     files.forEach(function(hook) {
+      if ('.js' !== hook.slice(-3))
+        return;
+
       hook = hook.slice(0, -3);
       hook = require(hookIO.PATH + '/definitions/hooks/' + hook);
 

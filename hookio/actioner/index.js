@@ -14,6 +14,9 @@ var updateDefinitions = exports.update = function(callback) {
   var result = {};
   fs.readdir(hookIO.PATH + '/definitions/actions', function(error, files) {
     files.forEach(function(action) {
+      if ('.js' !== action.slice(-3))
+        return;
+
       action = action.slice(0, -3);
       action = require(hookIO.PATH + '/definitions/actions/' + action);
 
@@ -34,13 +37,13 @@ var updateDefinitions = exports.update = function(callback) {
 };
 
 hookIO.addListener('ActionTrigger', function(hook, definition) {
-  var protocol = definition.protocol[0].toUpperCase() + definition.substr(1);
+  var protocol = definition.protocol[0].toUpperCase() + definition.protocol.slice(1);
 
-  hookIO.db.getActionsForHook(hook, function(actions) {
+  hookIO.db.getActions(hook.get('actions'), function(actions) {
     actions.forEach(function(action) {
       action.set('params', hook.get('params'));
 
-      var actionDefinition = actions[action.get('type')]
+      var actionDefinition = exports.actions[action.get('type')];
 
       actionDefinition.handle(action, hook, definition);
 

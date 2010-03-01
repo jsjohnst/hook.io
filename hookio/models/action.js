@@ -6,7 +6,7 @@
  * can be used client and server side
  */
 
-var Action = exports.Action = function(options) {
+var Action = exports.Action = function(options, jsonString) {
   if (true === jsonString)
     options = JSON.parse(options);
 

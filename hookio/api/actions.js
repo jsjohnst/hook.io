@@ -12,7 +12,6 @@ var hookIO = require('../../hookio').hookIO,
 function actionCheck(action) {
   // Validation
   if ('object' !== typeof action ||
-      'string' !== typeof action.protocol ||
       'string' !== typeof action.type) {
     throw new Error('Badly formed action object');
   }
@@ -26,19 +25,26 @@ exports.createAction = function() {
     actionCheck(action);
 
     action = new Action({
-      protocol: action.protocol,
       type: action.type,
       config: action.config
     });
     var definition = hookIO.actioner.actions[action.get('type')];
+    action.set('protocol', definition.protocol);
 
     if (false === validateConfig(action, definition))
       throw new Error('Badly formed user config');
 
     var key = action.get('config')[definition.keyField];
 
-    hookIO.db.storeAction(action, key, function(id) {
-      callback(null, id);
+    hookIO.db.checkAction(action.get('protocol'), key, function(exists) {
+      if (exists) {
+        callback(null, exists);
+        return;
+      }
+
+      hookIO.db.storeAction(action, key, function(id) {
+        callback(null, id);
+      });
     });
   } catch (error) {
     callback(error, null);

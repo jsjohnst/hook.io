@@ -8,5 +8,5 @@ var hookIO = require('../../hookio').hookIO;
 exports.VERSION = '0.0';
 exports.WEBSITE = 'http://hook.io/';
 
-process.mixin(global, require('./hooks'));
-process.mixin(global, require('./actions'));
+process.mixin(exports, require('./hooks'));
+process.mixin(exports, require('./actions'));

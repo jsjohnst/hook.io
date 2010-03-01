@@ -25,7 +25,7 @@ var hookIO = {
     'from': 'noreply@hook.io'
   },
   DB: {
-    path: this.PATH + '/db/data.db'
+    path: __dirname + '/db/data.db'
   },
   HTTP: {
     defaultHeaders: {

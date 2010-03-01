@@ -35,6 +35,20 @@ exports.getHook = function(protocol, key, callback) {
   });
 };
 
+exports.checkHook = function(protocol, key, callback) {
+  store.find({
+    protocol: protocol,
+    key: key
+  }, function(results) {
+    if (0 >= results.length) {
+      callback(false);
+      return;
+    }
+
+    callback(true);
+  });
+};
+
 exports.storeHook = function(hook, key, callback) {
   hook = hook.toObject();
   var data = {
@@ -51,7 +65,7 @@ exports.storeHook = function(hook, key, callback) {
   store.save(data, callback);
 };
 
-exports.updateHook = function(hook, callback) {
+exports.updateHook = function(hook, key, callback) {
   hook = hook.toObject();
   var data = {
     _id: hook.id,

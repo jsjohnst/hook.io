@@ -14,6 +14,7 @@ exports.init = function(callback) {
 
     // Load submodules
     process.mixin(exports, require('./hooks'));
+    process.mixin(exports, require('./actions'));
 
     callback(true);
   });

@@ -6,7 +6,7 @@ hookIO.addListener('JsonrpcRequest', function(request, response) {
     var jsonrpcRequest = JSON.parse(request.body),
       args = jsonrpcRequest.params;
 
-    args.params.push(function(error, result) {
+    args.push(function(error, result) {
       if (error)
         hookIO.emit('Jsonrpc400Response', response, error, jsonrpcRequest);
       else
@@ -15,6 +15,6 @@ hookIO.addListener('JsonrpcRequest', function(request, response) {
 
     hookIO.api[jsonrpcRequest.method].apply(hookIO.api, args);
   } catch (error) {
-    hookIO.emit('Jsonrpc400Response', response, error, jsonrpcRequest || null);
+    hookIO.emit('Jsonrpc400Response', response, error, jsonrpcRequest || {});
   }
 });
