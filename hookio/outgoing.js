@@ -13,10 +13,23 @@ hookIO.addListener('Http404Response', function(request, response) {
   response.close();
 });
 
-hookIO.addListener('SiteRequest', function(request, response) {
-  sys.puts(JSON.stringify(response));
-  response.sendHeader(200,{'Content-Type':'text/html'});	
-  response.write('This be the default page');
+hookIO.addListener('JsonrpcResponse', function(response, jsonrpcData, result) {
+  
+});
+
+hookIO.addListener('HttpResponse', function(response, headers, body) {
+  var responseHeaders = {
+  };
+
+  process.mixin(responseHeaders, headers);
+
+  // TODO: Parse XML automagically
+  if ('application/json' === headers['Content-Type'] &&
+      'string' !== typeof body)
+    body = JSON.stringify(body);
+
+  response.writeHeaders(200, headers);
+  response.write(body);
   response.close();
 });
 

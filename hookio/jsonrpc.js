@@ -1,17 +1,13 @@
 // hook.io json-rpc
-var hookIO = require('../hookio').hookIO,
-  api = require('./api');
-
-var sys = require('sys');
+var hookIO = require('../hookio').hookIO;
 
 hookIO.addListener('JsonrpcRequest', function(request, response) {
-  sys.puts('JsonrpcRequest');
-   try {
-    api[request.httpParams.method](request.httpParams.params);
+  try {
+    var jsonrpcRequest = JSON.parse(request.body),
+      result = hookIO.api[jsonrpcRequest.method].apply(hookIO.api, jsonrpcRequest.params);
+
+    hookIO.emit('JsonrpcResponse', response, jsonrpcRequest, result);
   } catch (error) {
-    sys.puts(JSON.stringify(error) + ' Jsonrpc method not available');
+    hookIO.emit('Jsonrpc404Response', error);
   }
-  response.sendHeader(200, {'Content-Type':'text/html'});	
-  response.write(JSON.stringify(request.httpParams));
-  response.close();
 });
