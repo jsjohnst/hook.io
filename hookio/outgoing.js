@@ -8,7 +8,7 @@ var hookIO = require('../hookio').hookIO;
 var sys = require('sys');
 
 hookIO.addListener('Http404Response', function(response) {
-  response.writeHeader(404, {});
+  response.writeHeader(404, hookIO.HTTP.defaultHeaders);
   response.write('Page not found.');
   response.close();
 });
@@ -50,7 +50,7 @@ hookIO.addListener('HttpResponse', function(response, headers, body) {
       body = JSON.stringify(body);
   }
 
-  response.writeHeader(200, headers);
+  response.writeHeader(200, responseHeaders);
   response.write(body);
   response.close();
 });
