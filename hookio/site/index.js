@@ -15,7 +15,7 @@ hookIO.addListener('SiteRequest', function(request, response) {
 
     // Home page
     case '/':
-    case 'index.html':
+    case '/index.html':
       hookIO.emit('HttpResponse', response, {},
                   'Home Page!');
     break;
