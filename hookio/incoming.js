@@ -15,7 +15,7 @@ var pathExpression = /^(\/[^\/]+)(.*)$/;
 hookIO.addListener('HttpRequest', function(request, response) {
   sys.puts('HttpRequest');
 
-  var httpParams = querystring.parse(request.body);							
+  var httpParams = querystring.parse(request.body);
   process.mixin( httpParams, url.parse(request.url));
   request.httpParams = httpParams;
 

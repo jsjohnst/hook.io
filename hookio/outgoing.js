@@ -14,7 +14,29 @@ hookIO.addListener('Http404Response', function(request, response) {
 });
 
 hookIO.addListener('JsonrpcResponse', function(response, jsonrpcData, result) {
-  
+  var data = {
+    id: jsonrpcData.id,
+    result: result,
+    error: null
+  };
+
+  hookIO.emit('HttpResponse', response, {
+    'Content-Type': 'application/json'
+  }, data);
+});
+
+hookIO.addListener('Jsonrpc404Response', function(response, error, jsonrpcData) {
+  var data = {
+    id: jsonrpcData.id || new Date().getTime(),
+    result: null,
+    error: {
+      message: error.message || 'API method not found'
+    }
+  };
+
+  hookIO.emit('HttpResponse', response, {
+    'Content-Type': 'application/json'
+  }, data);
 });
 
 hookIO.addListener('HttpResponse', function(response, headers, body) {

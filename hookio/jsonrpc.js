@@ -8,6 +8,6 @@ hookIO.addListener('JsonrpcRequest', function(request, response) {
 
     hookIO.emit('JsonrpcResponse', response, jsonrpcRequest, result);
   } catch (error) {
-    hookIO.emit('Jsonrpc404Response', error);
+    hookIO.emit('Jsonrpc404Response', response, error, jsonrpcRequest || null);
   }
 });
