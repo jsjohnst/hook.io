@@ -6,7 +6,7 @@
 
 var hookIO = require('../../hookio').hookIO,
   Hook = require('../models/hook').Hook,
-  validateConfig = require('../lib/helpers');
+  validateConfig = require('../lib/helpers').validateConfig;
 
 
 function hookCheck(hook) {
