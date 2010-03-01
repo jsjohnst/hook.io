@@ -9,8 +9,10 @@ var hookIO = require('../../hookio').hookIO,
   store = hookIO.db.db.get_store('hooks', {
     protocol: String,
     type: String,
+    key: String,
     config: Object,
     lastUpdated: Date,
+    actions: Array,
     owner: Number
   });
 
@@ -33,4 +35,8 @@ exports.getHook = function(protocol, key, callback) {
 
 exports.storeHook = function(hook, callback) {
   // TODO: Store hook logic
+};
+
+exports.attachActionToHook = function(hook, action, callback) {
+  // TODO: Logic to attach action to hook
 };
