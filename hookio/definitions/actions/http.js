@@ -28,11 +28,20 @@ exports.action = {
         // TODO: Validate URL
         return true;
       }
+    },
+    'body': {
+      label: 'Request Body',
+      type: 'textarea',
+      template: true,
+      description: 'The data sent along with the HTTP request',
+      validate: function() {
+        return true;
+      }
     }
   },
   handle: function(action, hook, definition) {
     // Modify hook as needed etc
-    var params = action.get('params');
+    var params = hook.get('params');
 
     if ('string' !== typeof params.contentType)
       params.contentType = 'application/json';
