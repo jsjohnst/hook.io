@@ -49,7 +49,6 @@ hookIO.addListener('ActionTrigger', function(hook, definition) {
 
       var key,
         compiled,
-        text = '',
         count = 0,
         config = action.get('config'),
         params = hook.get('params');
