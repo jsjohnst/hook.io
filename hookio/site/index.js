@@ -15,9 +15,15 @@ hookIO.addListener('SiteRequest', function(request, response) {
 
     // Home page
     case '/':
-    case '/index.html':
+		break;
+		
+		case '/index.html':
       hookIO.emit('HttpResponse', response, {},
                   'Home Page!');
+    break;
+
+		case '/hooks':
+	 	  hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},'current hooks : ' + JSON.stringify(i));})
     break;
 
     default:
