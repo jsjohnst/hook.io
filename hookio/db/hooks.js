@@ -35,6 +35,28 @@ exports.getHook = function(protocol, key, callback) {
   });
 };
 
+exports.getAllHooks = function(callback) {
+  store.all(function(hooks) {
+    if (0 >= hooks.length) {
+      callback([]);
+      return;
+    }
+
+    var ret = [];
+
+    hooks.forEach(function(hook) {
+      ret.push(new Hook({
+        id: hook._id,
+        type: hook.type,
+        config: hook.config,
+        actions: hook.actions
+      }));
+    });
+
+    callback(ret);
+  });
+};
+
 exports.checkHook = function(protocol, key, callback) {
   store.find({
     protocol: protocol,

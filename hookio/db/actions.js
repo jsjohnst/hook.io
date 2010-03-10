@@ -43,6 +43,27 @@ exports.getActions = function(idArray, callback) {
   });
 };
 
+exports.getAllActions = function(callback) {
+  store.all(function(actions) {
+    if (0 >= actions.length) {
+      callback([]);
+      return;
+    }
+
+    var ret = [];
+
+    actions.forEach(function(action) {
+      ret.push(new Action({
+        id: action._id,
+        type: action.type,
+        config: action.config
+      }));
+    });
+
+    callback(ret);
+  });
+};
+
 exports.checkAction = function(protocol, key, callback) {
   store.find({
     protocol: protocol,
