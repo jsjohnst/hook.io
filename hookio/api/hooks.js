@@ -51,6 +51,24 @@ exports.createHook = function() {
   }
 };
 
+exports.getAllHooks = function() {
+  callback = arguments[arguments.length - 1];
+
+  try {
+    hookIO.db.getAllHooks(function(hooks) {
+      var ret = [];
+
+      hooks.forEach(function(hook) {
+        ret.push(hook.toJson());
+      });
+
+      callback(null, ret);
+    });
+  } catch (error) {
+    callback(error, null);
+  }
+};
+
 exports.attachActionToHook = function() {
   var hook = arguments[0],
     actionID = arguments[1],
