@@ -6,8 +6,7 @@
 
 var hookIO = require('../../hookio').hookIO,
   fs = require('fs'),
-  MuCompiler = require('../lib/mu/lib/mu/compiler');
-  MuParser = require('../lib/mu/lib/mu/parser');
+  Mu = require('../lib/mu/lib/mu');
 
 
 var actions = exports.actions = {};
@@ -55,7 +54,7 @@ hookIO.addListener('ActionTrigger', function(hook, definition) {
       for (key in actionDefinition.config) {
         if (actionDefinition[key].template && config[key]) {
           count++;
-          compiled = Mu.compile(config[key])(params, {});
+          compiled = Mu.compileText(config[key], {})(params);
 
           (function(key) {
             var text = '';
