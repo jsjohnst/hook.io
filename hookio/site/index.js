@@ -6,6 +6,8 @@
 
 var hookIO = require('../../hookio').hookIO;
 
+var views = require('./views');
+
 
 hookIO.addListener('SiteRequest', function(request, response) {
   switch (request.url) {
@@ -23,7 +25,7 @@ hookIO.addListener('SiteRequest', function(request, response) {
     break;
 
 		case '/hooks':
-	 	  hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},'current hooks : ' + JSON.stringify(i));})
+	 	  hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
     break;
 
     default:
