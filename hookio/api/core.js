@@ -1,4 +1,3 @@
-
 /*
  * hookio/api/core
  * core API logic for working with the hook.io api
