@@ -95,3 +95,47 @@ exports.init = function(callback) {
   // Make sure we aren't called again
   delete exports.init;
 };
+
+
+hookIO.scheduleRunning = false;
+
+hookIO.checkScheduler = function(){
+	
+		if(hookIO.scheduleRunning){
+			return;
+		}
+	
+ 	hookIO.scheduleRunning = true;
+		
+	 sys.puts('check sched');	
+
+  hookIO.db.getAllHooks(function(hooks) {
+				var ret = [];
+				hooks.forEach(function(hook) {
+				  if(hook.data.type == "timer"){
+						  //sys.puts(JSON.stringify(hook));
+				    // check if timer should be run based on interval
+						  var now = Number(new Date().getTime());
+						  var interval = Number(hook.data.config.interval);
+					  	var lastTimeTriggered = Number(hook.data.config.startTime);
+								
+								sys.puts((lastTimeTriggered + interval) - now);
+								
+								if((lastTimeTriggered + interval) < now){
+									 sys.puts('trigger hook now');
+								}
+								else{
+									sys.puts('lastTime : ' + lastTimeTriggered);
+									sys.puts('now : ' + now);
+								}
+								
+															
+			  	}
+				});
+		});
+		
+		hookIO.scheduleRunning = false;					
+};
+
+// iterate through each item of the queue array with a delay
+setInterval ( hookIO.checkScheduler, 5000 );

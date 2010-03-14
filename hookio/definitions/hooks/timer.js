@@ -1,8 +1,6 @@
-
 /*
  * A hook for timer calls
  */
-
 var validateExpression = /^\w+$/;
 
 exports.hook = {
@@ -14,7 +12,7 @@ exports.hook = {
     'interval': {
       label: 'Listener Name',
       type: 'text',
-      description: 'Create a unique url to listen for POST or GET hooks',
+      description: 'Create a hook that will fire based on a timer',
       validate: function(input) {
         if ('string' === typeof input)
           return validateExpression.test(input);
