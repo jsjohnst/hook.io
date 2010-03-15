@@ -1,31 +1,25 @@
 /*
  * A hook for timer calls
  */
-var validateExpression = /^\w+$/;
-
 exports.hook = {
   name: 'timer',
   title: 'Hook.io Timer',
   protocol: 'timer',
-  keyField: 'path',
+  keyField: 'interval',
   config: {
     'interval': {
-      label: 'Listener Name',
+      label: 'Interval duration',
       type: 'text',
-      description: 'Create a hook that will fire based on a timer',
+      description: 'Time in seconds between each trigger',
       validate: function(input) {
-        if ('string' === typeof input)
-          return validateExpression.test(input);
+        if (5 < parseInt(input, 10))
+          return true;
         return false;
       }
     }
   },
-  params: ['method', 'contentType', 'body'],
+  params: [],
   handle: function(request) {
-    return {
-      'method': request.method,
-      'contentType': request.headers['content-type'],
-      'body': request.body
-    }
+    return {};
   }
 };

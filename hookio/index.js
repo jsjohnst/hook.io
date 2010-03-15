@@ -74,6 +74,7 @@ hookIO.db = require('./db');
 hookIO.protocol = {};
 hookIO.protocol.http = require('./protocols/http');
 hookIO.protocol.twitter = require('./protocols/twitter');
+hookIO.protocol.timer = require('./protocols/timer');
 
 exports.init = function(callback) {
   // Set-up the server bits and pieces
@@ -81,13 +82,17 @@ exports.init = function(callback) {
     hookIO.actioner.update(function() {
       // Other services
       hookIO.db.init(function() {
-        // Start http and tcp services
-        hookIO.protocol.http.start();
-        hookIO.protocol.twitter.start();
-
-        // We are inited
-        if ('function' === typeof callback)
-          callback.call(hookIO);
+        // Start timer
+        hookIO.protocol.timer.init(function() {
+          // Start http and tcp services
+          hookIO.protocol.http.start();
+          hookIO.protocol.twitter.start();
+          // Start timer
+          hookIO.protocol.timer.start();
+          // We are inited
+          if ('function' === typeof callback)
+            callback.call(hookIO);
+        });
       });
     });
   });
@@ -95,47 +100,3 @@ exports.init = function(callback) {
   // Make sure we aren't called again
   delete exports.init;
 };
-
-
-hookIO.scheduleRunning = false;
-
-hookIO.checkScheduler = function(){
-	
-		if(hookIO.scheduleRunning){
-			return;
-		}
-	
- 	hookIO.scheduleRunning = true;
-		
-	 sys.puts('check sched');	
-
-  hookIO.db.getAllHooks(function(hooks) {
-				var ret = [];
-				hooks.forEach(function(hook) {
-				  if(hook.data.type == "timer"){
-						  //sys.puts(JSON.stringify(hook));
-				    // check if timer should be run based on interval
-						  var now = Number(new Date().getTime());
-						  var interval = Number(hook.data.config.interval);
-					  	var lastTimeTriggered = Number(hook.data.config.startTime);
-								
-								sys.puts((lastTimeTriggered + interval) - now);
-								
-								if((lastTimeTriggered + interval) < now){
-									 sys.puts('trigger hook now');
-								}
-								else{
-									sys.puts('lastTime : ' + lastTimeTriggered);
-									sys.puts('now : ' + now);
-								}
-								
-															
-			  	}
-				});
-		});
-		
-		hookIO.scheduleRunning = false;					
-};
-
-// iterate through each item of the queue array with a delay
-setInterval ( hookIO.checkScheduler, 5000 );

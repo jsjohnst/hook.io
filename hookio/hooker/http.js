@@ -34,5 +34,4 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
   } catch (error) {
     hookIO.emit('HttpResponse', response, {}, inspect(error.stack));
   }
-
 });

@@ -38,11 +38,12 @@ var updateDefinitions = exports.update = function(callback) {
 };
 
 hookIO.addListener('ActionTrigger', function(hook, definition) {
-  var protocol = definition.protocol[0].toUpperCase() + definition.protocol.slice(1);
 
   hookIO.db.getActions(hook.get('actions'), function(actions) {
     actions.forEach(function(action) {
-      var actionDefinition = exports.actions[action.get('type')];
+      var actionDefinition = exports.actions[action.get('type')],
+          protocol = actionDefinition.protocol[0].toUpperCase() +
+                     actionDefinition.protocol.slice(1);
 
       actionDefinition.handle(action, hook, definition);
 

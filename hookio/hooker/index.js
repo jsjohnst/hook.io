@@ -37,6 +37,7 @@ var updateDefinitions = exports.update = function(callback) {
   });
 };
 
+// FIXME: process.mixin depreciating
 process.mixin(exports, require('./http'));
 process.mixin(exports, require('./timer'));
 

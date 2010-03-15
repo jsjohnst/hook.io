@@ -6,9 +6,10 @@
 var hookIO = require('../../hookio').hookIO;
 
 exports.ping = function() {
-  callback = arguments[arguments.length - 1];
+  var callback = arguments[arguments.length - 1];
+
   try {
-   callback(null, 'pong');		
+    callback(null, 'pong');
   } catch (error) {
     callback(error, null);
   }

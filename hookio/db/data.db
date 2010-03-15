@@ -1,1 +1,0 @@
-{"hooks":[{"actions":[],"config":{"path":"TestCustomURL1268552205699"},"owner":null,"protocol":"http","lastUpdated":1268552219149,"key":"TestCustomURL1268552205699","type":"http"},{"actions":[],"config":{"interval":"60000","startTime":1268552205699},"owner":null,"protocol":"timer","lastUpdated":1268552219149,"type":"timer"}],"actions":[]}
