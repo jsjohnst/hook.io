@@ -47,6 +47,7 @@ var HttpClient = function(options) {
     'host': urlDetails.host
   };
 
+  // FIXME: Process.mixin depreciating
   if ('object' === typeof options.headers)
     process.mixin(this.headers, options.headers);
 
@@ -69,7 +70,7 @@ HttpClient.prototype._request = function() {
     });
 
     response.addListener('end', function() {
-      self._callback.call(self, response);
+      self._callback(response);
     });
   });
 

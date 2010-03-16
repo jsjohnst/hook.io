@@ -31,6 +31,9 @@ var hookIO = {
     defaultHeaders: {
       'Content-Type': 'text/html'
     },
+    clientHeaders: {
+      'User-Agent': 'hook.io Web Hooker'
+    },
     port: http_port || 8000
   }
 };
