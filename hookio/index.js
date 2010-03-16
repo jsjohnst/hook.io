@@ -40,12 +40,7 @@ var hookIO = {
 
 
 // Inherit from EventEmitter
-hookIO = (function() {
-  var fn;
-  (fn = new Function()).prototype = new events.EventEmitter();
-  process.mixin(fn.prototype, hookIO);
-  return new fn();
-})();
+hookIO = Object.create(EventEmitter.prototype);
 
 exports.hookIO = hookIO;
 

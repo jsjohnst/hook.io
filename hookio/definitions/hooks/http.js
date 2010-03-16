@@ -16,8 +16,8 @@ exports.hook = {
       type: 'text',
       description: 'Create a unique url to listen for POST or GET hooks',
       validate: function(input) {
-        if ('string' === typeof input)
-          return validateExpression.test(input);
+        if ('string' === typeof input && validateExpression.test(input))
+          return input;
         return false;
       }
     }

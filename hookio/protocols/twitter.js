@@ -15,33 +15,36 @@ var twit = new TwitterNode({
   password: 'h00k10'
 });
 
+twit.addListener('tweet', function(tweet) {
+  hookIO.emit('TweetTwitterRequest', tweet);
+}).addListener('close', function() {
+  setTimeout(function() {
+    twit.stream();
+  }, 10000);
+});
+
 exports.start = function() {
   hookIO.db.getHooks({
     protocol: 'twitter'
   }, function(hooks) {
     if (0 >= hooks.length) {
-      return twit.stream();
+      return;
     }
 
     var count = 0;
     hooks.forEach(function(hook) {
-      var name;
-      if (name = hook.get('name')) {
-        count++;
-        exports.apiRequest('users', 'show', name,
-                           function(response) {
-          count--;
-          try {
-            twit.follow(response.id);
-          } catch (error) {}
+      count++;
+      exports.apiRequest('users', 'show', hook.get('name'),
+                         function(response) {
+        count--;
+        try {
+          twit.follow(response.id);
+        } catch (error) {}
 
-          if (0 >= count) {
-            twit.stream();
-          }
-        });
-      } else if (name = hook.get('keyword')) {
-        twit.track(name);
-      }
+        if (0 >= count) {
+          twit.stream();
+        }
+      });
     });
 
     if (0 === count) {
@@ -67,11 +70,6 @@ exports.trackUser = function(user, callback) {
       }
     });
   }
-};
-
-exports.trackKeyword = function(word) {
-  twit.track(word);
-  twit.stream();
 };
 
 exports.apiRequest = function() {

@@ -36,10 +36,13 @@ exports.validateConfig = function(item, definition) {
 
       switch (definition.config[param].type) {
         case 'text':
+        case 'textarea':
           valid = definition.config[param].validate(config[param]);
+          if (false !== valid)
+            config[param] = valid;
           break;
         case 'list':
-          if (definition.config[param].values[config[param]]);
+          if (definition.config[param].values[config[param]])
             valid = true;
           break;
       }
@@ -49,6 +52,8 @@ exports.validateConfig = function(item, definition) {
     } else
       return false;
   }
+
+  item.set('config', config);
 
   return true;
 };

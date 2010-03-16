@@ -14,10 +14,10 @@ exports.hook = {
     'name': {
       label: 'Twitter Username',
       type: 'text',
-      description: 'The user ID or the username of the Twitter user you want to track',
+      description: 'The username of the Twitter user you want to track',
       validate: function(input) {
-        if ('string' === typeof input)
-          return validateExpression.test(input);
+        if ('string' === typeof input && validateExpression.test(input))
+          return input;
         return false;
       }
     }
@@ -25,8 +25,8 @@ exports.hook = {
   params: ['tweet'],
   handle: function(request) {
     return {
-      'tweet': ''
-    }
+      'tweet': request
+    };
   }
 };
 

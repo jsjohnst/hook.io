@@ -12,8 +12,9 @@ exports.hook = {
       type: 'text',
       description: 'Time in seconds between each trigger',
       validate: function(input) {
-        if (5 < parseInt(input, 10))
-          return true;
+        input = parseInt(input, 10);
+        if (5 < input)
+          return input;
         return false;
       }
     }
