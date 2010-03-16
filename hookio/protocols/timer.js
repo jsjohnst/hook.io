@@ -9,19 +9,6 @@ var hookIO = require('../../hookio').hookIO;
 var timers = exports.timers = {};
 var hooks = exports.hooks = {};
 
-exports.init = function(callback) {
-  hookIO.db.getHooks({
-    protocol: 'timer'
-  }, function(hooks) {
-    hooks.forEach(function(hook) {
-      var duration = 1000 * parseInt(hook.get('interval'), 10);
-      hooks[duration] = hook;
-    });
-
-    callback();
-  });
-};
-
 exports.start = function() {
   hookIO.db.getHooks({
     protocol: 'timer'
