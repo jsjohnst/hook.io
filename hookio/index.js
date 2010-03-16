@@ -82,17 +82,14 @@ exports.init = function(callback) {
     hookIO.actioner.update(function() {
       // Other services
       hookIO.db.init(function() {
+        // Start http and tcp services
+        hookIO.protocol.http.start();
+        hookIO.protocol.twitter.start();
         // Start timer
-        hookIO.protocol.timer.init(function() {
-          // Start http and tcp services
-          hookIO.protocol.http.start();
-          hookIO.protocol.twitter.start();
-          // Start timer
-          hookIO.protocol.timer.start();
-          // We are inited
-          if ('function' === typeof callback)
-            callback.call(hookIO);
-        });
+        hookIO.protocol.timer.start();
+        // We are inited
+        if ('function' === typeof callback)
+          callback.call(hookIO);
       });
     });
   });

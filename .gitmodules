@@ -4,3 +4,6 @@
 [submodule "hookio/lib/mu"]
 	path = hookio/lib/mu
 	url = git://github.com/raycmorgan/Mu.git
+[submodule "hookio/lib/twitter-node"]
+	path = hookio/lib/twitter-node
+	url = git://github.com/technoweenie/twitter-node.git

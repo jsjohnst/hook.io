@@ -62,6 +62,7 @@ HttpClient.prototype._request = function() {
   var request = this._client.request(this.method, this._path, this.headers);
 
   request.addListener('response', function(response) {
+    self.response = response;
     response.body = '';
     response.addListener('data', function(chunk) {
       response.body = response.body + chunk;

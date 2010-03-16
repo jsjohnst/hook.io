@@ -23,10 +23,22 @@ exports.init = function(callback) {
 };
 
 exports.start = function() {
-  var duration;
-  for (duration in hooks) {
-    timers[duration] = setTimeout(callback, duration, duration);
-  }
+  hookIO.db.getHooks({
+    protocol: 'timer'
+  }, function(hooks) {
+    hooks.forEach(function(hook) {
+      var duration = 1000 * parseInt(hook.get('interval'), 10);
+      if (!hooks[duration] instanceof Array) {
+        hooks[duration] = []
+      }
+      hooks[duration].push(hook);
+    });
+
+    var duration;
+    for (duration in hooks) {
+      timers[duration] = setTimeout(callback, duration, duration);
+    }
+  });
 };
 
 exports.addHook = function(hook) {
@@ -49,7 +61,7 @@ exports.addHook = function(hook) {
 
 var callback = function(duration) {
   var hook;
-  for (hook in hooks[duration]) {
+  hooks[duration].forEach(function(hook) {
     hookIO.emit('TimerHookRequest', hook);
-  }
+  });
 };
