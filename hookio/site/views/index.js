@@ -6,6 +6,10 @@ exports.viewHooks = function(options){
   return hooksTable.build(options);
 }
 
+exports.viewActions = function(options){
+  return actionsTable.build(options);
+}
+
 exports.viewQueue = function(options){
 	return queueTable.build({});
 };
@@ -77,6 +81,21 @@ exports.viewSchedule = function(options){
 			html += '</table>';
 			return html;
 		};
+		
+		var actionsTable = {};
+		actionsTable.css = {"text-align":"left"};
+		actionsTable.build = function(data){
+			var html = '<table border = "1">';
+			html += '<tr><th>actions</th></tr>';
+			for( record in data ){
+			  var row = data[record];
+			  html += '<tr><td>' + JSON.stringify(row) + '</td></tr>';
+			}
+			html += '';
+			html += '</table>';
+			return html;
+		};
+		
 		
 		/*
 		// apply javascript behaviors to scaffold

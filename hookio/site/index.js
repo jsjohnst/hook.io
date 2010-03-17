@@ -17,15 +17,18 @@ hookIO.addListener('SiteRequest', function(request, response) {
 
     // Home page
     case '/':
-		break;
+		  break;
 		
-		case '/index.html':
-      hookIO.emit('HttpResponse', response, {},
-                  'Home Page!');
+		  case '/index.html':
+      hookIO.emit('HttpResponse', response, {}, 'Home Page!');
     break;
 
-		case '/hooks':
-	 	  hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
+	  	case '/hooks':
+      hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
+    break;
+
+	  	case '/actions':
+      hookIO.api.getAllActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
     break;
 
     default:

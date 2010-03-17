@@ -77,9 +77,12 @@ hookIO.actioner = require('./actioner');
 hookIO.db = require('./db');
 
 hookIO.protocol = {};
+
+// TODO : add better way to load protocols
 hookIO.protocol.http = require('./protocols/http');
 hookIO.protocol.twitter = require('./protocols/twitter');
 hookIO.protocol.timer = require('./protocols/timer');
+hookIO.protocol.debug = require('./protocols/debug');
 
 exports.init = function(callback) {
   // Set-up the server bits and pieces
