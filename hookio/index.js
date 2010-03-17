@@ -40,7 +40,14 @@ var hookIO = {
 
 
 // Inherit from EventEmitter
-hookIO = Object.create(EventEmitter.prototype);
+/* tim - not sure why the new line was choking but there was an issue with the above hookIO options hash not being defined */
+//hookIO = Object.create(events.EventEmitter.prototype);
+hookIO = (function() {
+  var fn;
+  (fn = new Function()).prototype = new events.EventEmitter();
+  process.mixin(fn.prototype, hookIO);
+  return new fn();
+})();
 
 exports.hookIO = hookIO;
 
