@@ -36,7 +36,11 @@ exports.createHook = function() {
 
     var key = hook.get('config')[definition.keyField];
 
-    hookIO.db.checkHook(definition.protocol, key, function(exists) {
+    hookIO.db.checkHook({
+      protocol: hook.get('protocol'),
+      key: key,
+      config: hook.get('config')
+    }, function(exists) {
       if (exists) {
         callback(new Error('Duplicate'), null);
         return;

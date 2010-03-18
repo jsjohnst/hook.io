@@ -38,7 +38,6 @@ var updateDefinitions = exports.update = function(callback) {
 };
 
 hookIO.addListener('ActionTrigger', function(hook, definition) {
-
   hookIO.db.getActions(hook.get('actions'), function(actions) {
     actions.forEach(function(action) {
       var actionDefinition = exports.actions[action.get('type')],
@@ -78,7 +77,6 @@ hookIO.addListener('ActionTrigger', function(hook, definition) {
       function done() {
         actions.set('config', config);
         hookIO.emit(protocol + 'ActionTrigger', action, actionDefinition);
-        hookIO.emit('HookCompleted', hook);
       }
     });
   });

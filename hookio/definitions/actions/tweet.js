@@ -1,6 +1,6 @@
 
 /*
- * A action for sending http requests to things
+ * A action for sending tweets
  */
 
 exports.action = {
@@ -24,9 +24,9 @@ exports.action = {
       label: 'Destination URI',
       type: 'text',
       description: 'Where to send the HTTP request',
-      validate: function(input) {
+      validate: function() {
         // TODO: Validate URL
-        return input;
+        return true;
       }
     },
     'body': {
@@ -34,8 +34,8 @@ exports.action = {
       type: 'textarea',
       template: true,
       description: 'The data sent along with the HTTP request',
-      validate: function(input) {
-        return input;
+      validate: function() {
+        return true;
       }
     }
   },

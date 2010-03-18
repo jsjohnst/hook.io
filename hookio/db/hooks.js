@@ -16,11 +16,8 @@ var hookIO = require('../../hookio').hookIO,
     owner: Number
   });
 
-exports.getHook = function(protocol, key, callback) {
-  store.find({
-    protocol: protocol,
-    key: key
-  }, function(results) {
+exports.getHook = function(condition, callback) {
+  store.find(condition, function(results) {
     if (1 !== results.length) {
       callback(null)
       return;
@@ -79,11 +76,8 @@ exports.getAllHooks = function(callback) {
   });
 };
 
-exports.checkHook = function(protocol, key, callback) {
-  store.find({
-    protocol: protocol,
-    key: key
-  }, function(results) {
+exports.checkHook = function(condition, callback) {
+  store.find(condition, function(results) {
     if (0 >= results.length) {
       callback(false);
       return;

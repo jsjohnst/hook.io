@@ -64,11 +64,8 @@ exports.getAllActions = function(callback) {
   });
 };
 
-exports.checkAction = function(protocol, key, callback) {
-  store.find({
-    protocol: protocol,
-    key: key
-  }, function(results) {
+exports.checkAction = function(condition, callback) {
+  store.find(condition, function(results) {
     if (0 >= results.length) {
       callback(null);
       return;

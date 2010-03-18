@@ -35,8 +35,11 @@ exports.createAction = function() {
       throw new Error('Badly formed user config');
 
     var key = action.get('config')[definition.keyField];
-
-    hookIO.db.checkAction(action.get('protocol'), key, function(exists) {
+    hookIO.db.checkAction({
+      protocol: action.get('protocol'),
+      key: key,
+      config: action.get('config')
+    }, function(exists) {
       if (exists) {
         callback(null, exists);
         return;
@@ -46,6 +49,7 @@ exports.createAction = function() {
         callback(null, id);
       });
     });
+
   } catch (error) {
     callback(error, null);
   }

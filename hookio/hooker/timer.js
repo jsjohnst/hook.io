@@ -11,4 +11,5 @@ hookIO.addListener('TimerHookRequest', function(hook) {
   hook.set('params', {});
 
   hookIO.emit('ActionTrigger', hook, definition);
+  hookIO.emit('HookCompleted', hook);
 });

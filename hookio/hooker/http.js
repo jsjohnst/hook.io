@@ -15,23 +15,32 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
     var hook = request.url.match(keyExpression);
 
     if (null !== hook) {
-      hookIO.db.getHook('http', hook[1], function(hook) {
-        if (null !== hook && 'object' === typeof hook) {
-          var definition = hookIO.hooker.hooks[hook.get('type')];
+      hookIO.db.getHooks({
+        protocol: 'http',
+        key: hook[1]
+      }, function(hooks) {
+        hooks.forEach(function(hook) {
+          if (null !== hook && 'object' === typeof hook) {
+            var definition = hookIO.hooker.hooks[hook.get('type')];
 
-          if ('http' === definition.protocol) {
-            hook.set('params', definition.handle(request));
+            if ('http' === definition.protocol) {
+              hook.set('params', definition.handle(request));
 
-            hookIO.emit('ActionTrigger', hook, definition);
-            hookIO.emit('JsonrpcResponse', response, { id: null }, 'success');
-            return;
+              hookIO.emit('ActionTrigger', hook, definition);
+              hookIO.emit('JsonrpcResponse', response, { id: null }, 'success');
+            } else {
+              hookIO.emit('Http404Response', response);
+            }
+          } else {
+            hookIO.emit('Http404Response', response);
           }
-        }
-        hookIO.emit('Http404Response', response);
+        });
+
+        hookIO.emit('HookCompleted', hook);
       });
     } else
       hookIO.emit('Http404Response', response);
   } catch (error) {
-    hookIO.emit('HttpResponse', response, {}, inspect(error.stack));
+    hookIO.emit('HttpResponse', response, {}, inspect(error.message));
   }
 });

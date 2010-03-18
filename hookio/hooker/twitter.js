@@ -18,6 +18,7 @@ hookIO.addListener('TweetTwitterRequest', function(tweet) {
     hook.set('params', definition.handle(tweet));
 
     hookIO.emit('ActionTrigger', hook, definition);
+    hookIO.emit('HookCompleted', hook);
   });
 });
 
