@@ -39,7 +39,7 @@ a hook.io "protocol" is just like a regular protocol except you can create arbit
 
 for instance if you wanted to integrate with Flickr, you would create the Flick.js protocol. now every single api method for Flickr can be called from a hook definition or an action definition.
 
-creating a hook.io protocol is easy. just drop a CommonJS module into your /hookio/protocols/ directory and your hook definitions and hook actions will have access to it. you can also add an exports.start function which hookIO will call when your protocol is first loaded. 
+creating a hook.io protocol is easy. just drop a CommonJS module into your /hookio/protocols/ directory and your hook definitions and hook actions will have access to it's exports. you can also add an exports.start function which hookIO will call when your protocol is first loaded. 
 
 
 ##what are hook and action definitions?
