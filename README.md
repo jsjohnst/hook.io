@@ -19,7 +19,6 @@ v0.1 is almost out. 3 hook definitions, 4 hook actions, 4 hook protocols
     var hookIO = require('./hookio/hookio/');
 
 
-
 # what is a web hook?
 
 a web hook is an action and a listener
@@ -57,4 +56,10 @@ for hooks you will do :
 for actions :
     exports.action
 
+
+##putting a front-end on hook.io
+
+here is a sample front-end which is currently the live front-end for http://hook.io, it uses HTML 4.01 and jQuery 1.4
+
+[hook.io-frontend-website](http://github.com/Marak/hook.io-frontend-website)
 
