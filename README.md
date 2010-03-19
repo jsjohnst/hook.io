@@ -51,15 +51,19 @@ you can create custom definitions as CommonJS modules in /hookIO/definitions/act
 every hook and action definition should export one method each
 
 for hooks you will do :
-    exports.hook 
+    exports.hook = function(){
+				  // custom hook definition
+				};
 
 for actions :
-    exports.action
+    exports.action = function(){
+				  // custom hook action
+				}
 
 
 ##putting a front-end on hook.io
 
-here is a sample front-end which is currently the live front-end for http://hook.io, it uses HTML 4.01 and jQuery 1.4
+here is a sample front-end which is currently the live front-end for [http://hook.io](http://hook.io), it uses HTML 4.01 and jQuery 1.4
 
 [hook.io-frontend-website](http://github.com/Marak/hook.io-frontend-website)
 
