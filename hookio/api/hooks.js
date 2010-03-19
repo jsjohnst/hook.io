@@ -42,7 +42,7 @@ exports.createHook = function() {
       config: hook.get('config')
     }, function(exists) {
       if (exists) {
-        if (true === definition.unique) {
+        if (true !== definition.unique) {
           callback(null, exists.config);
         } else {
           callback(new Error('Duplicate'), null);
