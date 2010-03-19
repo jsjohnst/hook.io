@@ -8,7 +8,7 @@
     the free web hook platform (aka yahoo crack pipes)
                                                                  
 # Current Status : 
-v0.1 is almost out. 3 hook definitions, 4 hook actions, 4 hook protocols
+v0.1 is almost out. 3 hook definitions, 4 action definitions, 4 hook protocols
 
 
 ##hook.io as a standalone application
