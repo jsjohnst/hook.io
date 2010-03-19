@@ -4,12 +4,11 @@ var hookIO = require('../hookio').hookIO;
 hookIO.addListener('JsonrpcRequest', function(request, response) {
   try {
     var jsonrpcRequest = JSON.parse(request.body),
-      args = jsonrpcRequest.params;
-		
-				 // what if we have an api call with no parameters ?
-					if(!(args instanceof Array)){
-						args = new Array();
-					}
+        args = jsonrpcRequest.params;
+
+    if (false === args instanceof Array) {
+      args = [];
+    }
 
     args.push(function(error, result) {
       if (error)

@@ -22,7 +22,7 @@ exports.parseURL = function(str) {
 // For validating config for the API
 exports.validateConfig = function(item, definition) {
   var param,
-    valid = false;
+      valid = false;
 
   try {
     var config = item.get('config');

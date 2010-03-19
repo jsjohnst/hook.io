@@ -29,6 +29,9 @@ exports.createAction = function() {
       config: action.config
     });
     var definition = hookIO.actioner.actions[action.get('type')];
+    if ('object' !== typeof definition) {
+      throw new Error('Hook type doesn\'t exist');
+    }
     action.set('protocol', definition.protocol);
 
     if (false === validateConfig(action, definition))

@@ -31,7 +31,7 @@ hookIO.addListener('Jsonrpc400Response', function(response, error, jsonrpcData) 
     result: null,
     error: {
       code: 400,
-      message: error.stack || 'API method not found'
+      message: error.message || 'API method not found'
     }
   };
 
