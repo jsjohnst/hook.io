@@ -4,6 +4,8 @@
     |   __   | |  |  |  | |  |  |  | |    <          |  | |  |  |  | 
     |  |  |  | |  `--'  | |  `--'  | |  .  \    __   |  | |  `--'  | 
     |__|  |__|  \______/   \______/  |__|\__\  (__)  |__|  \______/  
+
+    the free web hook platform (aka yahoo crack pipes)
                                                                  
 # Current Status : 
 v0.1 is almost out. 3 hook definitions, 4 hook actions, 4 hook protocols
