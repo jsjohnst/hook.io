@@ -26,7 +26,7 @@ v0.1 is almost out. 3 hook definitions, 4 action definitions, 4 hook protocols
 a web hook is an action and a listener
 
 ## what is an action?
-the action of a web hook will be the events that are executed when your web hook is executed
+the action of a web hook will be the events that are triggered when your web hook is executed
 
 
 ## what is a listener?
