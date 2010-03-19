@@ -52,13 +52,13 @@ every hook and action definition should export one method each
 
 for hooks you will do :
     exports.hook = function(){
-				  // custom hook definition
-				};
+      // custom hook definition
+    };
 
 for actions :
     exports.action = function(){
-				  // custom hook action
-				}
+      // custom hook action
+    };
 
 
 ##putting a front-end on hook.io
