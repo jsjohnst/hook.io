@@ -83,7 +83,7 @@ exports.checkHook = function(condition, callback) {
       return;
     }
 
-    callback(true);
+    callback(result[0]._id);
   });
 };
 

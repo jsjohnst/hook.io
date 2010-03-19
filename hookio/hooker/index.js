@@ -4,7 +4,8 @@
  * Index file for the package responsible for handling hooks
  */
 
-var hookIO = require('../../hookio').hookIO,sys = require('sys'),fs = require('fs');
+var hookIO = require('../../hookio').hookIO,
+    fs = require('fs');
 
 
 var hooks = exports.hooks = {};
@@ -12,7 +13,6 @@ var hooks = exports.hooks = {};
 // Load hook definitions
 var updateDefinitions = exports.update = function(callback) {
   var result = {};
-		sys.puts(hookIO.PATH + '/definitions/hooks/');
   fs.readdir(hookIO.PATH + '/definitions/hooks/', function(error, files) {
     files.forEach(function(hook) {
       if ('.js' !== hook.slice(-3))

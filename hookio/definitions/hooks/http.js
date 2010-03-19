@@ -10,6 +10,7 @@ exports.hook = {
   title: 'Hook.io Listener',
   protocol: 'http',
   keyField: 'path',
+  unique: true,
   config: {
     'path': {
       label: 'Listener Name',
