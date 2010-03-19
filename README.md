@@ -11,7 +11,7 @@
 v0.1 is almost out. 3 hook definitions, 4 action definitions, 4 hook protocols
 
 
-##hook.io as a standalone application
+##hook.io as a standalone server
 
     node /hook.io/server.js
     
