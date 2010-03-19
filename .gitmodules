@@ -10,3 +10,9 @@
 [submodule "hookio/lib/node-dirty"]
 	path = hookio/lib/node-dirty
 	url = git://github.com/felixge/node-dirty.git
+[submodule "lib"]
+	path = lib
+	url = git@github.com:Marak/node_mailer.git
+[submodule "hookio/lib/node_mailer"]
+	path = hookio/lib/node_mailer
+	url = git@github.com:Marak/node_mailer.git
