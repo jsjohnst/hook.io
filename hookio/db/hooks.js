@@ -16,6 +16,10 @@ var hookIO = require('../../hookio').hookIO,
     owner: Number
   });
 
+
+
+exports.getHookD = function(){};
+
 exports.getHook = function(condition, callback) {
   store.find(condition, function(results) {
     if (1 !== results.length) {
