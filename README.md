@@ -16,7 +16,7 @@ v0.1 is almost out. 3 hook definitions, 4 action definitions, 4 hook protocols
     node /hook.io/server.js
     
 
-##hook.io as a module
+##hook.io as a CommonJS module
 
     var hookIO = require('./hookio/hookio/');
 
