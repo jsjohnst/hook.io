@@ -7,3 +7,6 @@
 [submodule "hookio/lib/twitter-node"]
 	path = hookio/lib/twitter-node
 	url = git://github.com/technoweenie/twitter-node.git
+[submodule "hookio/lib/node-dirty"]
+	path = hookio/lib/node-dirty
+	url = git://github.com/felixge/node-dirty.git

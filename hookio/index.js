@@ -79,6 +79,7 @@ hookIO.db = require('./db');
 hookIO.protocol = {};
 
 // TODO : add better way to load protocols
+// Maybe force each protocol to have an init and start method?
 hookIO.protocol.http = require('./protocols/http');
 hookIO.protocol.twitter = require('./protocols/twitter');
 hookIO.protocol.timer = require('./protocols/timer');
