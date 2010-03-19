@@ -43,7 +43,7 @@ exports.createHook = function() {
     }, function(exists) {
       if (exists) {
         if (true !== definition.unique) {
-          callback(null, exists.config);
+          callback(null, exists);
         } else {
           callback(new Error('Duplicate'), null);
         }
