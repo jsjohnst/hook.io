@@ -6,7 +6,6 @@
 
 var hookIO = require('../../hookio').hookIO,
   Action = require('../models/action').Action,
-		sys = require('sys'),
   validateConfig = require('../lib/helpers').validateConfig;
 
 
@@ -77,15 +76,3 @@ exports.getAllActions = function() {
   }
 };
 
-
-exports.sendEmail = function() {
-		// TODO: create named event for sending email
-			hookIO.protocol.email.send({
-	  to : "marak.squires@gmail.com",
-	  from : "jim@hook.io",
-	  subject : "node_mailer test email",
-	  body : "hello this is a test email from the node_mailer"
-	});
-	
-		
-};
