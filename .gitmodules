@@ -16,3 +16,6 @@
 [submodule "hookio/lib/node_mailer"]
 	path = hookio/lib/node_mailer
 	url = git@github.com:Marak/node_mailer.git
+[submodule "hookio/lib/node-oauth"]
+	path = hookio/lib/node-oauth
+	url = git@github.com:Tim-Smart/node-oauth.git
