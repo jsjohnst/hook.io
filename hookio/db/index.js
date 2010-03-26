@@ -25,4 +25,3 @@ exports.init = function(callback) {
 
 exports.db = db;
 
-exports.dirty = dirty;
