@@ -5,8 +5,7 @@
  */
 
 var hookIO = require('../../hookio').hookIO,
-  db = require('../lib/node-persistence/lib/persistence/memory'),
-  dirty = require('../lib/node-dirty/lib/dirty');
+  db = require('../lib/node-persistence/lib/persistence/memory');
 		;
 
 exports.init = function(callback) {
@@ -26,4 +25,3 @@ exports.init = function(callback) {
 
 exports.db = db;
 
-exports.dirty = dirty;

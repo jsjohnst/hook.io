@@ -85,3 +85,4 @@ hookIO.addListener('ActionTrigger', function(hook, definition) {
 
 // Protocol specific stuff
 require('./http');
+require('./email');
