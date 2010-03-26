@@ -1,3 +1,4 @@
+
 /*
  * hookio/incoming.js
  *
@@ -31,6 +32,10 @@ hookIO.addListener('HttpRequest', function(request, response) {
       // HTTP Hooks
       request.url = path[2];
       hookIO.emit('HttpHookRequest', request, response);
+      break;
+
+    // Oauth
+    case '/oauth/confirm':
       break;
 
     default:
