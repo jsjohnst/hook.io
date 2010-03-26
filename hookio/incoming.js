@@ -33,6 +33,10 @@ hookIO.addListener('HttpRequest', function(request, response) {
       hookIO.emit('HttpHookRequest', request, response);
       break;
 
+    // Oauth
+    case '/oauth/confirm':
+      break;
+
     default:
       // Assume we are serving the site
       hookIO.emit('SiteRequest', request, response);
