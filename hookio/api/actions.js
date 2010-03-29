@@ -59,6 +59,7 @@ exports.createAction = function() {
 };
 
 exports.getAllActions = function() {
+	
   callback = arguments[arguments.length - 1];
 
   try {

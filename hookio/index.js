@@ -5,7 +5,8 @@
  * Initializes and sets up a hook.io server session
  */
 
-var events = require('events'),
+var events = require('events'),	
+		debug = require("./lib/node_debug/node_debug/debug"),
   http_port = null,
   tcp_port = null;
 
@@ -35,8 +36,18 @@ var hookIO = {
       'User-Agent': 'hook.io Web Hooker'
     },
     port: http_port || 8000
-  }
+  },
+		DEBUGGER : false
 };
+
+// check if node_debug should be turned on
+
+if(hookIO.DEBUGGER){
+		/* this will start node_debug on port 8080
+					be aware that running node_debug on a public IP address will result in your box getting rooted (or worse)
+		*/
+		debug.listen(8080);
+}
 
 
 // Inherit from EventEmitter

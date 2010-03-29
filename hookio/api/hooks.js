@@ -67,6 +67,7 @@ exports.getAllHooks = function() {
       var ret = [];
 
       hooks.forEach(function(hook) {
+								//hook.params.result = JSON.parse(hook.result);
         ret.push(hook.toJson());
       });
 
