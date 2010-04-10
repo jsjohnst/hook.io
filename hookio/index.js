@@ -38,7 +38,7 @@ var hookIO = {
     },
     port: http_port || 8000
   },
-  DEBUGGER : false
+  DEBUGGER : true
 };
 
 // check if node_debug should be turned on

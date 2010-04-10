@@ -1,4 +1,6 @@
 // hook.io json-rpc
+// this file exposes the hookIO API over JSON-RPC
+
 var hookIO = require('../hookio').hookIO;
 
 hookIO.addListener('JsonrpcRequest', function(request, response) {
