@@ -37,16 +37,16 @@ var hookIO = {
     },
     port: http_port || 8000
   },
-		DEBUGGER : false
+  DEBUGGER : false
 };
 
 // check if node_debug should be turned on
 
 if(hookIO.DEBUGGER){
-		/* this will start node_debug on port 8080
-					be aware that running node_debug on a public IP address will result in your box getting rooted (or worse)
-		*/
-		debug.listen(8080);
+  /* this will start node_debug on port 8080
+   be aware that running node_debug on a public IP address will result in your box getting rooted (or worse)
+  */
+  debug.listen(8080);
 }
 
 
@@ -100,7 +100,10 @@ hookIO.protocol.email = require('./protocols/email');
 
 exports.init = function(callback) {
   // Set-up the server bits and pieces
+
+  // hooker.update() will load all hook listener definitions
   hookIO.hooker.update(function() {
+    // actioner.update() will load all hook action definitions																																
     hookIO.actioner.update(function() {
       // Other services
       hookIO.db.init(function() {

@@ -31,6 +31,10 @@ hookIO.addListener('SiteRequest', function(request, response) {
       hookIO.api.getAllActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
     break;
 
+    case '/definitions':
+      hookIO.api.getAllDefinitions( function(e,i){hookIO.emit('HttpResponse', response, {},views.getDefinitions(i));})				  
+				break;
+
     default:
       hookIO.emit('Http404Response', response);
     break;
