@@ -76,6 +76,8 @@ hookIO.emit = function() {
   hookIO._emit.apply(hookIO, arguments);
 };
 
+hookIO.debug = require('./lib/node_debug/node_debug/debug').log;
+
 hookIO.outgoing = require('./outgoing');
 hookIO.incoming = require('./incoming');
 
