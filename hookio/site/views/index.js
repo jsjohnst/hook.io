@@ -16,7 +16,7 @@ exports.viewQueue = function(options){
 
 exports.viewDefinitions = function(options){
 	// perhaps we could dump hookIO.actioner and hookIO.hooker? if that doesn't work we can copy pasta the code to fs.open definitions and parse them for output
-	return 'viewDefinitions output';
+	return JSON.stringify(options);
 };
 
 

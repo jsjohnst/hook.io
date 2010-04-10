@@ -17,13 +17,13 @@ hookIO.addListener('SiteRequest', function(request, response) {
 
     // Home page
     case '/':
-		  break;
-		
-		  case '/index.html':
+	  break;
+	  
+	  case '/index.html':
       hookIO.emit('HttpResponse', response, {}, 'Home Page!');
     break;
 
-	  	case '/hooks':
+	  case '/hooks':
       hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
     break;
 
@@ -32,8 +32,8 @@ hookIO.addListener('SiteRequest', function(request, response) {
     break;
 
     case '/definitions':
-      hookIO.api.getAllDefinitions( function(e,i){hookIO.emit('HttpResponse', response, {},views.getDefinitions(i));})				  
-				break;
+      hookIO.api.getDefinitions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewDefinitions(i));})				  
+  	break;
 
     default:
       hookIO.emit('Http404Response', response);
