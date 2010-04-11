@@ -26,16 +26,16 @@ hook.io web hook [actions](http://github.com/Marak/hook.io/tree/master/hookio/de
 
 hook.io is a open-source web hook platform built entirely in JavaScript and node.js. it is both a free open-source project and a free software as a service provided at [http://hook.io](http://hook.io)
 
-this dual model allows developers and businesses the choice of using hook.io as a third party web-service, or simply installing their own hook.io instance on their own hardware.
+this dual model allows developers and businesses the choice of using hook.io as a third party web-service or simply installing their own hook.io instance on their own hardware.
 
 ##what is a webhook platform?
 
 an application platform for automating simple actions to take place on any arbitrary web event. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
 
 
-#want to learn more? we've got a book!
+#we've got a book!
 
-if you are new to the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think of the internet.
+if you are new to the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think about the internet. if you anxious to get started just jump to [chapter 5 - installing hookIO]()
 
 
  
