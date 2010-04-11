@@ -49,13 +49,13 @@ if you are new to the concept of webhooks we've created an awesome free book tha
 
 Table of Contents
 
-0. [what is a webhook ?](HTB/docs/what-is-a-webhook.md)
+0. [what is a webhook](HTB/docs/what-is-a-webhook.md)
 
-1. [what is a webhook listener?](HTB/docs/what-is-a-webhook-listener.md)
+1. [what is a webhook listener](HTB/docs/what-is-a-webhook-listener.md)
 
-2. [what is a webhook action ?](HTB/docs/what-is-a-webhook-action.md)
+2. [what is a webhook action](HTB/docs/what-is-a-webhook-action.md)
 
-3. [what is hook.io?](HTB/docs/what-is-hookIO.md)
+3. [what is hook.io](HTB/docs/what-is-hookIO.md)
 
 4. [installing hook.io](HTB/docs/installing-hookIO.md)
 
