@@ -20,7 +20,7 @@ hook.io web hook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/
 
 hook.io web hook [actions](HTB/docs/what-is-a-webhook.md): 4
 
-##TL;DR - low attention span? go here => [installing hookIO]()
+##TL;DR - low attention span? go here => [installing hookIO](HTB/docs/installing-hookIO.md)
 
 #overview
 
