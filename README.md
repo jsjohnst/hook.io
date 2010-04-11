@@ -45,7 +45,7 @@ if you are new to the concept of webhooks we've created an awesome free book tha
 
 Table of Contents
 
-0. [what is a webhook ?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+0. [what is a webhook ?](/docs/what-is-a-webhook.md)
 
 1. [what is a webhook listener?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
@@ -57,7 +57,7 @@ Table of Contents
 
 5. [putting a front-end on hookIO](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
-6. [the hookIO api](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+6. [understanding the hookIO api](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
 7. [hookIO api gateways](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
@@ -66,3 +66,4 @@ Table of Contents
 9. [creating custom webhook listener and action definitions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
 10. [creating custom hookIO protocols](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+
