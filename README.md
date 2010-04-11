@@ -45,7 +45,7 @@ if you are new to the concept of webhooks we've created an awesome free book tha
 
 Table of Contents
 
-0. [what is a webhook ?](docs/what-is-a-webhook.md)
+0. [what is a webhook ?](./docs/what-is-a-webhook.md)
 
 1. [what is a webhook listener?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
 
