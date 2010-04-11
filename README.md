@@ -34,15 +34,17 @@ hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC
 
 ##what is a webhook platform?
 
-an application platform for automating simple actions to take place on any arbitrary web event. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
+a webhook platform is an application platform for automating simple actions to take place on arbitrary web events. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
 
 
 #we've got a book!
 
-if you are new to the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think about the internet. if you anxious to get started just jump to [chapter 5 - installing hookIO]()
+if you are new to hook.io and the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think about the internet. 
+
+if you anxious to get started just jump to [chapter 5 - installing hookIO]()
 
 
-##hookIO the book (HTB)
+##hook.io the book (HTB)
 
 
 Table of Contents
