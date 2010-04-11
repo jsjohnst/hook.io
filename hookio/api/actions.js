@@ -20,7 +20,8 @@ function actionCheck(action) {
 exports.createAction = function() {
   var action = arguments[0],
     callback = arguments[arguments.length - 1];
-
+    hookIO.debug('hookIO.api.createAction()');
+    hookIO.debug(arguments);  
   try {
     actionCheck(action);
 
@@ -30,12 +31,12 @@ exports.createAction = function() {
     });
     var definition = hookIO.actioner.actions[action.get('type')];
     if ('object' !== typeof definition) {
-      throw new Error('Hook type doesn\'t exist');
+      throw new Error('action definition type ' + action.get('type') + ' doesn\'t exist!');
     }
     action.set('protocol', definition.protocol);
 
     if (false === validateConfig(action, definition))
-      throw new Error('Badly formed user config');
+      throw new Error('Error: invalid configuration for hook action');
 
     var key = action.get('config')[definition.keyField];
     hookIO.db.checkAction({
@@ -54,6 +55,7 @@ exports.createAction = function() {
     });
 
   } catch (error) {
+    hookIO.debug(error);
     callback(error, null);
   }
 };

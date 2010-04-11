@@ -38,12 +38,16 @@ var hookIO = {
     },
     port: http_port || 8000
   },
-  DEBUGGER : true
+  DEBUGGER : {
+    'webconsole':true, // should we output to the node_debug web console at http://hook.io/debug/
+    'console':false, // should we output to the terminal console
+    'emittedEvents':false  // should we output emittedEvents
+  }
 };
 
 // check if node_debug should be turned on
 
-if(hookIO.DEBUGGER){
+if(hookIO.DEBUGGER.webconsole){
   /* this will start node_debug on port 8080
    be aware that running node_debug on a public IP address will result in your box getting rooted (or worse)
   */
@@ -68,7 +72,11 @@ var sys = require('sys');
 hookIO._emit = hookIO.emit;
 hookIO.emit = function() {
   arguments = Array.prototype.slice.call(arguments, 0);
-  debug.log(arguments);
+  
+  if(hookIO.DEBUGGER.emittedEvents){
+    debug.log(arguments);
+  }
+  
   hookIO._emit.apply(hookIO, arguments);
 };
 
