@@ -1,3 +1,3 @@
-# what is a web hook?
+# what is a webhook?
 
-a web hook is a listener which triggers at least one action
+a webhook is a listener which triggers at least one action
