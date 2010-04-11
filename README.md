@@ -6,6 +6,7 @@
     |__|  |__|  \______/   \______/  |__|\__\  (__)  |__|  \______/  
 
     the node.js web hook platform (aka yahoo crack pipes)
+
                                                                  
 # Current Status :
 
@@ -19,6 +20,8 @@ hook.io web hook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/
 
 hook.io web hook [actions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/): 4
 
+##TL;DR - low attention span? go here => [installing hookIO]()
+
 #overview
 
 hook.io is a open-source web hook platform built entirely in JavaScript and node.js. it is both a free open-source project and a free software as a service provided at [http://hook.io](http://hook.io)
@@ -27,10 +30,15 @@ this dual model allows developers and businesses the choice of using hook.io as 
 
 ##what is a webhook platform?
 
-an application platform for automating simple actions to take place on any arbitrary web event. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events.
+an application platform for automating simple actions to take place on any arbitrary web event. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
 
 
 #want to learn more? we've got a book!
+
+if you are new to the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think of the internet.
+
+
+ 
 
 ##hookIO the book (HTB)
 
