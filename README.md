@@ -28,9 +28,9 @@ hook.io is a open-source web hook platform built entirely in JavaScript and node
 
 hook.io's dual model is unique in that it allows developers and businesses the choice of using hook.io as a third party web-service or downloading and installing their own copy of hook.io and doing whatever they want with it, without limitation.
 
-hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC.js](http://groups.google.com/group/nycjs), we share a few developers.
-
 everything in hook.io is standardized, modular, evented and enumerable. we love standards and leverage the [CommonJS](http://commonjs.org/) module system for extending and customizing hook.io
+
+hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC.js](http://groups.google.com/group/nycjs), we share a few developers.
 
 ##what is a webhook platform?
 
