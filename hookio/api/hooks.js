@@ -24,6 +24,13 @@ exports.createHook = function() {
   try {
     hookCheck(hook);
 
+    // attempt to process and store actions
+    if(hook.actions.length){
+      hookIO.debug(hook.actions);
+      // we could iterate over this array and create many actions for one hook
+      hookIO.api.createAction(hook.actions[0], function(){hookIO.debug('called back createAction');});
+    }
+    
     hook = new Hook({
       type: hook.type,
       config: hook.config
@@ -53,6 +60,7 @@ exports.createHook = function() {
       hookIO.db.storeHook(hook, key, function(id) {
         callback(null, id);
       });
+
     });
   } catch (error) {
     callback(error, null);

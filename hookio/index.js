@@ -68,11 +68,7 @@ var sys = require('sys');
 hookIO._emit = hookIO.emit;
 hookIO.emit = function() {
   arguments = Array.prototype.slice.call(arguments, 0);
-  var eventName = arguments[0];
-  var args = sys.inspect(arguments.slice(1));
-
-  sys.puts(eventName + ': ' + args);
-
+  debug.log(arguments);
   hookIO._emit.apply(hookIO, arguments);
 };
 
