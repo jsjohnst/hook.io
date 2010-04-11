@@ -1,19 +1,18 @@
-##what is hook.io?
+#what is hook.io?
 
 hook.io is a open-source web hook platform built entirely in JavaScript and node.js. it is both a free open-source project and a free software as a service provided at http://hook.io
 
-### hook.io as a software as a service
+## hook.io as a software as a service
 
 if you want to try hook.io without installing anything you can visit [http://hook.io](http://hook.io) and use the web interface. you can also intergrate your application with hook.io's JSON-RPC webservice located @ [http://hook.io/api](http://hook.io/api)
 
-### hook.io as stand-alone server
+## hook.io as stand-alone server
 
 if you want to run hook.io on your own hardware you can easily clone the hook.io github repository and start your own hook.io instance. this instance is completely autonomous and doesn't communicate with any outside services unless you tell it to.
 
-### hook.io as a CommonJS module
+## hook.io as a CommonJS module
 
-since hook.io itself is 
-hook.io is valid CommonJS module. this means you can require hook.io inside an existing node.js application. you can then seamlessly call hookIO methods through the hook.io api object which is exported as "hookIO.api"
+hook.io is a valid, self contained, CommonJS module. this means you can import the hook.io module into an existing node.js application. once imported, you can seamlessly call hook.io methods through the hook.io api object which is exported as "hookIO.api"
 
 ## hook.io has no front-end
 hook.io is completely decoupled from any front-end. this is very powerful in that it allows developers to easily create customized front-ends or widgets in the technology stack of their choice
@@ -21,6 +20,8 @@ hook.io is completely decoupled from any front-end. this is very powerful in tha
 we provide a sample front-end which powers [http://hook.io](http://hook.io), you can clone it @ [hook.io-frontend-website](http://github.com/Marak/hook.io-frontend-website)
 
 we also provide a [brower-side jQuery/JavaScript api](http://github.com/Marak/hook.io-frontend-website/blob/master/js/hookio/hookio.js) for communicating with hook.io's JSON-RPC
+
+JSONP support is coming soon.
 
 
 

@@ -1,4 +1,4 @@
-## what is a webhook action?
+# what is a webhook action?
 the action of a webhook will be the events that are executed when your webhook listener is triggered. 
 
 
