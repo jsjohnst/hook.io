@@ -18,7 +18,7 @@ hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols
 
 hook.io web hook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 
-hook.io web hook [actions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/): 4
+hook.io web hook [actions](HTB/docs/what-is-a-webhook.md): 4
 
 ##TL;DR - low attention span? go here => [installing hookIO]()
 
@@ -47,23 +47,23 @@ Table of Contents
 
 0. [what is a webhook ?](HTB/docs/what-is-a-webhook.md)
 
-1. [what is a webhook listener?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+1. [what is a webhook listener?](HTB/docs/what-is-a-webhook-listener.md)
 
-2. [what is a webhook action ?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+2. [what is a webhook action ?](HTB/docs/what-is-a-webhook-action.md)
 
-3. [what is hookIO and hook.io?](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+3. [what is hook.io?](HTB/docs/what-is-hookIO.md)
 
-4. [installing hookIO](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+4. [installing hook.io](HTB/docs/installing-hookIO.md)
 
-5. [putting a front-end on hookIO](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+5. [putting a front-end on hook.io](HTB/docs/putting-a-front-end-on-hookIO.md)
 
-6. [understanding the hookIO api](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+6. [the hook.io api](HTB/docs/the-hookIO-api.md)
 
-7. [hookIO api gateways](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+7. [hookIO api gateways](HTB/docs/hookIO-api-gateways.md)
 
-8. [using the JSON-RPC gateway](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+8. [using the JSON-RPC gateway](HTB/docs/using-the-JSON-RPC.md)
 
-9. [creating custom webhook listener and action definitions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+9. [creating custom webhook listener and action definitions](HTB/docs/creating-custom-webhooks.md)
 
-10. [creating custom hookIO protocols](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/)
+10. [creating custom hook.io protocols](HTB/docs/creating-custom-hookIO-protocols.md)
 
