@@ -61,7 +61,7 @@ Table of Contents
 
 6. [the hook.io api](HTB/docs/the-hookIO-api.md)
 
-7. [hookIO api gateways](HTB/docs/hookIO-api-gateways.md)
+7. [hook.io api gateways](HTB/docs/hookIO-api-gateways.md)
 
 8. [using the JSON-RPC gateway](HTB/docs/using-the-JSON-RPC.md)
 

@@ -10,7 +10,7 @@ just serve the front-end site as static html on the same host where you are runn
 
 ##creating a custom front-end / hook.io widget
 
-we also provide a [brower-side jQuery/JavaScript api](http://github.com/Marak/hook.io-frontend-website/blob/master/js/hookio/hookio.js) for communicating with hook.io's JSON-RPC
+hook.io provide's a [brower-side jQuery/JavaScript api](http://github.com/Marak/hook.io-frontend-website/blob/master/js/hookio/hookio.js) for communicating with hook.io's JSON-RPC
 
 you can import this one JS file into your existing front-end site and easily all hook.io's api methods.
 
