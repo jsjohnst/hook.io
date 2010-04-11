@@ -42,8 +42,6 @@ an application platform for automating simple actions to take place on any arbit
 if you are new to the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think about the internet. if you anxious to get started just jump to [chapter 5 - installing hookIO]()
 
 
- 
-
 ##hookIO the book (HTB)
 
 
