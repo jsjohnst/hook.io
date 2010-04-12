@@ -17,6 +17,7 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
   sys.puts('parseMarkDownDocs');
   
   var markdownBook = '';
+  var htmlBook = '';
   var results = [];
   
   fs.readdir(hookIO.PATH + '/docs', function(err,files) {
@@ -27,16 +28,17 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
     
     readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
 
+      results.forEach(function(r){
+        markdownBook = markdownBook + r;
+        htmlBook = htmlBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
+      });
+
       fs.writeFile('README.md', markdownBook , function (err) {
         if (err) throw err;
         sys.puts('the webhook book has been renderer for github : ' + 'README.md');
       });
 
-      results.forEach(function(r){
-        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
-      });
-      
-      var htmlBook = hookIO.protocol.markdown.parse(markdownBook);
+      htmlBook = hookIO.protocol.markdown.parse(htmlBook);
       fs.writeFile(hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html' , htmlBook , function (err) {
         if (err) throw err;
         sys.puts('the webhook book has been created and saved as html to : ' + hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html');
