@@ -16,7 +16,7 @@ exports.start = function() {
 var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
   sys.puts('parseMarkDownDocs');
   
-  var htmlBook = '';
+  var markdownBook = '';
   var results = [];
   
   fs.readdir(hookIO.PATH + '/docs', function(err,files) {
@@ -27,13 +27,21 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
     
     readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
       results.forEach(function(r){
-        htmlBook = htmlBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
+        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
       });
-      htmlBook = hookIO.protocol.markdown.parse(htmlBook);
-      fs.writeFile(hookIO.PATH + '/docs/html/' + 'theBook' + '.html' , htmlBook , function (err) {
+
+      fs.writeFile('README.md', markdownBook , function (err) {
         if (err) throw err;
-        sys.puts('hook.io theBook has been created and saved to : ' + hookIO.PATH + '/docs/html/' + 'theBook' + '.html');
+        sys.puts('the webhook book has been renderer for github : ' + 'README.md');
       });
+      
+      var htmlBook = hookIO.protocol.markdown.parse(markdownBook);
+      fs.writeFile(hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html' , htmlBook , function (err) {
+        if (err) throw err;
+        sys.puts('the webhook book has been created and saved as html to : ' + hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html');
+      });
+      
+      
     });
   });
 };
