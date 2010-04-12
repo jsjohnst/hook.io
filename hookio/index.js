@@ -7,7 +7,8 @@
 
 var events = require('events'),	
   multipart = require('./lib/multipart'),
-  debug = require("./lib/node_debug/node_debug/debug"),
+  debug = require('./lib/node_debug/node_debug/debug'),
+  fs = require('fs'),
   http_port = null,
   tcp_port = null;
 
@@ -39,7 +40,7 @@ var hookIO = {
     port: http_port || 8000
   },
   DEBUGGER : {
-    'webconsole':true, // should we output to the node_debug web console at http://hook.io/debug/
+    'webconsole':false, // should we output to the node_debug web console at http://hook.io/debug/
     'console':false, // should we output to the terminal console
     'emittedEvents':false  // should we output emittedEvents
   }
@@ -97,48 +98,60 @@ hookIO.db = require('./db');
 hookIO.protocol = {};
 
 // TODO : add better way to load protocols
-// this is where protocols get imported into hookIO
-// currently protocols have an optional method "start"
-// if the start method is exported in a protocol it will be called when hook.io first starts (here)
-
+// look into commented out code below for dynamically loading protocols from /protocols/ folder
 hookIO.protocol.http = require('./protocols/http');
 hookIO.protocol.twitter = require('./protocols/twitter');
 hookIO.protocol.timer = require('./protocols/timer');
 hookIO.protocol.debug = require('./protocols/debug');
 hookIO.protocol.email = require('./protocols/email');
+hookIO.protocol.documentation = require('./protocols/documentation');
 
-/*
-var result = {};
- fs.readdir(hookIO.PATH + '/definitions/actions', function(error, files) {
-   files.forEach(function(action) {
-     if ('.js' !== action.slice(-3))
-       return;
-     action = action.slice(0, -3);
-     action = require(hookIO.PATH + '/definitions/actions/' + action);
-   });
-*/
 
 exports.init = function(callback) {
-  // Set-up the server bits and pieces
 
-  // hooker.update() will load all hook listener definitions
-  hookIO.hooker.update(function() {
-    // actioner.update() will load all hook action definitions																																
-    hookIO.actioner.update(function() {
-      // Other services
-      hookIO.db.init(function() {
-        // Start http and tcp services
-        hookIO.protocol.http.start();
-        hookIO.protocol.twitter.start();
-        // Start timer
-        hookIO.protocol.timer.start();
-        // We are inited
-        if ('function' === typeof callback)
-          callback.call(hookIO);
-      });
+
+// this is where protocols get imported into hookIO
+/*
+  var result = {};
+   fs.readdir(hookIO.PATH + '/protocols', function(error, files) {
+     files.forEach(function(protocol) {
+       if ('.js' !== protocol.slice(-3))
+         return;
+         protocol = protocol.slice(0, -3);
+         sys.puts(hookIO.PATH + '/protocols/' + protocol);
+         hookIO.protocol[protocol] = require(hookIO.PATH + '/protocols/' + protocol);
+         // currently protocols have an optional method "start"
+         // if the start method is exported in a protocol it will be called when hook.io first starts (here)
+         if(typeof hookIO.protocol[protocol].start === 'function'){
+           hookIO.protocol[protocol].start();  
+         }
+         
+     });
+*/
+
+     // hooker.update() will load all hook listener definitions
+     hookIO.hooker.update(function() {
+       // actioner.update() will load all hook action definitions																																
+       hookIO.actioner.update(function() {
+         // Other services
+         hookIO.db.init(function() {
+           // Start http and tcp services
+           hookIO.protocol.http.start();
+           hookIO.protocol.twitter.start();
+           // Start timer
+           hookIO.protocol.timer.start();
+           hookIO.protocol.documentation.start();
+
+           // We are inited
+           if ('function' === typeof callback)
+             callback.call(hookIO);
+         });
+       });
+
+     // Make sure we aren't called again
+     delete exports.init;
+
     });
-  });
 
-  // Make sure we aren't called again
-  delete exports.init;
+
 };

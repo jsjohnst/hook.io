@@ -49,23 +49,23 @@ if you anxious to get started just jump to [chapter 5 - installing hookIO]()
 
 Table of Contents
 
-0. [what is a webhook](HTB/docs/what-is-a-webhook.md)
+0. [what is a webhook](HTB/hookio/docs/what-is-a-webhook.md)
 
-1. [what is a webhook listener](HTB/docs/what-is-a-webhook-listener.md)
+1. [what is a webhook listener](HTB/hookio/docs/what-is-a-webhook-listener.md)
 
-2. [what is a webhook action](HTB/docs/what-is-a-webhook-action.md)
+2. [what is a webhook action](HTB/hookio/docs/what-is-a-webhook-action.md)
 
-3. [what is hook.io](HTB/docs/what-is-hookIO.md)
+3. [what is hook.io](HTB/hookio/docs/what-is-hookIO.md)
 
-4. [installing hook.io](HTB/docs/installing-hookIO.md)
+4. [installing hook.io](HTB/hookio/docs/installing-hookIO.md)
 
-5. [putting a front-end on hook.io](HTB/docs/putting-a-front-end-on-hookIO.md)
+5. [putting a front-end on hook.io](HTB/hookio/docs/putting-a-front-end-on-hookIO.md)
 
-6. [the hook.io api](HTB/docs/the-hookIO-api.md)
+6. [the hook.io api](HTB/hookio/docs/the-hookIO-api.md)
 
-7. [using the JSON-RPC api gateway](HTB/docs/using-the-JSON-RPC.md)
+7. [using the JSON-RPC api gateway](HTB/hookio/docs/using-the-JSON-RPC.md)
 
-8. [creating custom webhook listener and action definitions](HTB/docs/creating-custom-webhooks.md)
+8. [creating custom webhook listener and action definitions](HTB/hookio/docs/creating-custom-webhooks.md)
 
-9. [creating custom hook.io protocols](HTB/docs/creating-custom-hookIO-protocols.md)
+9. [creating custom hook.io protocols](HTB/hookio/docs/creating-custom-hookIO-protocols.md)
 
