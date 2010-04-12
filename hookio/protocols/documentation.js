@@ -29,8 +29,8 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
     readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
 
       results.forEach(function(r){
-        markdownBook = markdownBook + r;
-        htmlBook = htmlBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
+        //markdownBook = markdownBook + r;
+        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
       });
 
       fs.writeFile('README.md', markdownBook , function (err) {

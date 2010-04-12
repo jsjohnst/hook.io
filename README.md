@@ -19,6 +19,10 @@ hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols
 hook.io webhook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 
 hook.io webhook [actions](HTB/docs/what-is-a-webhook.md): 4
+
+
+***
+
 ##the webhook book (TWHB)
 
 Table of Contents
@@ -60,10 +64,18 @@ hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC
 
 a webhook platform is an application platform for automating simple actions to take place on arbitrary web events. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
 
+
+
+***
+
 <a name = "what-is-a-webhook"></a>
 # what is a webhook?
 
-a webhook is a listener which triggers at least one action<a name = "what-is-a-webhook-listener"></a>
+a webhook is a listener which triggers at least one action
+
+***
+
+<a name = "what-is-a-webhook-listener"></a>
 ## what is a webhook listener?
 the listener of a webhook is the event that needs to get triggered in order to execute the webhook's actions. for now, we will focus on three basic types of listeners.
 
@@ -75,7 +87,11 @@ often a webhook listener will be based on a timer. the webhook will poll a resou
 a webhook listener can also be implemented as a unique URL. any HTTP request performed on this unique URL will trigger the webhook, passing along the incoming HTTP request's payload to the webhook's actions
 
 ###socket listeners
-perhaps one of the most powerful listeners, a socket listener will open up a socket with a resource and wait for that resource to push a response to the webhook. when the response is received it is passed along to the webhook's actions as they execute.<a name = "what-is-a-webhook-action"></a>
+perhaps one of the most powerful listeners, a socket listener will open up a socket with a resource and wait for that resource to push a response to the webhook. when the response is received it is passed along to the webhook's actions as they execute.
+
+***
+
+<a name = "what-is-a-webhook-action"></a>
 # what is a webhook action?
 the action of a webhook are the events that will executed once that webhook's listener is triggered. 
 
@@ -88,6 +104,10 @@ a webhook may contain more then one action. there may be many actions attached t
 
 ###chaining webhooks
 a webhook's action may also point directly to another webhook. this essentially short circuits the webhooks listener and forces execution of the webhook. this means you can link webhooks together, passing along your payload from webhook to webhook and creating a chain of complex functionality
+
+
+***
+
 <a name = "what-is-hookIO"></a>
 #what is hook.io?
 
@@ -116,6 +136,10 @@ JSONP support is coming soon.
 
 ## how does hook.io store data?
 hook.io can work with Mongo, Redis, Couch, MySQL, and SQLlite, but hook.io comes embedded with [node-dirty](http://github.com/felixge/node-dirty) so you can persist data instantly without any third-party software. this means as soon as you start hook.io you have a database.
+
+
+***
+
 <a name = "installing-hookIO"></a>
 #installing hook.io
 
@@ -140,7 +164,11 @@ this will start a hook.io instance on port 8000 of your machine.
 ##hook.io as a CommonJS module
 
     var hookIO = require('./hook.io/hookio/');
-    hookIO.api.pingAPI();    <a name = "putting-a-front-end-on-hookIO"></a>
+    hookIO.api.pingAPI();    
+
+***
+
+<a name = "putting-a-front-end-on-hookIO"></a>
 #putting a front-end on hook.io
 
 hook.io is completely decoupled from any front-end. this is very powerful in that it allows developers to easily create customized front-ends or widgets in the technology stack of their choice
@@ -162,6 +190,10 @@ you can import this one JS file into your existing front-end site and easily all
 nginx is an ideal choice for serving a front-end for hook.io
 
 use this [nginx.conf](http://github.com/Marak/hook.io-frontend-website/blob/master/nginx.conf) file serve the hook.io-frontend-website and reverse proxy pass JSON-RPC requests to the running hook.io instance
+
+
+***
+
 <a name = "the-hookIO-api"></a>
 #the hook.io api
 
@@ -172,6 +204,14 @@ the hook.io api is the primary interface for interacting with hook.io
 at it's most basic level you can interact with hook.io api through CommonJS.
 
 hook.io can expose it's api over arbitrary gateways allowing easy integration other applications. 
+
+
+***
+
+
+
+***
+
 <a name = "creating-custom-webhooks"></a>
 ##what are hook.io's web hook and action definitions?
 
@@ -180,6 +220,18 @@ a web hook consists of an arbitrary listener and at least one arbitrary action. 
 custom hook and action definitions might contain some of your business logic, but really they are meant only for routing purposes. if you need to define re-usable logic that can be spread across many definitions you will want to implement a hook.io protocol. 
 
 a hook.io "protocol" in it's simplest form is a CommonJS module. you can create a hook.io protocol that does anything. check out our current protocols and node.js
+
+
+***
+
 # what would you build a hook.io protocol for?
 
 really anything. if you wanted to integrate with Flickr, you would create the Flick.js hook.io protocol. now every single api method for Flickr can be called from a hook definition or an action definition.
+
+
+***
+
+
+
+***
+
