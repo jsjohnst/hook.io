@@ -140,7 +140,9 @@ this will start a hook.io instance on port 8000 of your machine.
 ##hook.io as a CommonJS module
 
     var hookIO = require('./hook.io/hookio/');
-    hookIO.api.pingAPI();<a name = "putting-a-front-end-on-hookIO"></a>
+    hookIO.api.pingAPI();
+
+    <a name = "putting-a-front-end-on-hookIO"></a>
 #putting a front-end on hook.io
 
 hook.io is completely decoupled from any front-end. this is very powerful in that it allows developers to easily create customized front-ends or widgets in the technology stack of their choice
