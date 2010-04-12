@@ -14,7 +14,7 @@ ALL HANDS ON DECK FOR [SCURVYCONF](http://jsconf.us/2010/scurvy.html)
  
 [v0.1](http://semver.org/) is almost out (i swear!)
 
-hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols/) : 4
+hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols/) : 6
 
 hook.io web hook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 

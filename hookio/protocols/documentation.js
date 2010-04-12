@@ -14,13 +14,29 @@ exports.start = function() {
 
 var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
   sys.puts('parseMarkDownDocs');
-  var result = {};
+  
+  var htmlBook = '';
    fs.readdir(hookIO.PATH + '/docs', function(error, files) {
      files.forEach(function(doc) {
        if ('.md' !== doc.slice(-3))
          return;
-         doc = doc.slice(0, -3);
          sys.puts(hookIO.PATH + '/docs/' + doc);
+  
+         fs.readFile(hookIO.PATH + '/docs/' + doc , 'binary', function(err, data){
+           htmlBook+=hookIO.protocol.markdown.parse(data);
+         })
+         
+  
+      
+         
+         
+         
      });
+     /*
+     fs.writeFile(hookIO.PATH + '/docs/html/' + 'theBook' + '.html' , htmlBook , function (err) {
+       if (err) throw err;
+       sys.puts('saved to : ' + hookIO.PATH + '/docs/html/' + 'theBook' + '.html');
+     });
+     */
    });
 };

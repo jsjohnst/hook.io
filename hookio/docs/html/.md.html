@@ -1,0 +1,29 @@
+<h1>what is hook.io?</h1>
+
+<p>hook.io is an open-source webhook platform built entirely in JavaScript and <a href="http://hook.io">node.js</a>. it is both a free open-source project and a free software as a service provided at <a href="http://hook.io">http://hook.io</a></p>
+
+<h2>hook.io as a software as a service</h2>
+
+<p>if you want to try hook.io without installing anything you can visit <a href="http://hook.io">http://hook.io</a> and use the web interface. you can also integrate your application with hook.io's JSON-RPC webservice located @ <a href="http://hook.io/api">http://hook.io/api</a></p>
+
+<h2>hook.io as stand-alone server</h2>
+
+<p>if you want to run hook.io on your own hardware you can easily git clone the <a href="http://github.com/Marak/hook.io">hook.io github repository</a> and start your own hook.io instance. this instance is completely autonomous and doesn't communicate with any outside services unless you tell it to.</p>
+
+<h2>hook.io as a CommonJS module</h2>
+
+<p>hook.io is a valid, self contained, <a href="http://commonjs.org">CommonJS</a> module. this means you can import the hook.io module into an existing node.js application. once imported, you can seamlessly call hook.io methods through the hook.io api object which is exported as "hookIO.api"</p>
+
+<h2>hook.io has no front-end</h2>
+
+<p>hook.io is completely decoupled from any front-end. this is very powerful in that it allows developers to easily create customized front-ends or widgets in the technology stack of their choice</p>
+
+<p>we provide a sample front-end which powers <a href="http://hook.io">http://hook.io</a>, you can clone it @ <a href="http://github.com/Marak/hook.io-frontend-website">hook.io-frontend-website</a></p>
+
+<p>we also provide a <a href="http://github.com/Marak/hook.io-frontend-website/blob/master/js/hookio/hookio.js">brower-side jQuery/JavaScript api</a> for communicating with hook.io's JSON-RPC</p>
+
+<p>JSONP support is coming soon.</p>
+
+<h2>how does hook.io store data?</h2>
+
+<p>hook.io can work with Mongo, Redis, Couch, MySQL, and SQLlite, but hook.io comes embedded with <a href="http://github.com/felixge/node-dirty">node-dirty</a> so you can persist data instantly without any third-party software. this means as soon as you start hook.io you have a database.</p>

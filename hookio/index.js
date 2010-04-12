@@ -81,6 +81,8 @@ hookIO.emit = function() {
   hookIO._emit.apply(hookIO, arguments);
 };
 
+hookIO.Step = require('./lib/Step');
+
 hookIO.debug = require('./lib/node_debug/node_debug/debug').log;
 
 hookIO.outgoing = require('./outgoing');
@@ -104,6 +106,7 @@ hookIO.protocol.twitter = require('./protocols/twitter');
 hookIO.protocol.timer = require('./protocols/timer');
 hookIO.protocol.debug = require('./protocols/debug');
 hookIO.protocol.email = require('./protocols/email');
+hookIO.protocol.markdown = require('./protocols/markdown');
 hookIO.protocol.documentation = require('./protocols/documentation');
 
 
