@@ -26,13 +26,14 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
     });
     
     readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
-      results.forEach(function(r){
-        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
-      });
 
       fs.writeFile('README.md', markdownBook , function (err) {
         if (err) throw err;
         sys.puts('the webhook book has been renderer for github : ' + 'README.md');
+      });
+
+      results.forEach(function(r){
+        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
       });
       
       var htmlBook = hookIO.protocol.markdown.parse(markdownBook);
