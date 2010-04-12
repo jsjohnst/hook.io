@@ -10,6 +10,7 @@ fs = require('fs');
 
 exports.start = function() {
   parseMarkDownDocs();
+  //parseTOC();
 };
 
 var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
@@ -21,25 +22,28 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
   
   var results = [];
   
-   fs.readdir(hookIO.PATH + '/docs', function(err,files) {
-     readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
-       
-       results.forEach(function(r){
-         htmlBook+=r;  
-       });
-       htmlBook = hookIO.protocol.markdown.parse(htmlBook);
-       fs.writeFile(hookIO.PATH + '/docs/html/' + 'theBook' + '.html' , htmlBook , function (err) {
-         if (err) throw err;
-         sys.puts('saved to : ' + hookIO.PATH + '/docs/html/' + 'theBook' + '.html');
-       });
-       
-       
+  fs.readFile('README.md', 'binary', function(err, data) {
+    htmlBook+=hookIO.protocol.markdown.parse(data);
+    fs.readdir(hookIO.PATH + '/docs', function(err,files) {
+      readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
+        results.forEach(function(r){
+          htmlBook+=r;  
+        });
+        htmlBook = hookIO.protocol.markdown.parse(htmlBook);
+        fs.writeFile(hookIO.PATH + '/docs/html/' + 'theBook' + '.html' , htmlBook , function (err) {
+          if (err) throw err;
+          sys.puts('saved to : ' + hookIO.PATH + '/docs/html/' + 'theBook' + '.html');
+        });
+      });
     });
-
-     });
-  
+  });
 };
 
+var parseTOC = exports.parseTOC = function(){
+   fs.readFile('README.md', 'binary', function(err, data) {
+     sys.puts(hookIO.protocol.markdown.parse(data));
+   });
+};
 
 function readAllFiles(dir, files, index, results, complete) {
   if(index >= files.length) {
@@ -56,11 +60,4 @@ function readAllFiles(dir, files, index, results, complete) {
     readAllFiles(dir, files, index, results, complete);
     
   });
-}
-
-
-function dumpHtmlBook() {
-  if(parsedFiles >= numFiles) {
-    sys.puts(htmlBook.length);
-  }
 }
