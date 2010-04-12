@@ -60,7 +60,7 @@ hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC
 
 a webhook platform is an application platform for automating simple actions to take place on arbitrary web events. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
 
-<a name = "what-is-a-webhook"/>
+<a name = "what-is-a-webhook"></a>
 # what is a webhook?
 
 a webhook is a listener which triggers at least one action<a name = "what-is-a-webhook-listener"/>
