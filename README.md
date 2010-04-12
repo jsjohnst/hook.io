@@ -63,11 +63,9 @@ Table of Contents
 
 6. [the hook.io api](HTB/docs/the-hookIO-api.md)
 
-7. [hook.io api gateways](HTB/docs/hookIO-api-gateways.md)
+7. [using the JSON-RPC api gateway](HTB/docs/using-the-JSON-RPC.md)
 
-8. [using the JSON-RPC gateway](HTB/docs/using-the-JSON-RPC.md)
+8. [creating custom webhook listener and action definitions](HTB/docs/creating-custom-webhooks.md)
 
-9. [creating custom webhook listener and action definitions](HTB/docs/creating-custom-webhooks.md)
-
-10. [creating custom hook.io protocols](HTB/docs/creating-custom-hookIO-protocols.md)
+9. [creating custom hook.io protocols](HTB/docs/creating-custom-hookIO-protocols.md)
 

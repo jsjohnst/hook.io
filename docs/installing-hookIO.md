@@ -7,13 +7,13 @@
    
 ##download
 
-    git clone git@github.com:Marak/hook.io.git
-    cd hook.io
-    git submodule update --init
+    $ git clone git@github.com:Marak/hook.io.git
+    $ cd hook.io
+    $ git submodule update --init
 
 ##hook.io as a standalone server
 
-    node server.js
+    $ node server.js
     
 this will start a hook.io instance on port 8000 of your machine.
 
