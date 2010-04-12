@@ -15,7 +15,4 @@
 	url = git://github.com/Tim-Smart/node-oauth.git
 [submodule "hookio/lib/node_debug"]
 	path = hookio/lib/node_debug
-	url = git@github.com:Marak/node_debug.git
-[submodule "markdown.js"]
-	path = markdown.js
-	url = git://github.com/visionmedia/markdown.js.git
+	url = git://github.com/Marak/node_debug.git
