@@ -16,3 +16,7 @@
 [submodule "hookio/lib/node_debug"]
 	path = hookio/lib/node_debug
 	url = git://github.com/Marak/node_debug.git
+[submodule "hookio/lib/markdown"]
+	path = hookio/lib/markdown
+	url = git://github.com/kriskowal/markdown.git
+
