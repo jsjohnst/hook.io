@@ -30,7 +30,8 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
 
       results.forEach(function(r){
         //markdownBook = markdownBook + r;
-        markdownBook = markdownBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>  
+        htmlBook = htmlBook + r + '\n' + '\n' + '***' + '\n' + '\n'; // add line break and <hr>          
+        markdownBook = markdownBook + r + '\n' + '\n' + '\n' + '\n'; // add line break and <hr>  
       });
 
       fs.writeFile('README.md', markdownBook , function (err) {
