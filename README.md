@@ -16,56 +16,6 @@ ALL HANDS ON DECK FOR [SCURVYCONF](http://jsconf.us/2010/scurvy.html)
 
 hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols/) : 6
 
-hook.io web hook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
+hook.io webhook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 
-hook.io web hook [actions](HTB/docs/what-is-a-webhook.md): 4
-
-##TL;DR - low attention span? go here => [installing hookIO](HTB/docs/installing-hookIO.md)
-
-#overview
-
-hook.io is a open-source web hook platform built entirely in JavaScript and node.js. it is both a free open-source project and a free software as a service provided at [http://hook.io](http://hook.io)
-
-hook.io's dual model is unique in that it allows developers and businesses the choice of using hook.io as a third party web-service or downloading and installing their own copy of hook.io and doing whatever they want with it, without limitation.
-
-everything in hook.io is standardized, modular, evented and enumerable. we love standards and leverage the [CommonJS](http://commonjs.org/) module system for extending and customizing hook.io
-
-hook.io is heavily linked with the [node.js](http://nodejs.org) project and [NYC.js](http://groups.google.com/group/nycjs), we share a few developers.
-
-##what is a webhook platform?
-
-a webhook platform is an application platform for automating simple actions to take place on arbitrary web events. a webhook platform can concurrently listen for millions of poll or push events and execute actions which are bound to these events. 
-
-
-#we've got a book!
-
-if you are new to hook.io and the concept of webhooks we've created an awesome free book that will gently introduce you into the world of the real-time web and change the way you think about the internet. 
-
-if you anxious to get started just jump to [chapter 5 - installing hookIO]()
-
-
-##hook.io the book (HTB)
-
-
-Table of Contents
-
-0. [what is a webhook](HTB/hookio/docs/what-is-a-webhook.md)
-
-1. [what is a webhook listener](HTB/hookio/docs/what-is-a-webhook-listener.md)
-
-2. [what is a webhook action](HTB/hookio/docs/what-is-a-webhook-action.md)
-
-3. [what is hook.io](HTB/hookio/docs/what-is-hookIO.md)
-
-4. [installing hook.io](HTB/hookio/docs/installing-hookIO.md)
-
-5. [putting a front-end on hook.io](HTB/hookio/docs/putting-a-front-end-on-hookIO.md)
-
-6. [the hook.io api](HTB/hookio/docs/the-hookIO-api.md)
-
-7. [using the JSON-RPC api gateway](HTB/hookio/docs/using-the-JSON-RPC.md)
-
-8. [creating custom webhook listener and action definitions](HTB/hookio/docs/creating-custom-webhooks.md)
-
-9. [creating custom hook.io protocols](HTB/hookio/docs/creating-custom-hookIO-protocols.md)
-
+hook.io webhook [actions](HTB/docs/what-is-a-webhook.md): 4
