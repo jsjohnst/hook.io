@@ -9,6 +9,7 @@ sys = require('sys'),
 fs = require('fs');
 
 exports.start = function() {
+  //parseGitModules();
   parseMarkDownDocs();
   //parseTOC();
 };
@@ -72,3 +73,12 @@ function readAllFiles(dir, files, index, results, complete) {
     
   });
 }
+
+// parse the .gitmodules file
+
+var parseGitModules = exports.parseGitSubmodules = function(){
+  fs.readFile('.gitmodules', 'binary', function(err, data) {
+    var results = require('ini').parse(data);
+    sys.puts(JSON.stringify(results));
+  });
+};
