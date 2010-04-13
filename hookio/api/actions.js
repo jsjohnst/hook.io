@@ -60,7 +60,7 @@ exports.createAction = function() {
   }
 };
 
-exports.getAllActions = function() {
+exports.getActions = function() {
 	
   callback = arguments[arguments.length - 1];
 

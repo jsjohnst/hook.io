@@ -19,6 +19,24 @@ function hookCheck(hook) {
   }
 }
 
+exports.getHooks = function() {
+  callback = arguments[arguments.length - 1];
+
+  try {
+    hookIO.db.getAllHooks(function(hooks) {
+      var ret = [];
+
+      hooks.forEach(function(hook) {
+        ret.push(hook.toJson());
+      });
+
+      callback(null, ret);
+    });
+  } catch (error) {
+    callback(error, null);
+  }
+};
+
 exports.createHook = function() {
   var hook = arguments[0],
     callback = arguments[arguments.length - 1];

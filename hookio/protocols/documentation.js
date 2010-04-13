@@ -5,7 +5,6 @@
  */
 
 var hookIO = require('../../hookio').hookIO,
-sys = require('sys'),
 fs = require('fs');
 
 exports.start = function() {
@@ -15,8 +14,7 @@ exports.start = function() {
 };
 
 var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
-  sys.puts('parseMarkDownDocs');
-  
+
   var markdownBook = '';
   var htmlBook = '';
   var results = [];
@@ -37,13 +35,13 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
 
       fs.writeFile('README.md', markdownBook , function (err) {
         if (err) throw err;
-        sys.puts('the webhook book has been rendered for github : ' + 'README.md');
+        hookIO.debug('the webhook book has been rendered for github : ' + 'README.md');
       });
 
       htmlBook = hookIO.protocol.markdown.parse(htmlBook);
       fs.writeFile(hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html' , htmlBook , function (err) {
         if (err) throw err;
-        sys.puts('the webhook book has been created and saved as html to : ' + hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html');
+        hookIO.debug('the webhook book has been created and saved as html to : ' + hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html');
       });
       
       
@@ -53,7 +51,7 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
 
 var parseTOC = exports.parseTOC = function(){
    fs.readFile('README.md', 'binary', function(err, data) {
-     sys.puts(hookIO.protocol.markdown.parse(data));
+     hookIO.debug(hookIO.protocol.markdown.parse(data));
    });
 };
 
@@ -75,9 +73,9 @@ function readAllFiles(dir, files, index, results, complete) {
 }
 
 // parse the .gitmodules file
-
 var parseGitModules = exports.parseGitSubmodules = function(){
   fs.readFile('.gitmodules', 'binary', function(err, data) {
+    // move this require somewhere else
     var results = require('ini').parse(data);
     sys.puts(JSON.stringify(results));
   });

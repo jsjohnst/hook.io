@@ -159,6 +159,10 @@ exports.init = function(callback) {
            hookIO.protocol.timer.start();
            hookIO.protocol.documentation.start();
 
+           hookIO.debug('hook.io v0.1.0 is now running on port: ' + hookIO.HTTP.port);
+           hookIO.debug('thanks for watching the console!');
+           hookIO.debug('if you run into any issues please log them @ http://github.com/marak/hook.io/');
+
            // We are inited
            if ('function' === typeof callback)
              callback.call(hookIO);
