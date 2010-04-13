@@ -1,8 +1,11 @@
-
 /*
- * hookio/site
- * All site request routed here, to be routed to specific site functions
+ * the hook.io /site/ folder is a mini dynamic html server
+ * any incoming http requests that are not sent to the API are routed here
+ * technically, you could build an entire web application in this folder
+ * i would recommend only using the /site/ folder for minimalistic reports
+ * you can also include hook.io as a CommonJS module inside of another node.js web app framework
  */
+
 
 var hookIO = require('../../hookio').hookIO;
 
@@ -24,11 +27,11 @@ hookIO.addListener('SiteRequest', function(request, response) {
     break;
 
 	  case '/hooks':
-      hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
+      hookIO.api.getHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
     break;
 
 	  	case '/actions':
-      hookIO.api.getAllActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
+      hookIO.api.getActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
     break;
 
     case '/definitions':

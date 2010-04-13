@@ -99,7 +99,7 @@ exports.storeHook = function(hook, key, callback) {
     key: key,
     config: hook.config,
     lastUpdated: new Date().getTime(),
-    actions: [],
+    actions: hook.actions,
     // TODO: When session stuff is sorted, insert userID
     owner: null
   };

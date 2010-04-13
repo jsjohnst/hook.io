@@ -20,8 +20,7 @@ function actionCheck(action) {
 exports.createAction = function() {
   var action = arguments[0],
     callback = arguments[arguments.length - 1];
-    hookIO.debug('hookIO.api.createAction()');
-    hookIO.debug(arguments);  
+
   try {
     actionCheck(action);
 

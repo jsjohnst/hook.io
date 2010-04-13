@@ -44,10 +44,13 @@ exports.createHook = function() {
   try {
     hookCheck(hook);
     // attempt to process and store actions
-    if(typeof hook.actions != 'undefined'){
+    if(typeof hook.actions != 'undefined'){ // please refactor this if / else
       if(hook.actions.length){
         // we could iterate over this array and create many actions for one hook
-        hookIO.api.createAction(hook.actions[0], function(hrmm, id){
+        hookIO.api.createAction(hook.actions[0], function(err, actionID){
+          
+          if(err){callback(new Error(err), null);}
+          
           // create Hook
           hook = new Hook({
             type: hook.type,
@@ -74,8 +77,7 @@ exports.createHook = function() {
               }
               return;
             }
-            hook.data.actions=[id];
-            //hookIO.debug(hook);
+            hook.data.actions=[actionID];
             hookIO.db.storeHook(hook, key, function(id) {
               callback(null, id);
             });
@@ -84,7 +86,7 @@ exports.createHook = function() {
         });
       }
     }
-    else{
+    else{ // regular hook with no actions, please refactor this block
       // create Hook
       hook = new Hook({
         type: hook.type,
