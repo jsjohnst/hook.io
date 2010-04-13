@@ -41,7 +41,7 @@ var hookIO = {
   },
   DEBUGGER : {
     'webconsole':false, // should we output to the node_debug web console at http://hook.io/debug/
-    'console':false, // should we output to the terminal console
+    'console':true, // should we output to the terminal console
     'emittedEvents':false  // should we output emittedEvents
   }
 };
@@ -81,9 +81,23 @@ hookIO.emit = function() {
   hookIO._emit.apply(hookIO, arguments);
 };
 
+// first level hookIO helpers
+
+// hookIO.step - an easy way to step through multiple async events
 hookIO.Step = require('./lib/Step');
 
-hookIO.debug = require('./lib/node_debug/node_debug/debug').log;
+// hookIO.debug - 
+hookIO.debug = function(args){
+  
+  if(hookIO.DEBUGGER.console){
+    sys.puts(JSON.stringify(args));
+  }
+  
+  if(hookIO.DEBUGGER.webconsole){
+    debug.log(args);
+  }
+  
+};
 
 hookIO.outgoing = require('./outgoing');
 hookIO.incoming = require('./incoming');

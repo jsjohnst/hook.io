@@ -6,7 +6,9 @@
 
 var hookIO = require('../../hookio').hookIO,
   Hook = require('../models/hook').Hook,
-  validateConfig = require('../lib/helpers').validateConfig;
+  validateConfig = require('../lib/helpers').validateConfig,
+  sys = require('sys')
+  ;
 
 
 function hookCheck(hook) {
@@ -24,11 +26,14 @@ exports.createHook = function() {
   try {
     hookCheck(hook);
 
+    sys.puts(JSON.stringify(hook));
+
     // attempt to process and store actions
-    if(hook.actions.length){
-      hookIO.debug(hook.actions);
-      // we could iterate over this array and create many actions for one hook
-      hookIO.api.createAction(hook.actions[0], function(){hookIO.debug('called back createAction');});
+    if(typeof hook.actions != 'undefined'){
+      if(hook.actions.length){
+        // we could iterate over this array and create many actions for one hook
+        hookIO.api.createAction(hook.actions[0], function(){hookIO.debug('called back createAction');});
+      }
     }
     
     hook = new Hook({
