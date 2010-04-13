@@ -37,7 +37,7 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
 
       fs.writeFile('README.md', markdownBook , function (err) {
         if (err) throw err;
-        sys.puts('the webhook book has been renderer for github : ' + 'README.md');
+        sys.puts('the webhook book has been rendered for github : ' + 'README.md');
       });
 
       htmlBook = hookIO.protocol.markdown.parse(htmlBook);

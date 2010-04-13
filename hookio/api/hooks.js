@@ -25,17 +25,9 @@ exports.createHook = function() {
 
   try {
     hookCheck(hook);
-
-    sys.puts(JSON.stringify(hook));
-
-
-
     // attempt to process and store actions
     if(typeof hook.actions != 'undefined'){
-      
-      
       if(hook.actions.length){
-        
         // we could iterate over this array and create many actions for one hook
         hookIO.api.createAction(hook.actions[0], function(hrmm, id){
           // create Hook
@@ -75,7 +67,6 @@ exports.createHook = function() {
       }
     }
     else{
-      hookIO.debug('doing other stuff');
       // create Hook
       hook = new Hook({
         type: hook.type,
@@ -139,19 +130,21 @@ exports.attachActionToHook = function() {
   try {
     hookCheck(hook);
 
-    if ('number' !== typeof hook.id)
+    hookIO.debug(hook);
+    if ('number' !== typeof hook.config.hookID)
       throw new Error('Badly formed hook ID');
 
-    if ('number' !== typeof actionID)
+    if ('number' !== typeof hook.config.actionID)
       throw new Error('Badly formed action ID');
 
     hook = new Hook({
-      id: hook.id,
-      type: hook.type,
-      config: hook.config,
-      actions: hook.actions instanceof Array ? hook.actions : []
+      id: hook.id
     });
 
+    hookIO.debug('attachingAction');
+    hookIO.debug(hook);
+    
+    /*
     var actions = hook.get('actions');
     actions.push(actionID);
     hook.set('actions', actions);
@@ -167,6 +160,8 @@ exports.attachActionToHook = function() {
     hookIO.db.updateHook(hook, key, function(id) {
       callback(null, id);
     });
+    */
+    callback(null,1);
   } catch (error) {
     callback(error, null);
   }
