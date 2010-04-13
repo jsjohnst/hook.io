@@ -231,6 +231,10 @@ really anything. if you wanted to integrate with Flickr, you would create the Fl
 
 
 
+#using the hookIO debugger
+
+
+
 
 
 

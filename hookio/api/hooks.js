@@ -28,14 +28,17 @@ exports.createHook = function() {
 
     sys.puts(JSON.stringify(hook));
 
+
+
     // attempt to process and store actions
     if(typeof hook.actions != 'undefined'){
+      
+      
       if(hook.actions.length){
+        
         // we could iterate over this array and create many actions for one hook
-        hookIO.api.createAction(hook.actions[0], function(){
-          
-          hookIO.debug('called back createAction');
-          
+        hookIO.api.createAction(hook.actions[0], function(hrmm, id){
+          // create Hook
           hook = new Hook({
             type: hook.type,
             config: hook.config
@@ -61,19 +64,49 @@ exports.createHook = function() {
               }
               return;
             }
-
+            hook.data.actions=[id];
+            //hookIO.debug(hook);
             hookIO.db.storeHook(hook, key, function(id) {
               callback(null, id);
             });
 
           });
-          
-          
-          
         });
       }
     }
-    
+    else{
+      hookIO.debug('doing other stuff');
+      // create Hook
+      hook = new Hook({
+        type: hook.type,
+        config: hook.config
+      });
+      var definition = hookIO.hooker.hooks[hook.get('type')];
+      hook.set('protocol', definition.protocol);
+
+      if (false === validateConfig(hook, definition))
+        throw new Error('Badly formed user config');
+
+      var key = hook.get('config')[definition.keyField];
+
+      hookIO.db.checkHook({
+        protocol: hook.get('protocol'),
+        key: key,
+        config: hook.get('config')
+      }, function(exists) {
+        if (exists) {
+          if (true !== definition.unique) {
+            callback(null, exists);
+          } else {
+            callback(new Error('Duplicate'), null);
+          }
+          return;
+        }
+        hookIO.db.storeHook(hook, key, function(id) {
+          callback(null, id);
+        });
+    });
+    }
   } catch (error) {
     callback(error, null);
   }
