@@ -9,7 +9,7 @@ sys = require('sys'),
 mu = require('../lib/mu/lib/mu');
 
 exports.start = function() {
-  hookIO.debug(parse());
+  //hookIO.debug(parse());
 };
 
 // parse() will perform a sync render with no stream. it is not advised to use this for large blocks of text
