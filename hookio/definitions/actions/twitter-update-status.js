@@ -3,7 +3,7 @@
  */
 
 exports.action = {
-  name: 'twitter_update_status',
+  name: 'twitter-update-status',
   title: 'Updates a user\'s twitter status',
   protocol: 'twitter',
   keyField: 'username',
