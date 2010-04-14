@@ -25,3 +25,6 @@
 [submodule "node-persistence"]
 	path = node-persistence
 	url = git@github.com:Marak/node-persistence.git
+[submodule "hookio/lib/Mu"]
+	path = hookio/lib/Mu
+	url = git://github.com/Marak/Mu.git
