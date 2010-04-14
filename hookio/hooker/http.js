@@ -6,7 +6,7 @@
 
 var hookIO = require('../../hookio').hookIO;
 
-process.mixin(global, require('sys'));
+global.mixin(require('sys'));
 
 var keyExpression = /^\/(\w+)/;
 

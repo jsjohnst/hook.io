@@ -12,6 +12,7 @@ var events = require('events'),
   http_port = null,
   tcp_port = null;
 
+  require('./lib/proto/lib/proto');
 // In case we want to run multiple instances at once
 if (process.argv[2])
   http_port = parseInt(process.argv[2]);
@@ -62,7 +63,7 @@ if(hookIO.DEBUGGER.webconsole){
 hookIO = (function() {
   var fn;
   (fn = new Function()).prototype = new events.EventEmitter();
-  process.mixin(fn.prototype, hookIO);
+  fn.prototype.mixin(hookIO);
   return new fn();
 })();
 

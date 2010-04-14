@@ -14,8 +14,8 @@ exports.init = function(callback) {
     exports.db = connection;
 
     // Load submodules
-    process.mixin(exports, require('./hooks'));
-    process.mixin(exports, require('./actions'));
+    exports.mixin(require('./hooks'));
+    exports.mixin(require('./actions'));
 
     callback(true);
   });
