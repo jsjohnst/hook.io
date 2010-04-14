@@ -122,7 +122,7 @@ hookIO.protocol.debug = require('./protocols/debug');
 hookIO.protocol.email = require('./protocols/email');
 hookIO.protocol.markdown = require('./protocols/markdown');
 hookIO.protocol.documentation = require('./protocols/documentation');
-
+hookIO.protocol.mustache = require('./protocols/mustache');
 
 exports.init = function(callback) {
 
@@ -157,6 +157,7 @@ exports.init = function(callback) {
            hookIO.protocol.twitter.start();
            // Start timer
            hookIO.protocol.timer.start();
+           hookIO.protocol.mustache.start();
            hookIO.protocol.documentation.start();
 
            hookIO.debug('hook.io v0.1.0 is now running on port: ' + hookIO.HTTP.port);
