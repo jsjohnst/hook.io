@@ -1,9 +1,6 @@
 [submodule "hookio/lib/node-persistence"]
 	path = hookio/lib/node-persistence
 	url = git@github.com:Marak/node-persistence.git
-[submodule "hookio/lib/mu"]
-	path = hookio/lib/mu
-	url = git://github.com/Marak/Mu.git
 [submodule "hookio/lib/twitter-node"]
 	path = hookio/lib/twitter-node
 	url = git://github.com/technoweenie/twitter-node.git
