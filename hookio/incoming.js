@@ -45,16 +45,19 @@ hookIO.addListener('HttpRequest', function(request, response) {
       //    if this is the case we should do a getHooks call with the url set as the hook path
 
         // check if custom hook.io url path exists in DB
+        // add some validation / forbidden paths here
+        var processedPath = request.url.slice(1, request.url.length);
+        //hookIO.debug(processedPath);
+        
         hookIO.api.getHooks({
-            "type":"http",
-            "config":{
-              "path":"CustomURL"
-            }
+            "path":processedPath
           },
           function(err,results){
             //hookIO.debug(results);
             if(results.length){
-              //hookIO.debug('we have results!');
+              response.results = results;
+              //hookIO.debug('hook.io has found a listening url that has matched');
+              //hookIO.debug(results);
               hookIO.emit('SiteRequest', request, response);
             }
             else{

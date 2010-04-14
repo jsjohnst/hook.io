@@ -29,17 +29,17 @@ hookIO.addListener('HttpHookRequest', function(request, response) {
               hookIO.emit('ActionTrigger', hook, definition);
               hookIO.emit('JsonrpcResponse', response, { id: null }, 'success');
             } else {
-              hookIO.emit('Http404Response', response);
+              hookIO.emit('Http404Response', request, response);
             }
           } else {
-            hookIO.emit('Http404Response', response);
+            hookIO.emit('Http404Response', request, response);
           }
         });
 
         hookIO.emit('HookCompleted', hook);
       });
     } else
-      hookIO.emit('Http404Response', response);
+      hookIO.emit('Http404Response', request, response);
   } catch (error) {
     hookIO.emit('HttpResponse', response, {}, inspect(error.message));
   }

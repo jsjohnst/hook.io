@@ -37,7 +37,8 @@ exports.getHook = function(condition, callback) {
 };
 
 exports.getHooks = function(condition, callback) {
-  store.find(condition, function(hooks) {
+  
+  store.find({}, function(hooks) {
     if (0 >= hooks.length) {
       callback([]);
       return;
@@ -54,7 +55,31 @@ exports.getHooks = function(condition, callback) {
       }));
     });
 
-    callback(ret);
+
+    /********* FIX THIS CRAP WHEN NODE-DIRTY COMES ******/
+
+    try{
+      // do some extra search processing that really should be part of the DB query lib
+      var data = [];
+      for(var i = 0; i<ret.length; i++){
+        //hookIO.debug(condition);
+        //hookIO.debug('ret has len');
+        //hookIO.debug(ret[i]);
+        if(ret[i].data.type=='http'){
+          if(ret[i].data.config.path==condition.path){
+            data.push(ret[i]);
+          }
+        }
+      }
+      //hookIO.debug('custom search vvv ');
+      //hookIO.debug(data);
+    }
+    catch(err){
+      var data = ret;
+    }
+    /***** END THE BADNESS *************************/
+    
+    callback(data);
   });
 };
 

@@ -39,7 +39,16 @@ hookIO.addListener('SiteRequest', function(request, response) {
   	break;
 
     default:
-      hookIO.emit('Http404Response', response);
+      // did we 404 or find a custom hook.io listening URL ?
+      if(typeof response.results != 'undefined'){
+        hookIO.emit('HttpResponse', response, {},'we found a hook.io webhook listening on this URL : ' + request.url);
+        //hookIO.debug(response.results);
+        //hookIO.debug(response.results.length);
+      }
+      else{
+        hookIO.emit('Http404Response', request, response);
+      }
+  
     break;
   }
 });

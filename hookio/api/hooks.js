@@ -19,18 +19,16 @@ function hookCheck(hook) {
   }
 }
 
-exports.getHooks = function() {
+exports.getHooks = function(conditions, callback) {
 
   if(typeof options === 'undefined'){
     var options = {};
   }
   
-  callback = arguments[arguments.length - 1];
-  
   //hookIO.debug(options);
   
   try {
-    hookIO.db.getHooks(options,function(hooks) {
+    hookIO.db.getHooks(conditions ,function(hooks) {
       var ret = [];
 
       hooks.forEach(function(hook) {
@@ -157,7 +155,7 @@ exports.attachActionToHook = function() {
   try {
     hookCheck(hook);
 
-    hookIO.debug(hook);
+    //hookIO.debug(hook);
     if ('number' !== typeof hook.config.hookID)
       throw new Error('Badly formed hook ID');
 
