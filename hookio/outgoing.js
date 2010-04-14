@@ -43,8 +43,8 @@ hookIO.addListener('Jsonrpc400Response', function(response, error, jsonrpcData) 
 
 hookIO.addListener('HttpResponse', function(response, headers, body) {
   var responseHeaders = {};
-  process.mixin(responseHeaders, hookIO.HTTP.defaultHeaders);
-  process.mixin(responseHeaders, headers);
+  responseHeaders.mixin(hookIO.HTTP.defaultHeaders);
+  responseHeaders.mixin(headers);
 
   // TODO: Parse XML automagically
   if ('string' !== typeof body) {
