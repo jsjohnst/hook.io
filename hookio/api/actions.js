@@ -78,3 +78,23 @@ exports.getActions = function() {
   }
 };
 
+
+exports.getAllActions = function() {
+	
+  callback = arguments[arguments.length - 1];
+
+  try {
+    hookIO.db.getAllActions(function(actions) {
+      var ret = [];
+
+      actions.forEach(function(action) {
+        ret.push(action.toJson());
+      });
+
+      callback(null, ret);
+    });
+  } catch (error) {
+    callback(error, null);
+  }
+};
+

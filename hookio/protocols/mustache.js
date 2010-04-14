@@ -8,10 +8,12 @@ mu = require('../lib/mu/lib/mu');
 
 exports.start = function() {
   // little test case
+  /*
   var stream = parse('hello this is a template named {{tName}}',{"tName":"updog"});
   stream.addListener('data', function (data) {
     hookIO.debug(data);
   });
+  */
 };
 
 // parse() will perform a sync render with no stream. it is not advised to use this for large blocks of text

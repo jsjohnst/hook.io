@@ -20,10 +20,17 @@ function hookCheck(hook) {
 }
 
 exports.getHooks = function() {
-  callback = arguments[arguments.length - 1];
 
+  if(typeof options === 'undefined'){
+    var options = {};
+  }
+  
+  callback = arguments[arguments.length - 1];
+  
+  //hookIO.debug(options);
+  
   try {
-    hookIO.db.getAllHooks(function(hooks) {
+    hookIO.db.getHooks(options,function(hooks) {
       var ret = [];
 
       hooks.forEach(function(hook) {

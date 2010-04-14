@@ -27,11 +27,11 @@ hookIO.addListener('SiteRequest', function(request, response) {
     break;
 
 	  case '/hooks':
-      hookIO.api.getHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
+      hookIO.api.getAllHooks( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewHooks(i));})
     break;
 
 	  	case '/actions':
-      hookIO.api.getActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
+      hookIO.api.getAllActions( function(e,i){hookIO.emit('HttpResponse', response, {},views.viewActions(i));})
     break;
 
     case '/definitions':
