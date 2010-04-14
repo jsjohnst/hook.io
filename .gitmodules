@@ -20,3 +20,6 @@
 	path = hookio/lib/markdown
 	url = git://github.com/kriskowal/markdown.git
 
+[submodule "hookio/lib/proto"]
+	path = hookio/lib/proto
+	url = git://github.com/creationix/proto.git
