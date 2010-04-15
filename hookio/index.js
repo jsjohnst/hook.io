@@ -85,7 +85,7 @@ hookIO.emit = function() {
 // first level hookIO helpers
 
 // hookIO.step - an easy way to step through multiple async events
-hookIO.Step = require('./lib/Step');
+hookIO.Step = require('./lib/step/lib/step');
 
 // hookIO.debug - 
 hookIO.debug = function(args){
