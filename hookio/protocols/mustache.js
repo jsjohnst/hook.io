@@ -4,7 +4,7 @@
  */
 
 var hookIO = require('../../hookio').hookIO,
-mu = require('../lib/mu/lib/mu');
+mu = require('../lib/Mu/lib/mu');
 
 exports.start = function() {
   // little test case
