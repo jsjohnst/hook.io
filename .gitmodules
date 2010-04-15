@@ -25,3 +25,6 @@
 [submodule "hookio/lib/underscore"]
 	path = hookio/lib/underscore
 	url = git@github.com:Marak/underscore.git
+[submodule "hookio/lib/haml"]
+	path = hookio/lib/haml
+	url = git@github.com:Marak/haml.js.git

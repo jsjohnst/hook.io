@@ -130,6 +130,7 @@ hookIO.protocol.timer = require('./protocols/timer');
 hookIO.protocol.debug = require('./protocols/debug');
 hookIO.protocol.email = require('./protocols/email');
 hookIO.protocol.markdown = require('./protocols/markdown');
+hookIO.protocol.haml = require('./protocols/haml');
 hookIO.protocol.documentation = require('./protocols/documentation');
 hookIO.protocol.mustache = require('./protocols/mustache');
 
