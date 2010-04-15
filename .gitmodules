@@ -1,24 +1,24 @@
 [submodule "hookio/lib/proto"]
 	path = hookio/lib/proto
-	url = git@github.com:Marak/proto.git
+	url = git://github.com/Marak/proto.git
 [submodule "hookio/lib/node_debug"]
 	path = hookio/lib/node_debug
-	url = git@github.com:Marak/node_debug.git
+	url = git://github.com/Marak/node_debug.git
 [submodule "hookio/lib/Mu"]
 	path = hookio/lib/Mu
-	url = git@github.com:Marak/Mu.git
+	url = git://github.com/Marak/Mu.git
 [submodule "hookio/lib/markdown"]
 	path = hookio/lib/markdown
-	url = git@github.com:Marak/markdown.git
+	url = git://github.com/Marak/markdown.git
 [submodule "hookio/lib/node-persistence"]
 	path = hookio/lib/node-persistence
-	url = git@github.com:Marak/node-persistence.git
+	url = git://github.com/Marak/node-persistence.git
 [submodule "hookio/lib/twitter-node"]
 	path = hookio/lib/twitter-node
-	url = git@github.com:Marak/twitter-node.git
+	url = git://github.com/Marak/twitter-node.git
 [submodule "hookio/lib/node_mailer"]
 	path = hookio/lib/node_mailer
-	url = git@github.com:Marak/node_mailer.git
+	url = git://github.com/Marak/node_mailer.git
 [submodule "hookio/lib/step"]
 	path = hookio/lib/step
-	url = git@github.com:Marak/step.git
+	url = git://github.com/Marak/step.git
