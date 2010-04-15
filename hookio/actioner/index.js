@@ -6,7 +6,7 @@
 
 var hookIO = require('../../hookio').hookIO,
   fs = require('fs'),
-  Mu = require('../lib/mu/lib/mu');
+  Mu = require('../lib/Mu/lib/mu');
 
 
 var actions = exports.actions = {};
