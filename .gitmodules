@@ -19,3 +19,6 @@
 [submodule "hookio/lib/node_mailer"]
 	path = hookio/lib/node_mailer
 	url = git@github.com:Marak/node_mailer.git
+[submodule "hookio/lib/step"]
+	path = hookio/lib/step
+	url = git@github.com:Marak/step.git
