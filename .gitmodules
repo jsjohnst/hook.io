@@ -1,0 +1,3 @@
+[submodule "hookio/lib/proto"]
+	path = hookio/lib/proto
+	url = git@github.com:Marak/proto.git
