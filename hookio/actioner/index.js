@@ -13,13 +13,13 @@ var actions = exports.actions = {};
 
 var updateDefinitions = exports.update = function(callback) {
   var result = {};
-  fs.readdir(hookIO.PATH + '/definitions/actions', function(error, files) {
+  fs.readdir(hookIO.config.PATH + '/definitions/actions', function(error, files) {
     files.forEach(function(action) {
       if ('.js' !== action.slice(-3))
         return;
 
       action = action.slice(0, -3);
-      action = require(hookIO.PATH + '/definitions/actions/' + action);
+      action = require(hookIO.config.PATH + '/definitions/actions/' + action);
 
       try {
         action = action.action;

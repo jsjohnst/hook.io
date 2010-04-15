@@ -22,3 +22,6 @@
 [submodule "hookio/lib/step"]
 	path = hookio/lib/step
 	url = git://github.com/Marak/step.git
+[submodule "hookio/lib/underscore"]
+	path = hookio/lib/underscore
+	url = git@github.com:Marak/underscore.git

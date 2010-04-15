@@ -6,6 +6,10 @@ exports.viewHooks = function(options){
   return hooksTable.build(options);
 }
 
+exports.viewUrlHook = function(options){
+  return 'we found a hook.io webhook listening on this URL! : ' + JSON.stringify(options);
+}
+
 exports.viewActions = function(options){
   return actionsTable.build(options);
 }

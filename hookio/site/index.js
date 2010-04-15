@@ -41,9 +41,16 @@ hookIO.addListener('SiteRequest', function(request, response) {
     default:
       // did we 404 or find a custom hook.io listening URL ?
       if(typeof response.results != 'undefined'){
-        hookIO.emit('HttpResponse', response, {},'we found a hook.io webhook listening on this URL : ' + request.url);
-        //hookIO.debug(response.results);
-        //hookIO.debug(response.results.length);
+        // join any actions id with actual action object
+        hookIO.api.getActions(function(fuuu, actions){
+          hookIO.debug('got some actions');
+          
+          hookIO.debug(actions);
+          
+          // we shouldn't be delegating this event like this, it should be done through the eventemitters
+          hookIO.emit('HttpResponse', response, {}, views.viewUrlHook(response.results));
+        });
+        
       }
       else{
         hookIO.emit('Http404Response', request, response);

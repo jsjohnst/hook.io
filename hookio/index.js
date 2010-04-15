@@ -21,8 +21,11 @@ if (process.argv[2])
 if (process.argv[3])
   tcp_port = parseInt(process.argv[3]);
 
+var hookIO = {};
+
+
 // The HookIO object
-var hookIO = {
+hookIO.config = {
   // Constants
   PATH: __dirname,
   EMAIL_DEFAULTS: {
@@ -49,7 +52,7 @@ var hookIO = {
 
 // check if node_debug should be turned on
 
-if(hookIO.DEBUGGER.webconsole){
+if(hookIO.config.DEBUGGER.webconsole){
   /* this will start node_debug on port 8080
    be aware that running node_debug on a public IP address will result in your box getting rooted (or worse)
   */
@@ -75,7 +78,7 @@ hookIO._emit = hookIO.emit;
 hookIO.emit = function() {
   arguments = Array.prototype.slice.call(arguments, 0);
   
-  if(hookIO.DEBUGGER.emittedEvents){
+  if(hookIO.config.DEBUGGER.emittedEvents){
     debug.log(arguments);
   }
   
@@ -87,14 +90,19 @@ hookIO.emit = function() {
 // hookIO.step - an easy way to step through multiple async events
 hookIO.Step = require('./lib/step/lib/step');
 
+// underscore.js is a kick library for doing some of the good parts of javascript
+// this allow for syntax such as : _.each([1,2,3],function(e){hookIO.debug(e);});
+// see more @ : http://documentcloud.github.com/underscore/
+require('./lib/underscore/underscore');
+
 // hookIO.debug - 
 hookIO.debug = function(args){
   
-  if(hookIO.DEBUGGER.console){
+  if(hookIO.config.DEBUGGER.console){
     sys.puts(JSON.stringify(args));
   }
   
-  if(hookIO.DEBUGGER.webconsole){
+  if(hookIO.config.DEBUGGER.webconsole){
     debug.log(args);
   }
   
@@ -131,13 +139,13 @@ exports.init = function(callback) {
 // this is where protocols get imported into hookIO
 /*
   var result = {};
-   fs.readdir(hookIO.PATH + '/protocols', function(error, files) {
+   fs.readdir(hookIO.config.PATH + '/protocols', function(error, files) {
      files.forEach(function(protocol) {
        if ('.js' !== protocol.slice(-3))
          return;
          protocol = protocol.slice(0, -3);
-         sys.puts(hookIO.PATH + '/protocols/' + protocol);
-         hookIO.protocol[protocol] = require(hookIO.PATH + '/protocols/' + protocol);
+         sys.puts(hookIO.config.PATH + '/protocols/' + protocol);
+         hookIO.protocol[protocol] = require(hookIO.config.PATH + '/protocols/' + protocol);
          // currently protocols have an optional method "start"
          // if the start method is exported in a protocol it will be called when hook.io first starts (here)
          if(typeof hookIO.protocol[protocol].start === 'function'){
@@ -161,11 +169,11 @@ exports.init = function(callback) {
            hookIO.protocol.mustache.start();
            hookIO.protocol.documentation.start();
 
-           hookIO.debug('hook.io v0.1.0 is now running on port: ' + hookIO.HTTP.port);
+           hookIO.debug('hook.io v0.1.0 is now running on port: ' + hookIO.config.HTTP.port);
            hookIO.debug('thanks for watching the console!');
            hookIO.debug('if you run into any issues please log them @ http://github.com/marak/hook.io/');
 
-           // We are inited
+           // hook.io has started and is ready to roll
            if ('function' === typeof callback)
              callback.call(hookIO);
          });

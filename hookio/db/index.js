@@ -9,7 +9,7 @@ var hookIO = require('../../hookio').hookIO,
 		
 
 exports.init = function(callback) {
-  var connection = db.new_connection(hookIO.DB.path);
+  var connection = db.new_connection(hookIO.config.DB.path);
   connection.addListener('connection', function() {
     exports.db = connection;
 

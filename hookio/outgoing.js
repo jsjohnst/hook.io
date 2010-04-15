@@ -8,7 +8,7 @@ var hookIO = require('../hookio').hookIO;
 var sys = require('sys');
 
 hookIO.addListener('Http404Response', function(request, response) {
-  response.writeHeader(404, hookIO.HTTP.defaultHeaders);
+  response.writeHeader(404, hookIO.config.HTTP.defaultHeaders);
   // we should add a /site/views/404.js view
   response.write('you\'ve requested the following url: <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;' + request.url + ' <br/><br/> but it was not found.');
   response.close();
@@ -43,7 +43,7 @@ hookIO.addListener('Jsonrpc400Response', function(response, error, jsonrpcData) 
 
 hookIO.addListener('HttpResponse', function(response, headers, body) {
   var responseHeaders = {};
-  responseHeaders.mixin(hookIO.HTTP.defaultHeaders);
+  responseHeaders.mixin(hookIO.config.HTTP.defaultHeaders);
   responseHeaders.mixin(headers);
 
   // TODO: Parse XML automagically

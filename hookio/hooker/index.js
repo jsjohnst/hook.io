@@ -13,7 +13,7 @@ var hooks = exports.hooks = {};
 // Load hook definitions
 var updateDefinitions = exports.update = function(callback) {
   var result = {};
-  fs.readdir(hookIO.PATH + '/definitions/hooks/', function(error, files) {
+  fs.readdir(hookIO.config.PATH + '/definitions/hooks/', function(error, files) {
     files.forEach(function(hook) {
       // don't try to require files that don't end in .js
 						// if we add CoffeeScript support, we'll have to change this
@@ -21,7 +21,7 @@ var updateDefinitions = exports.update = function(callback) {
         return;
 
       hook = hook.slice(0, -3);
-      hook = require(hookIO.PATH + '/definitions/hooks/' + hook);
+      hook = require(hookIO.config.PATH + '/definitions/hooks/' + hook);
 
       try {
         hook = hook.hook;

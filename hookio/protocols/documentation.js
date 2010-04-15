@@ -19,13 +19,13 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
   var htmlBook = '';
   var results = [];
   
-  fs.readdir(hookIO.PATH + '/docs', function(err,files) {
+  fs.readdir(hookIO.config.PATH + '/docs', function(err,files) {
     
     files = files.filter(function(x){
       return ('.md' === x.slice(-3));
     });
     
-    readAllFiles(hookIO.PATH + '/docs/', files, 0, results, function(results){
+    readAllFiles(hookIO.config.PATH + '/docs/', files, 0, results, function(results){
 
       results.forEach(function(r){
         //markdownBook = markdownBook + r;
@@ -39,9 +39,9 @@ var parseMarkDownDocs = exports.parseMarkDownDocs = function(){
       });
 
       htmlBook = hookIO.protocol.markdown.parse(htmlBook);
-      fs.writeFile(hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html' , htmlBook , function (err) {
+      fs.writeFile(hookIO.config.PATH + '/docs/html/' + 'webhookBook' + '.html' , htmlBook , function (err) {
         if (err) throw err;
-        hookIO.debug('the webhook book has been created and saved as html to : ' + hookIO.PATH + '/docs/html/' + 'webhookBook' + '.html');
+        hookIO.debug('the webhook book has been created and saved as html to : ' + hookIO.config.PATH + '/docs/html/' + 'webhookBook' + '.html');
       });
       
       
@@ -60,7 +60,7 @@ function readAllFiles(dir, files, index, results, complete) {
     complete(results);
     return;
   }
-  //sys.puts('reading file: ' + hookIO.PATH + '/docs/' + files[index]);
+  //sys.puts('reading file: ' + hookIO.config.PATH + '/docs/' + files[index]);
   fs.readFile(dir + files[index], 'binary', function(err, data) {
     //if ('.md' == files[index].slice(-3)) {
     //  results[index] = data;  
