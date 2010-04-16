@@ -24,10 +24,10 @@
 	url = git://github.com/Marak/step.git
 [submodule "hookio/lib/underscore"]
 	path = hookio/lib/underscore
-	url = git@github.com:Marak/underscore.git
+	url = git://github.com/Marak/underscore.git
 [submodule "hookio/lib/haml"]
 	path = hookio/lib/haml
-	url = git@github.com:Marak/haml.js.git
+	url = git://github.com/Marak/haml.js.git
 [submodule "hookio/lib/s3"]
 	path = hookio/lib/s3
 	url = git://github.com/Marak/node-s3.git
