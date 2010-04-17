@@ -16,9 +16,9 @@ ALL HANDS ON DECK FOR [SCURVYCONF](http://jsconf.us/2010/scurvy.html)
 
 hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols/) : 10
 
-hook.io webhook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
+hook.io webhooks [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 
-hook.io webhook [actions](HTB/docs/what-is-a-webhook.md): 4
+hook.io webhook [actions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/): 4
 
 
 
@@ -71,7 +71,7 @@ a webhook platform is an application platform for automating simple actions to t
 <a name = "what-is-a-webhook"></a>
 # what is a webhook?
 
-a webhook is a listener which triggers at least one action
+a webhook listens for some stuff to happen and then when that happens it does some other stuff
 
 
 
@@ -228,10 +228,6 @@ a hook.io "protocol" in it's simplest form is a CommonJS module. you can create 
 
 really anything. if you wanted to integrate with Flickr, you would create the Flick.js hook.io protocol. now every single api method for Flickr can be called from a hook definition or an action definition.
 
-
-
-
-#using the hookIO debugger
 
 
 

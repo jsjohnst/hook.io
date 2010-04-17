@@ -16,6 +16,6 @@ ALL HANDS ON DECK FOR [SCURVYCONF](http://jsconf.us/2010/scurvy.html)
 
 hook.io [protocols](http://github.com/Marak/hook.io/tree/master/hookio/protocols/) : 10
 
-hook.io webhook [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
+hook.io webhooks [listeners](http://github.com/Marak/hook.io/tree/master/hookio/definitions/hooks/) : 3
 
-hook.io webhook [actions](HTB/docs/what-is-a-webhook.md): 4
+hook.io webhook [actions](http://github.com/Marak/hook.io/tree/master/hookio/definitions/actions/): 4

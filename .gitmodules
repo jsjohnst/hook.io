@@ -31,3 +31,6 @@
 [submodule "hookio/lib/s3"]
 	path = hookio/lib/s3
 	url = git://github.com/Marak/node-s3.git
+[submodule "hookio/lib/twitter-client"]
+	path = hookio/lib/twitter-client
+	url = git@github.com:Marak/twitscript.git

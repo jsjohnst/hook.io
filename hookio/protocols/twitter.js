@@ -3,14 +3,20 @@
 /*
  * hookio/protocols/twitter
  * For communicating with twitter
+ * there are two libraries in play here.
+ * twitter-node (rick olson) handles the streaming api
+ * twitscript handles the plain ole api
  */
 
 var hookIO = require('../../hookio').hookIO,
-    TwitterNode = require('../lib/twitter-node/lib').TwitterNode;
+    TwitterNode = require('../lib/twitter-node/lib').TwitterNode,
+    twitscript = require('../lib/twitter-client/src/twitscript');
 
 var API_HOST = 'api.twitter.com',
     API_URL = 'http://api.twitter.com/1/';
 
+
+/*
 var twit = new TwitterNode({
   user: 'hookIO',
   password: 'h00k10'
@@ -23,8 +29,23 @@ twit.addListener('tweet', function(tweet) {
     twit.stream();
   }, 10000);
 });
+*/
+
+
 
 exports.start = function() {
+  
+  updateStatus({
+    "user":"hookIO",
+    "password":"h00k10",
+    "tweet":"hook.io is all up in twitter making tweets" + new Date().getTime()
+  });
+
+  // it looks like this code will attempt to establish twitter connections on protocol startup
+  // this approach doesn't really make sense. hook's shouldn't be registering for listening inside the protocol
+  // start() is meant for protocol initlization, not hook initlization 
+  // we'll have to figure out a smart way to "reconnect" real-time sockets on app startup
+  /*
   hookIO.db.getHooks({
     protocol: 'twitter'
   }, function(hooks) {
@@ -53,7 +74,29 @@ exports.start = function() {
     }
   });
   delete exports.start;
+  */
 };
+
+
+var updateStatus = exports.updateStatus = function(options){
+  
+  var twitterConnection = new twitscript.init({
+      username: options.user,
+      password: options.password,
+      headers: "my headers",
+      version: 1,
+      callback : function(){
+        twitterConnection.updateStatus({status: options.tweet}, function(data) {
+        });
+      }
+  });
+
+
+
+  // All calls in Twitscript take an object w/ params as a first argument, and a callback function with Twitter data
+  
+  
+}
 
 exports.trackUser = function(user, callback) {
   if ('number' === typeof user) {
