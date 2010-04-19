@@ -35,11 +35,13 @@ twit.addListener('tweet', function(tweet) {
 
 exports.start = function() {
   
+/*  
   updateStatus({
     "user":"hookIO",
     "password":"h00k10",
     "tweet":"hook.io is all up in twitter making tweets" + new Date().getTime()
   });
+*/
 
   // it looks like this code will attempt to establish twitter connections on protocol startup
   // this approach doesn't really make sense. hook's shouldn't be registering for listening inside the protocol

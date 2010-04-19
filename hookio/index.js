@@ -44,7 +44,7 @@ hookIO.config = {
     port: http_port || 8000
   },
   DEBUGGER : {
-    'webconsole':false, // should we output to the node_debug web console at http://hook.io/debug/
+    'webconsole':true, // should we output to the node_debug web console at http://hook.io/debug/
     'console':true, // should we output to the terminal console
     'emittedEvents':false  // should we output emittedEvents
   }

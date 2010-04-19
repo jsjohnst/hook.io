@@ -59,12 +59,14 @@ exports.createAction = function() {
   }
 };
 
-exports.getActions = function() {
-	
+exports.getActions = function(conditions, callback) {
+  hookIO.debug('api.getActions');
+  hookIO.debug(conditions);
+  
   callback = arguments[arguments.length - 1];
 
   try {
-    hookIO.db.getAllActions(function(actions) {
+    hookIO.db.getActions(conditions, function(actions) {
       var ret = [];
 
       actions.forEach(function(action) {

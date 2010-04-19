@@ -27,7 +27,5 @@ exports.action = {
         return input;
       }
     }
-  },
-  handle: function(action, hook, definition) {
   }
 };

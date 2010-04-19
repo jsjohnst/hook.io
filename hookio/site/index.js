@@ -39,23 +39,37 @@ hookIO.addListener('SiteRequest', function(request, response) {
   	break;
 
     default:
-      // did we 404 or find a custom hook.io listening URL ?
-      if(typeof response.results != 'undefined'){
-        // join any actions id with actual action object
-        hookIO.api.getActions(function(fuuu, actions){
-          hookIO.debug('got some actions');
-          
-          hookIO.debug(actions);
-          
-          // we shouldn't be delegating this event like this, it should be done through the eventemitters
-          hookIO.emit('HttpResponse', response, {}, views.viewUrlHook(response.results));
-        });
+    
+        //   an unknown route was sent to the /site/
+        //   this probaly means a request for a custom hook.io route (defined as a hook listener of type http) came in
+        //   we need to check the database to see if this route exists, if not its a 404
         
-      }
-      else{
-        hookIO.emit('Http404Response', request, response);
-      }
-  
+          // add some validation / forbidden paths here
+          var processedPath = request.url.slice(1, request.url.length);
+          //hookIO.debug(processedPath);
+
+          hookIO.api.getHooks({
+              "path":processedPath
+            },
+            function(err,hooks){
+              //hookIO.debug(results);
+              if(hooks.length){
+                hookIO.debug('hook.io has found a listening url that matches: ' + request.url);
+                hookIO.debug(hooks[0].actions);
+                hookIO.api.getActions({"id":hooks[0].actions},
+                  function(err, actions){
+                  hookIO.debug('hook.io has found the following actions' + JSON.stringify(actions));
+                  // now that we have found the actions attached to our hook we are going to execute those actions
+                  // we shouldn't be delegating this event like this, it should be done through the eventemitters
+                  hookIO.emit('HttpResponse', response, {}, views.viewUrlHook({"hooks":hooks}));
+                });
+                //hookIO.debug(results);
+              }
+              else{
+                hookIO.emit('Http404Response', request, response);
+              }
+           });
+    
     break;
   }
 });
