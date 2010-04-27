@@ -10,6 +10,7 @@ global.mixin(require('sys'));
 
 var keyExpression = /^\/(\w+)/;
 
+
 hookIO.addListener('HttpHookRequest', function(request, response) {
   try {
     var hook = request.url.match(keyExpression);

@@ -46,7 +46,7 @@ hookIO.config = {
   DEBUGGER : {
     'webconsole':true, // should we output to the node_debug web console at http://hook.io/debug/
     'console':true, // should we output to the terminal console
-    'emittedEvents':false  // should we output emittedEvents
+    'emittedEvents':true  // should we output emittedEvents
   }
 };
 
@@ -90,7 +90,7 @@ hookIO.emit = function() {
 // hookIO.step - an easy way to step through multiple async events
 hookIO.Step = require('./lib/step/lib/step');
 
-// underscore.js is a kick library for doing some of the good parts of javascript
+// underscore.js is a kick ass library for doing some of the good parts of javascript
 // this allow for syntax such as : _.each([1,2,3],function(e){hookIO.debug(e);});
 // see more @ : http://documentcloud.github.com/underscore/
 require('./lib/underscore/underscore');

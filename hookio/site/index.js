@@ -13,6 +13,9 @@ var views = require('./views');
 
 
 hookIO.addListener('SiteRequest', function(request, response) {
+  
+  hookIO.debug('incoming site request ' + request.url);
+  
   switch (request.url) {
     case '/queue':
       // TODO: Generate queue page
@@ -20,6 +23,10 @@ hookIO.addListener('SiteRequest', function(request, response) {
 
     // Home page
     case '/':
+	  break;
+
+    case '/favicon.ico':
+      hookIO.emit('HttpResponse', response, {}, '');
 	  break;
 	  
 	  case '/index.html':
@@ -48,14 +55,17 @@ hookIO.addListener('SiteRequest', function(request, response) {
           var processedPath = request.url.slice(1, request.url.length);
           //hookIO.debug(processedPath);
 
+          hookIO.debug('ehh');
+
           hookIO.api.getHooks({
               "path":processedPath
             },
             function(err,hooks){
+              hookIO.debug('getHooks callback');
               //hookIO.debug(results);
               if(hooks.length){
                 hookIO.debug('hook.io has found a listening url that matches: ' + request.url);
-                hookIO.debug(hooks[0].actions);
+                hookIO.debug(hooks[0]);
                 hookIO.api.getActions({"id":hooks[0].actions},
                   function(err, actions){
                   hookIO.debug('hook.io has found the following actions' + JSON.stringify(actions));
